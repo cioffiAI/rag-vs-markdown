@@ -1,6 +1,5 @@
+import argparse
 import json
-import logging
-import os
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -20,13 +19,17 @@ LM_STUDIO_URL = "http://localhost:1234/v1"
 OLLAMA_URL = "http://localhost:11434/v1"
 EMBED_MODEL = "all-MiniLM-L6-v2"
 
+COLLECTIONS = {
+    "a": "rag_papers_raw",
+    "b": "rag_papers",
+}
+
 embedder = SentenceTransformer(EMBED_MODEL)
 
 client = chromadb.PersistentClient(
     path=str(CHROMADB_DIR),
     settings=Settings(anonymized_telemetry=False),
 )
-collection = client.get_collection("rag_papers")
 
 import httpx
 llm_client = None
@@ -37,13 +40,11 @@ for name, url in [("LM Studio", LM_STUDIO_URL), ("Ollama", OLLAMA_URL)]:
         if r.status_code < 400:
             llm_client = OpenAI(base_url=url, api_key="not-needed")
             llm_source = name
-            print(f"LLM backend: {name} ({url})")
             break
     except Exception:
         continue
 if llm_client is None:
     print("WARNING: Nessun LLM server rilevato (LM Studio :1234 o Ollama :11434)")
-    print("Avvia LM Studio con Qwen 2.5 0.8B o Ollama per usare query.py")
 
 SYSTEM_PROMPT = """You are a precise RAG assistant. Answer the user's question using ONLY the provided context chunks.
 
@@ -54,7 +55,17 @@ Rules:
 - Do NOT use prior knowledge or make up information.
 - Be specific and factual."""
 
-def retrieve(query: str, k: int = TOP_K) -> list[dict]:
+
+def get_collection(pipeline: str):
+    col_name = COLLECTIONS.get(pipeline, "rag_papers")
+    try:
+        return client.get_collection(col_name)
+    except (ValueError, chromadb.errors.NotFoundError):
+        print(f"ERROR: Collezione '{col_name}' non trovata. Esegui build_index.py --pipeline {pipeline} prima.")
+        sys.exit(1)
+
+
+def retrieve(query: str, collection, k: int = TOP_K) -> list[dict]:
     query_emb = embedder.encode([query], convert_to_numpy=True)
     results = collection.query(
         query_embeddings=query_emb.tolist(),
@@ -74,6 +85,7 @@ def retrieve(query: str, k: int = TOP_K) -> list[dict]:
         })
     return chunks
 
+
 def build_prompt(question: str, chunks: list[dict]) -> str:
     context_parts = []
     for i, c in enumerate(chunks):
@@ -83,6 +95,7 @@ def build_prompt(question: str, chunks: list[dict]) -> str:
     context = "\n\n".join(context_parts)
     prompt = f"{SYSTEM_PROMPT}\n\nContext:\n{context}\n\nQuestion: {question}\n\nAnswer:"
     return prompt
+
 
 def ask_llm(prompt: str) -> str:
     if llm_client is None:
@@ -99,8 +112,9 @@ def ask_llm(prompt: str) -> str:
     except Exception as e:
         return f"[ERROR LLM: {e}]"
 
-def answer(question: str, log: bool = True) -> dict:
-    chunks = retrieve(question)
+
+def answer(question: str, collection, log: bool = True) -> dict:
+    chunks = retrieve(question, collection)
     prompt = build_prompt(question, chunks)
     answer_text = ask_llm(prompt)
     result = {
@@ -108,6 +122,7 @@ def answer(question: str, log: bool = True) -> dict:
         "answer": answer_text,
         "retrieved_chunks": chunks,
         "timestamp": datetime.now().isoformat(),
+        "pipeline": collection.name,
     }
     if log:
         log_id = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
@@ -117,36 +132,62 @@ def answer(question: str, log: bool = True) -> dict:
         result["log_file"] = str(log_path)
     return result
 
-def main():
-    if len(sys.argv) < 2:
-        print("Usage: python query.py <question>")
-        print("   or: python query.py --file <path_to_questions.json>")
-        sys.exit(1)
 
-    if sys.argv[1] == "--file":
-        qpath = Path(sys.argv[2])
+def main():
+    parser = argparse.ArgumentParser(description="Query ChromaDB RAG index")
+    parser.add_argument("question", nargs="*", help="Domanda da porre")
+    parser.add_argument("--pipeline", choices=["a", "b"], default="b",
+                        help="Pipeline da usare (default: b)")
+    parser.add_argument("--file", type=str, help="File JSON con domande multiple")
+    parser.add_argument("--tag", type=str, default="", help="Suffisso per il file di log batch")
+    args = parser.parse_args()
+
+    collection = get_collection(args.pipeline)
+    print(f"Pipeline {args.pipeline.upper()} — collezione '{collection.name}'")
+
+    if args.file:
+        qpath = Path(args.file)
         with open(qpath, "r", encoding="utf-8") as f:
             questions = json.load(f)
+        q_list = questions if isinstance(questions, list) else questions["questions"]
         results = []
-        for q in questions if isinstance(questions, list) else questions["questions"]:
+        def safe_print(msg: str):
+            try:
+                print(msg)
+            except UnicodeEncodeError:
+                print(msg.encode("ascii", "replace").decode("ascii"))
+
+        tag = f"_{args.tag}" if args.tag else f"_{args.pipeline}"
+        out_path = LOGS_DIR / f"batch{tag}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+
+        for i, q in enumerate(q_list):
             question_text = q.get("question", q.get("query", ""))
             if not question_text:
                 continue
-            print(f"\n---\nQ: {question_text}")
-            result = answer(question_text)
-            print(f"A: {result['answer'][:200]}...")
+            safe_print(f"\n---\nQ: {question_text[:80]}...")
+            result = answer(question_text, collection)
+            safe_print(f"A: {result['answer'][:200]}...")
             results.append(result)
-        out_path = LOGS_DIR / f"batch_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+            if (i + 1) % 10 == 0:
+                with open(out_path, "w", encoding="utf-8") as f:
+                    json.dump(results, f, ensure_ascii=False, indent=2)
+                safe_print(f"[Checkpoint] {i+1}/{len(q_list)} salvati in {out_path}")
+
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(results, f, ensure_ascii=False, indent=2)
-        print(f"\nBatch completato. Risultati salvati in {out_path}")
+        safe_print(f"\nBatch completato. Risultati salvati in {out_path}")
     else:
-        question = " ".join(sys.argv[1:])
-        result = answer(question)
+        if not args.question:
+            parser.print_help()
+            sys.exit(1)
+        question = " ".join(args.question)
+        result = answer(question, collection)
         print(f"\nDomanda: {result['question']}")
         print(f"Risposta: {result['answer']}")
         print(f"\nChunk sorgente: {result['retrieved_chunks'][0]['doc_name']}")
+        print(f"Pipeline: {result['pipeline']}")
         print(f"Log: {result.get('log_file', 'N/A')}")
+
 
 if __name__ == "__main__":
     main()
