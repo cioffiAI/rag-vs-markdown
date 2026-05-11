@@ -1,0 +1,5 @@
+PDF → [PyMuPDF] → Testo/Markdown → [Chunking] → [Embedding: all-MiniLM-L6-v2]
+                                              ↓
+[Query] → [ChromaDB (in-memory)] → Top-K chunks → [Prompt templating] 
+                                              ↓
+[Qwen 3.5 0.8B via Ollama/llama.cpp] → Risposta → [Logging JSON]
