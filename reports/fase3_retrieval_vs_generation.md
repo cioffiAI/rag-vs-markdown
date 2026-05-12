@@ -61,22 +61,27 @@ Giving the LLM the full document text (instead of top-3 chunks) produces a drama
 | local_reasoning | 1.75 | 3.00 | +1.25 | 1.80 | 2.80 | +1.00 |
 | multi_document | 1.60 | 3.00 | +1.40 | 1.60 | 3.20 | +1.60 |
 
-**Interpretation:**
+**Diagnostic interpretation (not causal):**
 - When given full document context, Gemma 4 scores 2.90–2.93/5.0 regardless of pipeline.
-- The +67–85% improvement from oracle context is mostly driven by converting E06 (false_refusal) → correct answers.
-- ~47% of questions (14/30) improved by 2+ points with oracle context — these were clearly retrieval-insufficiency cases.
-- ~33% of questions (10/30) showed no improvement or slight degradation — these are true generation/prompt-format failures.
+- The +67–85% improvement from oracle context is mostly driven by converting E06 (false_refusal) → correct answers. This is consistent with retrieval insufficiency but **E06 may also reflect generation-side over-cautiousness** — the model refuses unless the answer is obvious, and full-document context makes the answer more salient.
+- ~47% of questions (14/30) improved by 2+ points with oracle context — these are cases where the oracle context added information that the top-3 chunks lacked.
+- ~33% of questions (10/30) showed no improvement or slight degradation — these are cases where the oracle context did not help, suggesting generation-side or prompt-format limitations rather than retrieval failures.
 
-## Answer to RQ3
+**Important oracle test limitations:**
+1. **Upper-bound only**: replacing top-3 chunks with full document text eliminates retrieval error entirely, which is unrealistic for any deployed RAG system. The +67–85% is a ceiling, not a typical improvement.
+2. **Single-context oracle**: both pipelines use the same raw-text oracle. A Markdown oracle for Pipeline B would give a more diagnostic comparison but was not feasible due to API rate limits.
+3. **E06 is ambiguous**: "false refusal" sits at the retrieval–generation boundary. It may be retrieval insufficiency (correct passage missing from top-3), generation-side over-cautiousness (model refuses unless answer is trivial), or both. The oracle +85% suggests retrieval plays a role, but E06's 42–46% prevalence includes both effects.
 
-**Retrieval is the primary bottleneck**, but not in the way we expected:
+## Answer to RQ3 (Diagnostic)
+
+**The data are consistent with retrieval being the dominant performance constraint on this benchmark**, but the evidence is correlational, not causal:
 
 1. **~12%** of errors are pure retrieval failures (E01: correct document not in top-3).
-2. **~47%** are retrieval *insufficiency* — the correct document is in top-3 but the specific chunk with the answer is not, causing Gemma 4 to falsely refuse (E06).
-3. **~20–33%** are true generation failures — even with full oracle context, the model answers poorly. This is partly a **prompt-format issue** (Gemma 4 repeats/question-analyses instead of answering directly) and partly genuine knowledge gaps.
+2. **~42–47%** are plausible retrieval *insufficiency* (E06: false refusal with correct document in top-3 — the specific passage may be ranked 4th+, or the model may be over-cautious).
+3. **~20–33%** are persistent generation failures — even with full oracle context, scores remain low. This is partly a **prompt-format issue** (Gemma 4 repeats/analyzes the question instead of answering directly) and partly genuine knowledge gaps.
 4. **~16%** are citation errors (E04): correct answers without source attribution.
 
-**Bottom line:** ~60% of the error budget is retrieval-related, ~25% is generation-related, ~15% is scoring/citation artifacts. The Markdown pipeline (B) has slightly *more* retrieval errors than raw text (A), confirming Fase 1/2 results.
+**Bottom line:** The evidence is consistent with ~60% of the error budget being retrieval-related, ~25% generation-related, ~15% scoring/citation artifacts. These are diagnostic proportions, not causal attributions. The Markdown pipeline (B) has slightly *more* retrieval errors than raw text (A), which is consistent with the shallow-chunk hypothesis (Markdown produces many near-empty chunks that consume retrieval slots). See [docs/results.md](../docs/results.md) section 5 for the formal shallow-chunk definition.
 
 ## Files Created/Modified
 

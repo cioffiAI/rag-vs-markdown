@@ -33,7 +33,7 @@ Pipeline B (MD)    PDF → PyMuPDF → raw text → Markdown → chunks → Chro
 | DeepSeek V4 Flash | — | **2.98** | 2.76 | −0.22 | Raw |
 | Gemma 4 26B | 26B | **3.12** | 2.86 | −0.26 | Raw |
 
-**Key finding**: The Markdown advantage inverts as model capability increases. Small models benefit from structured Markdown chunks (+1.2%), but from ~3B parameters onward, raw text consistently outperforms. This is a **model × pipeline interaction** — preprocessing strategy cannot be universal.
+**Key finding**: The Markdown advantage is not monotonic with model capability alone — it correlates with both model size and provider configuration. Small models benefit from structured Markdown chunks (+1.2%), but from ~3B parameters onward, raw text consistently outperforms. This is a **model × pipeline interaction** — preprocessing strategy cannot be universal. However, model size, provider, API format, and prompt formatting all vary simultaneously across our four models, so the gradient is a **confounded observation**, not a controlled experiment on size alone.
 
 See [docs/results.md](docs/results.md), the [comparative report](reports/comparative_benchmark.md), and the [Fase 3 oracle report](reports/fase3_retrieval_vs_generation.md).
 
@@ -41,8 +41,8 @@ See [docs/results.md](docs/results.md), the [comparative report](reports/compara
 
 This benchmark does not measure "RAG in general". It measures the ability of two pipeline configurations to answer 50 questions we designed. Key findings across all three phases:
 
-- **Retrieval is the primary bottleneck**: the [oracle test](reports/fase3_retrieval_vs_generation.md) shows that giving the LLM the full document text improves scores by +67–85%. Only ~25% of errors are true generation failures.
-- **Model × pipeline interaction gradient**: A clear gradient emerges across 4 models: Qwen 800M prefers Markdown (+1.2%), Nemotron 3B (−3.6%), DeepSeek V4 Flash (−4.4%), Gemma 4 26B (−5.2%). The larger the model, the more it benefits from raw unstructured text.
+- **Retrieval is the dominant constraint on this benchmark**: the [oracle test](reports/fase3_retrieval_vs_generation.md) shows that giving the LLM full document text improves scores by +67–85%. However, the oracle bypasses retrieval entirely and uses raw text (not per-pipeline context), so the improvement is an upper-bound estimate. ~25% of errors persist even with oracle context.
+- **Model × pipeline interaction gradient**: An observed gradient runs across 4 model/provider combinations: Qwen 800M prefers Markdown (+1.2%), Nemotron 3B (−3.6%), DeepSeek V4 Flash (−4.4%), Gemma 4 26B (−5.2%). Provider confound prevents isolating size as the sole cause.
 - **Famous papers**: All documents are well-known arXiv papers. The [error taxonomy](docs/error_taxonomy.md) helps separate RAG quality from parametric knowledge.
 
 ## Experimental Philosophy

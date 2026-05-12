@@ -10,10 +10,14 @@ This benchmark does not measure "RAG in general". It measures the ability of two
 | Embeddings | sentence-transformers/all-MiniLM-L6-v2 (CPU) |
 | Vector DB | ChromaDB (cosine distance) |
 | Retrieval | TOP_K = 3 chunks |
-| Chunk size | 1500 chars, 150 overlap paragraph-based |
+| Chunk size (nominal) | 1500 chars, 150 overlap, paragraph-preserving |
+| Avg chunk length (A) | ~3100 chars (paragraphs kept intact; see note below) |
+| Avg chunk length (B) | ~3500 chars |
 | Corpus | 10 arXiv papers (RAG, Self-RAG, Transformer, YOLOv7, Survey, Foundation Models, Ragas, CRAG, HELM, Tree-of-Thoughts) |
 | Questions | 50 gold-standard across 5 types, Italian language |
 | Models tested | Qwen 0.8B (LM Studio), Nemotron 3 Super Free (OpenCode API), DeepSeek V4 Flash (OpenCode API), Gemma 4 26B A4B (Google Gemini API) |
+
+> **Note on chunk size vs. actual length**: CHUNK_SIZE=1500 is a **closing threshold**, not a hard limit. The chunker (`smart_chunk_text` in `build_index.py`) accumulates whole paragraphs into a buffer and closes it when the *next* paragraph would exceed 1500 chars. Single paragraphs longer than 1500 chars are emitted as standalone chunks of arbitrary length. Consequently, average chunk lengths (~3100–3500) exceed the nominal 1500. This is by design: paragraph boundaries are semantic units, and splitting them mid-paragraph would corrupt section headers, table rows, or list items that Markdown preprocessing relies on. The overlap (150 chars) ensures continuity across chunk boundaries.
 
 ## Overall Score
 
@@ -101,7 +105,7 @@ Note: Hallucination rate measures how often the system produced an answer when i
 ## Interpretation
 
 ### 1. The Preprocessing Effect Is Small (on 0.8B)
-Pipeline B (Markdown) outperforms A (Raw) by only 0.06 points — a 1.2% difference. With a weak LLM, chunk formatting quality is dwarfed by the model's limited ability to paraphrase and reason. This does **not** prove Markdown is useless. It proves that if the generator is the bottleneck, improving the retriever has limited impact on the final score.
+Pipeline B (Markdown) outperforms A (Raw) by only 0.06 points — a 1.2% difference. With a weak LLM, chunk formatting quality is dwarfed by the model's limited ability to paraphrase and reason. This does **not** indicate that Markdown is useless. It is consistent with a scenario where the generator is the bottleneck, so improving the retriever has limited impact on the final score.
 
 ### 2. Tables Are the Exception
 On the 5 table-extraction questions, Markdown shows a clear +1.6 point advantage. The structured format preserves numeric relationships that raw PDF text flattens into prose. This is the most actionable finding: **if your use case involves tables, Markdown preprocessing matters**.
@@ -120,17 +124,35 @@ Running the same benchmark across 4 models of increasing capability reveals a **
 | DeepSeek V4 Flash | — | **2.98** | 2.76 | −0.22 (−4.4%) | Raw |
 | Gemma 4 26B A4B | 26B | **3.12** | 2.86 | −0.26 (−5.2%) | Raw |
 
-The Markdown advantage (Qwen) becomes a Markdown disadvantage for all larger models, with the gap widening monotonically as model capability increases. This is a **model × pipeline interaction gradient**: larger models extract information better from raw text; Markdown structure can act as noise. Preprocessing strategy cannot be assumed universal — it must be tuned to the model.
+The Markdown advantage (Qwen) becomes a Markdown disadvantage for all larger models, with the gap widening monotonically across the four model/provider configurations tested. This is consistent with a **model × pipeline interaction**, but **model identity, size, provider, API format, and prompt formatting all vary simultaneously** — we cannot isolate size as the causal factor. The data support a confounded gradient, not a controlled size experiment. A possible mechanism: Markdown structure can act as noise for models that parse unstructured text well. Preprocessing strategy cannot be assumed universal — it must be tuned to the specific model and deployment context.
 
-### 5. Oracle Test — Retrieval vs. Generation (Fase 3)
+### 5. Shallow Chunks
 
-The oracle test (giving the LLM the full document text instead of top-3 chunks) isolates the retrieval contribution:
+The Markdown pipeline introduces a class of retrieval candidates we call **shallow chunks**: chunks whose informative text length (after stripping structural markup: `##`, `**`, `|--|`, list markers) is ≤200 characters. These chunks typically consist of:
+
+- Section headers alone (e.g., `# 03_attention_transformer_vaswani_2017.pdf`)
+- Short list items
+- Table formatting artifacts (header separators like `|---|---|`)
+
+In our corpus, **26% of retrieved Markdown chunks (39/150)** are shallow vs. **0% for Raw text**. The embedding model (all-MiniLM-L6-v2) matches these chunks to queries via **lexical overlap in structural words** (e.g., "Transformer", "Model", "Attention" in headers matching query keywords) — producing high cosine similarity scores despite near-zero factual content. This is the primary mechanism behind the Markdown disadvantage: Pipeline B retrieves more irrelevant chunks that pass the embedding filter.
+
+**Formal definition**: A chunk is *shallow* if, after removing Markdown syntax tokens (`#`, `*`, `` ` ``, `|`, `---`, `[`, `]`, `>`) and trimming whitespace, the remaining text has ≤200 characters. This threshold captures chunks that contain only structural headings without substantive prose.
+
+### 6. Oracle Test — Retrieval vs. Generation (Fase 3, Diagnostic)
+
+The oracle test (giving the LLM the full document text instead of top-3 chunks) estimates an upper bound on the retrieval contribution:
 
 | Test | Pipeline B Mean | Oracle Mean | Delta |
 |------|:---:|:---:|:---:|
 | Gemma 4 26B | 1.58 | **2.93** | **+1.35 (+85%)** |
 
-**~60% of errors are retrieval-related**, ~25% are generation-related, ~15% are scoring/citation artifacts. The primary failure mode is **E06 (false_refusal, 42–46%)**: the model says "cannot find information" even when the correct chunk was retrieved with TOP_K=3, because the specific passage with the answer is often ranked 4th or lower.
+**Interpretation**: The data are consistent with retrieval being the dominant performance constraint on this benchmark. However, the oracle test has three diagnostic limitations:
+
+1. **Upper-bound only**: replacing retrieved chunks with the full document text eliminates retrieval error entirely, which is unrealistic for any production RAG system. The +67–85% improvement is a ceiling, not a typical gain.
+2. **Single-context oracle**: both pipelines use the same raw-text oracle — a per-pipeline oracle (Markdown for B) would give a more precise comparison but was not run due to API rate limits.
+3. **E06 ambiguity**: the primary failure mode is **E06 (false_refusal, 42–46%)**: the model says "cannot find information" even when the correct document was retrieved. The oracle test attributes this to retrieval *insufficiency* (correct passage ranked 4th+), but it may also reflect a generation-side over-cautiousness policy — the model refuses unless the answer is obvious. E06 sits at the retrieval–generation boundary.
+
+**Bottom line**: ~60% of errors are plausibly retrieval-related, ~25% are generation-related, ~15% are scoring/citation artifacts. These proportions are diagnostic hints, not causal attributions.
 
 The [error taxonomy](error_taxonomy.md) provides the full E01–E07 breakdown, and the [Fase 3 report](../reports/fase3_retrieval_vs_generation.md) has the complete analysis.
 

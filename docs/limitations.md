@@ -2,20 +2,24 @@
 
 This document describes the known limitations of the benchmark and experimental framework. These do not weaken the project — they define its scope and make its claims falsifiable.
 
-## 1. Model Size
+## 1. Model Identity Confound (Size × Provider × API)
 
-The benchmark was run on **two models** with very different sizes:
+The benchmark compares **four model/provider configurations**:
 
 | Model | Params | Source |
 |-------|--------|--------|
-| Qwen 3.5 0.8B | 800M | Local (LM Studio) |
+| Qwen 3.5 0.8B | 800M | Local (LM Studio, OpenAI-compatible API) |
+| Nemotron 3 Super Free | ~3B | OpenCode API (opencode.ai/zen/v1) |
+| DeepSeek V4 Flash | — | OpenCode API (opencode.ai/zen/go/v1) |
 | Gemma 4 26B A4B | ~4B active / 26B total | Google Gemini API (free tier) |
+
+These differ along **multiple correlated axes**: parameter count, provider, API protocol, prompt formatting, system prompt enforcement, tokenizer behavior, and instruction-following characteristics. The observed gradient from Markdown-preferring to Raw-preferring correlates with model size but is **confounded by provider identity**. We cannot attribute the reversal to size alone.
 
 Key observations:
 - Gemma 4 26B consistently outperforms Qwen across both pipelines (+25% on Pipeline A, +12% on Pipeline B).
-- The pipeline advantage **reverses** between models: Qwen benefits from Markdown (+1.2%), Gemma 4 benefits from Raw (−5.2%).
-- The retrieval bottleneck is common to both: the [oracle test](reports/fase3_retrieval_vs_generation.md) shows +67–85% improvement when giving full document context, regardless of model size.
-- **This means**: model size alone doesn't predict which preprocessing strategy works. The interaction between model capability and chunk format is non-trivial.
+- The pipeline advantage **reverses** across the series: Qwen benefits from Markdown (+1.2%), all others benefit from Raw (−3.6% to −5.2%).
+- The retrieval bottleneck is common to both: the [oracle test](reports/fase3_retrieval_vs_generation.md) is consistent with a +67–85% improvement when giving full document context, across model sizes.
+- **This means**: model size alone doesn't predict which preprocessing strategy works. The interaction between model capability, provider, API, and chunk format is non-trivial.
 
 ## 2. Scoring Methodology
 
@@ -102,4 +106,5 @@ The system prompt ("use ONLY the provided context") is enforced by instruction, 
 | Scoring proxy | Medium | Error taxonomy (added) |
 | Small benchmark | Medium | Future expansion |
 | Single model | ~~High~~ **Resolved** | 4-model benchmark (Qwen, Nemotron 3, DeepSeek V4, Gemma 4) |
+| Provider confound | **High** | Explicitly documented (size, provider, API co-vary) |
 | Knowledge compilation bias | Medium | Explicitly documented here |
