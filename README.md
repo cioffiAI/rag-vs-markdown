@@ -2,7 +2,15 @@
 
 **Does compiling PDFs into structured Markdown before indexing improve RAG quality?**
 
-This project compares two RAG pipelines on the same 50 gold-standard questions over 10 arXiv papers. All runs on CPU with a local LLM — no cloud API.
+This project is not a RAG demo. It is a **diagnostic framework** to separate the effects of document preprocessing, retrieval, generation, and epistemic behavior (knowing when not to answer) in local RAG pipelines.
+
+## Research Questions
+
+| ID | Question | Status |
+|----|----------|--------|
+| RQ1 | Does Markdown compilation improve overall quality vs. raw PDF text? | Baseline measured (Δ = +1.2%) |
+| RQ2 | Does the Markdown advantage persist with stronger generative models? | Planned (Fase 2) |
+| RQ3 | Are errors primarily caused by retrieval failures or generation failures? | Planned (Fase 3) |
 
 ## Pipelines
 
@@ -13,19 +21,36 @@ Pipeline B (MD)    PDF → PyMuPDF → raw text → Markdown → chunks → Chro
 
 | Pipeline | Description | Embeddings | Vector DB | LLM |
 |----------|-------------|-----------|-----------|-----|
-| **A** | Raw extracted text | all-MiniLM-L6-v2 | ChromaDB (cosine) | Qwen 3.5 0.8B |
-| **B** | Compiled Markdown | all-MiniLM-L6-v2 | ChromaDB (cosine) | Qwen 3.5 0.8B |
+| **A** | Raw extracted text | all-MiniLM-L6-v2 | ChromaDB (cosine) | Configurable |
+| **B** | Compiled Markdown | all-MiniLM-L6-v2 | ChromaDB (cosine) | Configurable |
 
-## Results in 10 Seconds
+## Results at a Glance (Qwen 0.8B)
 
-| Pipeline | Score | Normalized |
-|----------|:-----:|:----------:|
-| **B — Markdown** | **2.56/5** | **51.2%** |
-| A — Raw text | 2.50/5 | 50.0% |
+| Pipeline | Mean (/5.0) | Normalized |
+|----------|:-----------:|:----------:|
+| **B — Markdown** | **2.56** | **51.2%** |
+| A — Raw text | 2.50 | 50.0% |
+| Delta | +0.06 | +1.2% |
 
-**Markdown wins by +1.2%.** The advantage comes from table-structured questions (+1.6 points). For simple facts and multi-doc comparisons, both pipelines are equivalent — the small LLM (0.8B) dominates the error budget.
+Markdown wins by 1.2%, driven entirely by table-extraction questions (+1.6). On all other types, pipelines are equivalent within noise (0.8B model).
 
-See [docs/results.md](docs/results.md) for the full breakdown and [docs/limitations.md](docs/limitations.md) for known constraints.
+See [docs/results.md](docs/results.md) and the [comparative report](reports/comparative_benchmark.md).
+
+## Interpreting These Results
+
+This benchmark does not measure "RAG in general". It measures the ability of two pipeline configurations to answer 50 questions we designed. The scores are valid within this boundary. Key constraints:
+
+- **Small LLM**: Qwen 0.8B is the dominant bottleneck. A larger model could change the gap.
+- **Conflated metrics**: The composite score mixes retrieval quality, generation quality, and citation accuracy. See the [error taxonomy](docs/error_taxonomy.md) for separation.
+- **Famous papers**: All documents are well-known arXiv papers. A model with strong parametric knowledge may answer without using context.
+
+## Experimental Philosophy
+
+This project follows three principles:
+
+1. **Separate concerns**. Each pipeline, model, and metric is a variable that can be changed independently.
+2. **Document failure modes**. Errors are classified by origin (retrieval, generation, hallucination) not by final score.
+3. **Declare boundaries**. Results are reported within their experimental context, not as general claims.
 
 ## Setup
 
@@ -89,8 +114,8 @@ Questions file: [data/benchmark_questions.json](data/benchmark_questions.json)
 ├── scripts/
 │   ├── extract.py                 PDF → JSON (PyMuPDF)
 │   ├── compile_markdown.py        JSON → Markdown with sections
-│   ├── build_index.py             Chunk → embed → ChromaDB
-│   ├── query.py                   Retrieve + LLM generation
+│   ├── build_index.py             Chunk → embed → ChromaDB (--pipeline a|b)
+│   ├── query.py                   Retrieve + LLM generation (--pipeline a|b)
 │   ├── evaluate.py                Score answers against ground truth
 │   ├── convert_benchmark_to_csv.py
 │   └── compare_pipelines.py       A vs B comparison report
@@ -98,11 +123,12 @@ Questions file: [data/benchmark_questions.json](data/benchmark_questions.json)
 │   ├── raw/                       Input PDFs (not tracked)
 │   ├── extracted/                 Per-page JSON (not tracked)
 │   ├── processed/                 Markdown versions (not tracked)
-│   ├── benchmark_questions.json  50 gold-standard questions
+│   ├── benchmark_questions.json   50 gold-standard questions
 │   └── gold_questions.csv         CSV export
 ├── docs/
-│   ├── results.md                 Accessible results summary
-│   └── limitations.md             Known constraints
+│   ├── results.md                 Results with interpretation
+│   ├── limitations.md             Known constraints and threats to validity
+│   └── error_taxonomy.md          Error classification system
 ├── reports/
 │   ├── benchmark_results_a.md     Pipeline A evaluation
 │   ├── benchmark_results_b.md     Pipeline B evaluation
@@ -114,7 +140,7 @@ Questions file: [data/benchmark_questions.json](data/benchmark_questions.json)
 
 - Python 3.10+
 - 4GB+ RAM (for sentence-transformers on CPU)
-- LM Studio or Ollama running on localhost with Qwen 3.5 0.8B (or any OpenAI-compatible endpoint)
+- LM Studio or Ollama on localhost with an OpenAI-compatible endpoint
 - No GPU required
 
 ## License
