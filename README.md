@@ -8,9 +8,9 @@ This project is not a RAG demo. It is a **diagnostic framework** to separate the
 
 | ID | Question | Status |
 |----|----------|--------|
-| RQ1 | Does Markdown compilation improve overall quality vs. raw PDF text? | Baseline measured (Δ = +1.2%) |
-| RQ2 | Does the Markdown advantage persist with stronger generative models? | Planned (Fase 2) |
-| RQ3 | Are errors primarily caused by retrieval failures or generation failures? | Planned (Fase 3) |
+| RQ1 | Does Markdown compilation improve overall quality vs. raw PDF text? | **Completed** (Qwen Δ = +1.2%, Gemma Δ = −8.3%) |
+| RQ2 | Does the Markdown advantage persist with stronger generative models? | **Completed** (No — Gemma 4 26B prefers Raw, Δ = −8.3%) |
+| RQ3 | Are errors primarily caused by retrieval failures or generation failures? | **Completed** (~60% retrieval, ~25% generation, ~15% scoring/citation) |
 
 ## Pipelines
 
@@ -24,7 +24,9 @@ Pipeline B (MD)    PDF → PyMuPDF → raw text → Markdown → chunks → Chro
 | **A** | Raw extracted text | all-MiniLM-L6-v2 | ChromaDB (cosine) | Configurable |
 | **B** | Compiled Markdown | all-MiniLM-L6-v2 | ChromaDB (cosine) | Configurable |
 
-## Results at a Glance (Qwen 0.8B)
+## Results at a Glance
+
+### Qwen 0.8B (Local, LM Studio)
 
 | Pipeline | Mean (/5.0) | Normalized |
 |----------|:-----------:|:----------:|
@@ -32,17 +34,27 @@ Pipeline B (MD)    PDF → PyMuPDF → raw text → Markdown → chunks → Chro
 | A — Raw text | 2.50 | 50.0% |
 | Delta | +0.06 | +1.2% |
 
-Markdown wins by 1.2%, driven entirely by table-extraction questions (+1.6). On all other types, pipelines are equivalent within noise (0.8B model).
+Markdown wins by 1.2%, driven entirely by table-extraction questions (+1.6).
 
-See [docs/results.md](docs/results.md) and the [comparative report](reports/comparative_benchmark.md).
+### Gemma 4 26B (Google Gemini API)
+
+| Pipeline | Mean (/5.0) | Normalized |
+|----------|:-----------:|:----------:|
+| A — Raw text | **3.12** | **62.4%** |
+| B — Markdown | 2.86 | 57.2% |
+| Delta (B − A) | −0.26 | −5.2% |
+
+With a stronger model, the pattern **reverses**: Raw text outperforms Markdown by 5.2%. The Markdown advantage does not persist.
+
+See [docs/results.md](docs/results.md), the [comparative report](reports/comparative_benchmark.md), and the [Fase 3 oracle report](reports/fase3_retrieval_vs_generation.md).
 
 ## Interpreting These Results
 
-This benchmark does not measure "RAG in general". It measures the ability of two pipeline configurations to answer 50 questions we designed. The scores are valid within this boundary. Key constraints:
+This benchmark does not measure "RAG in general". It measures the ability of two pipeline configurations to answer 50 questions we designed. Key findings across all three phases:
 
-- **Small LLM**: Qwen 0.8B is the dominant bottleneck. A larger model could change the gap.
-- **Conflated metrics**: The composite score mixes retrieval quality, generation quality, and citation accuracy. See the [error taxonomy](docs/error_taxonomy.md) for separation.
-- **Famous papers**: All documents are well-known arXiv papers. A model with strong parametric knowledge may answer without using context.
+- **Retrieval is the primary bottleneck**: the [oracle test](reports/fase3_retrieval_vs_generation.md) shows that giving the LLM the full document text improves scores by +67–85%. Only ~25% of errors are true generation failures.
+- **Model × pipeline interaction flips**: Markdown helps small models (Qwen, +1.2%) but hurts larger ones (Gemma 4, −5.2%). Preprocessing strategy should depend on model capability.
+- **Famous papers**: All documents are well-known arXiv papers. The [error taxonomy](docs/error_taxonomy.md) helps separate RAG quality from parametric knowledge.
 
 ## Experimental Philosophy
 
@@ -92,6 +104,15 @@ python scripts/evaluate.py batch_b_*.json benchmark_results.md
 
 # 7. Compare pipelines
 python scripts/compare_pipelines.py
+
+# 8. Classify errors (Fase 3)
+python scripts/error_analysis.py batch_*.json --pipeline-label "B" --model-label "Gemma4"
+
+# 9. Run oracle test (Fase 3)
+python scripts/oracle_test.py --model gemma-4-26b-a4b-it
+
+# 10. Compare retrieval vs oracle
+python scripts/oracle_compare.py batch_results.json oracle_results.json
 ```
 
 ## Benchmark
@@ -115,10 +136,13 @@ Questions file: [data/benchmark_questions.json](data/benchmark_questions.json)
 │   ├── extract.py                 PDF → JSON (PyMuPDF)
 │   ├── compile_markdown.py        JSON → Markdown with sections
 │   ├── build_index.py             Chunk → embed → ChromaDB (--pipeline a|b)
-│   ├── query.py                   Retrieve + LLM generation (--pipeline a|b)
+│   ├── query.py                   Retrieve + LLM generation (multi-provider)
 │   ├── evaluate.py                Score answers against ground truth
-│   ├── convert_benchmark_to_csv.py
-│   └── compare_pipelines.py       A vs B comparison report
+│   ├── compare_pipelines.py       A vs B comparison report
+│   ├── error_analysis.py          E01–E07 error classification
+│   ├── oracle_test.py             Oracle context (full document text)
+│   ├── oracle_compare.py          Retrieval vs oracle score comparison
+│   └── convert_benchmark_to_csv.py
 ├── data/
 │   ├── raw/                       Input PDFs (not tracked)
 │   ├── extracted/                 Per-page JSON (not tracked)
@@ -130,9 +154,11 @@ Questions file: [data/benchmark_questions.json](data/benchmark_questions.json)
 │   ├── limitations.md             Known constraints and threats to validity
 │   └── error_taxonomy.md          Error classification system
 ├── reports/
-│   ├── benchmark_results_a.md     Pipeline A evaluation
-│   ├── benchmark_results_b.md     Pipeline B evaluation
-│   └── comparative_benchmark.md   Side-by-side comparison
+│   ├── comparative_benchmark.md          Gemma 4 26B A vs B comparison
+│   ├── fase3_retrieval_vs_generation.md  Oracle test + error classification
+│   ├── error_profile_*.md                E01–E07 per-pipeline profiles
+│   ├── oracle_comparison_*.md            Retrieval vs oracle comparisons
+│   └── benchmark_results_*.md            Per-pipeline score tables
 └── requirements.txt
 ```
 
@@ -140,7 +166,8 @@ Questions file: [data/benchmark_questions.json](data/benchmark_questions.json)
 
 - Python 3.10+
 - 4GB+ RAM (for sentence-transformers on CPU)
-- LM Studio or Ollama on localhost with an OpenAI-compatible endpoint
+- For local inference: LM Studio or Ollama on localhost with an OpenAI-compatible endpoint
+- For cloud inference: Google Gemini API key (free tier: Gemma 4 26B, 15 RPM, 1500 RPD)
 - No GPU required
 
 ## License

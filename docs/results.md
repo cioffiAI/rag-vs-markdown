@@ -7,13 +7,13 @@ This benchmark does not measure "RAG in general". It measures the ability of two
 
 | Parameter | Value |
 |-----------|-------|
-| LLM | Qwen 3.5 0.8B via LM Studio (temp=0.1, max_tokens=256) |
 | Embeddings | sentence-transformers/all-MiniLM-L6-v2 (CPU) |
 | Vector DB | ChromaDB (cosine distance) |
 | Retrieval | TOP_K = 3 chunks |
 | Chunk size | 1500 chars, 150 overlap paragraph-based |
 | Corpus | 10 arXiv papers (RAG, Self-RAG, Transformer, YOLOv7, Survey, Foundation Models, Ragas, CRAG, HELM, Tree-of-Thoughts) |
 | Questions | 50 gold-standard across 5 types, Italian language |
+| Models tested | Qwen 3.5 0.8B (local, LM Studio) + Gemma 4 26B A4B (Google Gemini API) |
 
 ## Overall Score
 
@@ -109,16 +109,28 @@ On the 5 table-extraction questions, Markdown shows a clear +1.6 point advantage
 ### 3. Negative Questions Are a Separate Dimension
 Both pipelines score identically on negative questions (2.25/5), but the error profile differs. Pipeline A hallucinates less on `true_absence` questions by producing more cautious answers, while Pipeline B is better at detecting `false_premise` patterns. Refusal behavior is pipeline-dependent.
 
-### 4. What We Cannot Conclude
-- We cannot say "Markdown is better than raw text" — the difference is within noise range for this model.
-- We cannot say "raw text is sufficient" — a stronger LLM might reveal a hidden Markdown advantage.
-- We cannot attribute score differences to retrieval vs. generation — the current scoring conflates both.
+### 4. Multi-Model Comparison (Fase 2)
 
-### 5. Next Diagnostic Steps
-To separate retrieval quality from generation quality, the next experiment should:
-- Measure **Recall@k** (is the correct document retrieved?)
-- Run an **oracle context** test (give the LLM the correct passage directly)
-- Classify each error using the [error taxonomy](error_taxonomy.md)
+Running the same benchmark with Gemma 4 26B via Google Gemini API shows a **reversal** of the pipeline advantage:
+
+| Model | Pipeline A (Raw) | Pipeline B (Markdown) | Delta (B−A) |
+|-------|:---:|:---:|:---:|
+| Qwen 0.8B | 2.50 | **2.56** | +0.06 |
+| Gemma 4 26B | **3.12** | 2.86 | **−0.26** |
+
+The Markdown advantage (Qwen) becomes a Markdown disadvantage (Gemma). Hypothesis: larger models extract information better from raw text; Markdown structure can act as noise. This confirms that preprocessing strategy should be tuned to the model, not assumed universal.
+
+### 5. Oracle Test — Retrieval vs. Generation (Fase 3)
+
+The oracle test (giving the LLM the full document text instead of top-3 chunks) isolates the retrieval contribution:
+
+| Test | Pipeline B Mean | Oracle Mean | Delta |
+|------|:---:|:---:|:---:|
+| Gemma 4 26B | 1.58 | **2.93** | **+1.35 (+85%)** |
+
+**~60% of errors are retrieval-related**, ~25% are generation-related, ~15% are scoring/citation artifacts. The primary failure mode is **E06 (false_refusal, 42–46%)**: the model says "cannot find information" even when the correct chunk was retrieved with TOP_K=3, because the specific passage with the answer is often ranked 4th or lower.
+
+The [error taxonomy](error_taxonomy.md) provides the full E01–E07 breakdown, and the [Fase 3 report](../reports/fase3_retrieval_vs_generation.md) has the complete analysis.
 
 ## All-Question Summary
 
@@ -133,5 +145,9 @@ To separate retrieval quality from generation quality, the next experiment shoul
 | Questions < 2.0 | 14 (28%) | 14 (28%) |
 | Hallucinations | 9 (18%) | 9 (18%) |
 
-## Detailed Report
-For per-question answers and retrieved chunks, see `reports/comparative_benchmark.md`.
+## Detailed Reports
+- Qwen 0.8B comparison: `reports/comparative_benchmark.md` (original)
+- Gemma 4 26B comparison: `reports/comparative_benchmark.md`
+- Error profiles (E01–E07): `reports/error_profile_*.md`
+- Oracle test comparison: `reports/oracle_comparison_*.md`
+- Fase 3 synthesis: `reports/fase3_retrieval_vs_generation.md`
