@@ -17,6 +17,8 @@ TOP_K = 3
 LLM_MODEL = "qwen3.5-0.8b"
 LM_STUDIO_URL = "http://localhost:1234/v1"
 OLLAMA_URL = "http://localhost:11434/v1"
+OPENROUTER_URL = "https://openrouter.ai/api/v1"
+GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta"
 EMBED_MODEL = "all-MiniLM-L6-v2"
 
 COLLECTIONS = {
@@ -32,19 +34,39 @@ client = chromadb.PersistentClient(
 )
 
 import httpx
+import os
+import time
+
 llm_client = None
 llm_source = None
-for name, url in [("LM Studio", LM_STUDIO_URL), ("Ollama", OLLAMA_URL)]:
-    try:
-        r = httpx.get(url.replace("/v1", "") + "/api/tags" if "ollama" in url else url, timeout=2)
-        if r.status_code < 400:
-            llm_client = OpenAI(base_url=url, api_key="not-needed")
-            llm_source = name
-            break
-    except Exception:
-        continue
-if llm_client is None:
-    print("WARNING: Nessun LLM server rilevato (LM Studio :1234 o Ollama :11434)")
+
+def _detect_provider(provider_arg: str):
+    if provider_arg == "gemini":
+        key = os.environ.get("GEMINI_API_KEY", "")
+        if not key:
+            print("WARNING: GEMINI_API_KEY non impostata. Imposta con $env:GEMINI_API_KEY = '...'")
+            return None, None, None
+        return "Gemini", GEMINI_URL, key
+    if provider_arg:
+        name_map = {
+            "lm-studio": ("LM Studio", LM_STUDIO_URL),
+            "ollama": ("Ollama", OLLAMA_URL),
+            "openrouter": ("OpenRouter", OPENROUTER_URL),
+        }
+        name, url = name_map[provider_arg]
+        key = os.environ.get("OPENROUTER_API_KEY", "") if provider_arg == "openrouter" else "not-needed"
+        if provider_arg == "openrouter" and not key:
+            print("WARNING: OPENROUTER_API_KEY non impostata.")
+            return None, None, None
+        return name, url, key
+    for name, url in [("LM Studio", LM_STUDIO_URL), ("Ollama", OLLAMA_URL)]:
+        try:
+            r = httpx.get(url.replace("/v1", "") + "/api/tags" if "ollama" in url else url, timeout=2)
+            if r.status_code < 400:
+                return name, url, "not-needed"
+        except Exception:
+            continue
+    return None, None, None
 
 SYSTEM_PROMPT = """You are a precise RAG assistant. Answer the user's question using ONLY the provided context chunks.
 
@@ -97,32 +119,98 @@ def build_prompt(question: str, chunks: list[dict]) -> str:
     return prompt
 
 
-def ask_llm(prompt: str) -> str:
+_last_request_time = 0.0
+
+def _ask_gemini(prompt: str, model: str, api_key: str) -> str:
+    global _last_request_time
+    elapsed = time.time() - _last_request_time
+    if elapsed < 4.0:
+        time.sleep(4.0 - elapsed)
+    for attempt in range(3):
+        try:
+            r = httpx.post(
+                f"{GEMINI_URL}/models/{model}:generateContent",
+                headers={"X-goog-api-key": api_key, "Content-Type": "application/json"},
+                json={
+                    "contents": [{"parts": [{"text": prompt}]}],
+                    "generationConfig": {"temperature": 0.1, "maxOutputTokens": 256},
+                },
+                timeout=120,
+            )
+            _last_request_time = time.time()
+            if r.status_code == 429 and attempt < 2:
+                wait = 10 * (attempt + 1)
+                print(f"  [Rate limit Gemini, attendo {wait}s...]")
+                time.sleep(wait)
+                continue
+            if r.status_code != 200:
+                return f"[ERROR LLM: Gemini HTTP {r.status_code} - {r.text[:200]}]"
+            data = r.json()
+            candidates = data.get("candidates", [])
+            if not candidates:
+                return "[ERROR LLM: Gemini returned no candidates]"
+            text = candidates[0].get("content", {}).get("parts", [{}])[0].get("text", "")
+            if not text:
+                return "[ERROR LLM: Gemini returned empty text]"
+            return text.strip()
+        except Exception as e:
+            if attempt < 2:
+                time.sleep(5 * (attempt + 1))
+                continue
+            return f"[ERROR LLM: {e}]"
+    return "[ERROR LLM: Max retries]"
+
+def ask_llm(prompt: str, model: str = "", api_key: str = "") -> str:
+    model_name = model or LLM_MODEL
+    if llm_source == "Gemini":
+        return _ask_gemini(prompt, model_name, api_key)
     if llm_client is None:
-        return "[ERROR: Nessun LLM server disponibile. Avvia LM Studio o Ollama.]"
-    try:
-        resp = llm_client.chat.completions.create(
-            model=LLM_MODEL,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.1,
-            max_tokens=256,
-            timeout=90,
-        )
-        return resp.choices[0].message.content.strip()
-    except Exception as e:
-        return f"[ERROR LLM: {e}]"
+        return "[ERROR: Nessun LLM server disponibile.]"
+    if llm_source == "OpenRouter":
+        elapsed = time.time() - _last_request_time
+        if elapsed < 3.0:
+            time.sleep(3.0 - elapsed)
+    for attempt in range(3):
+        try:
+            resp = llm_client.chat.completions.create(
+                model=model_name,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.1,
+                max_tokens=256,
+                timeout=120,
+                extra_headers={"HTTP-Referer": "https://github.com/cioffiAI/rag-vs-markdown",
+                               "X-Title": "RAG-vs-Markdown"} if llm_source == "OpenRouter" else {},
+            )
+            _last_request_time = time.time()
+            content = resp.choices[0].message.content
+            if content is None:
+                reason = getattr(resp.choices[0], 'finish_reason', 'unknown')
+                return f"[ERROR LLM: Empty response (finish_reason={reason})]"
+            return content.strip()
+        except Exception as e:
+            err_str = str(e)
+            if "429" in err_str and attempt < 2:
+                wait = 5 * (attempt + 1)
+                print(f"  [Rate limit, attendo {wait}s...]")
+                time.sleep(wait)
+                continue
+            return f"[ERROR LLM: {e}]"
+    return "[ERROR LLM: Max retries]"
 
 
-def answer(question: str, collection, log: bool = True) -> dict:
+_gemini_key = ""
+
+def answer(question: str, collection, log: bool = True, model: str = "") -> dict:
     chunks = retrieve(question, collection)
     prompt = build_prompt(question, chunks)
-    answer_text = ask_llm(prompt)
+    answer_text = ask_llm(prompt, model, api_key=_gemini_key)
     result = {
         "question": question,
         "answer": answer_text,
         "retrieved_chunks": chunks,
         "timestamp": datetime.now().isoformat(),
         "pipeline": collection.name,
+        "model": model or LLM_MODEL,
     }
     if log:
         log_id = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
@@ -134,13 +222,30 @@ def answer(question: str, collection, log: bool = True) -> dict:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Query ChromaDB RAG index")
+    parser = argparse.ArgumentParser(description="Query ChromDB RAG index")
     parser.add_argument("question", nargs="*", help="Domanda da porre")
     parser.add_argument("--pipeline", choices=["a", "b"], default="b",
                         help="Pipeline da usare (default: b)")
     parser.add_argument("--file", type=str, help="File JSON con domande multiple")
     parser.add_argument("--tag", type=str, default="", help="Suffisso per il file di log batch")
+    parser.add_argument("--model", type=str, default="",
+                        help="Nome del modello LLM (default: qwen3.5-0.8b)")
+    parser.add_argument("--provider", choices=["lm-studio", "ollama", "openrouter", "gemini"], default="",
+                        help="Provider LLM (default: auto-detect)")
     args = parser.parse_args()
+
+    global llm_client, llm_source, _gemini_key
+    name, url, key = _detect_provider(args.provider)
+    if name:
+        if name == "Gemini":
+            _gemini_key = key
+            llm_source = name
+        else:
+            llm_client = OpenAI(base_url=url, api_key=key)
+            llm_source = name
+        print(f"Provider: {llm_source}")
+    else:
+        print("WARNING: Nessun LLM server rilevato.")
 
     collection = get_collection(args.pipeline)
     print(f"Pipeline {args.pipeline.upper()} — collezione '{collection.name}'")
@@ -165,7 +270,7 @@ def main():
             if not question_text:
                 continue
             safe_print(f"\n---\nQ: {question_text[:80]}...")
-            result = answer(question_text, collection)
+            result = answer(question_text, collection, model=args.model)
             safe_print(f"A: {result['answer'][:200]}...")
             results.append(result)
             if (i + 1) % 10 == 0:
@@ -181,11 +286,12 @@ def main():
             parser.print_help()
             sys.exit(1)
         question = " ".join(args.question)
-        result = answer(question, collection)
+        result = answer(question, collection, model=args.model)
         print(f"\nDomanda: {result['question']}")
         print(f"Risposta: {result['answer']}")
         print(f"\nChunk sorgente: {result['retrieved_chunks'][0]['doc_name']}")
         print(f"Pipeline: {result['pipeline']}")
+        print(f"Modello: {result['model']}")
         print(f"Log: {result.get('log_file', 'N/A')}")
 
 
