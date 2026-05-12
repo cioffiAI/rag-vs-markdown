@@ -18,6 +18,8 @@ LLM_MODEL = "qwen3.5-0.8b"
 LM_STUDIO_URL = "http://localhost:1234/v1"
 OLLAMA_URL = "http://localhost:11434/v1"
 OPENROUTER_URL = "https://openrouter.ai/api/v1"
+OPENCODE_ZEN_URL = "https://opencode.ai/zen/v1"
+OPENCODE_GO_URL = "https://opencode.ai/zen/go/v1"
 GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta"
 EMBED_MODEL = "all-MiniLM-L6-v2"
 
@@ -52,10 +54,12 @@ def _detect_provider(provider_arg: str):
             "lm-studio": ("LM Studio", LM_STUDIO_URL),
             "ollama": ("Ollama", OLLAMA_URL),
             "openrouter": ("OpenRouter", OPENROUTER_URL),
+            "opencode-zen": ("OpenCode-Zen", OPENCODE_ZEN_URL),
+            "opencode-go": ("OpenCode-Go", OPENCODE_GO_URL),
         }
         name, url = name_map[provider_arg]
-        key = os.environ.get("OPENROUTER_API_KEY", "") if provider_arg == "openrouter" else "not-needed"
-        if provider_arg == "openrouter" and not key:
+        key = os.environ.get("OPENROUTER_API_KEY", "") if provider_arg in ("openrouter", "opencode-zen", "opencode-go") else "not-needed"
+        if provider_arg in ("openrouter", "opencode-zen", "opencode-go") and not key:
             print("WARNING: OPENROUTER_API_KEY non impostata.")
             return None, None, None
         return name, url, key
@@ -160,30 +164,36 @@ def _ask_gemini(prompt: str, model: str, api_key: str) -> str:
             return f"[ERROR LLM: {e}]"
     return "[ERROR LLM: Max retries]"
 
-def ask_llm(prompt: str, model: str = "", api_key: str = "") -> str:
+def ask_llm(prompt: str, model: str = "", api_key: str = "", max_tokens: int = 256) -> str:
+    global _last_request_time
     model_name = model or LLM_MODEL
     if llm_source == "Gemini":
         return _ask_gemini(prompt, model_name, api_key)
     if llm_client is None:
         return "[ERROR: Nessun LLM server disponibile.]"
-    if llm_source == "OpenRouter":
+    if llm_source in ("OpenRouter", "OpenCode-Zen", "OpenCode-Go"):
+        wait_time = 3.0 if llm_source == "OpenRouter" else 1.0
         elapsed = time.time() - _last_request_time
-        if elapsed < 3.0:
-            time.sleep(3.0 - elapsed)
+        if elapsed < wait_time:
+            time.sleep(wait_time - elapsed)
     for attempt in range(3):
         try:
             resp = llm_client.chat.completions.create(
                 model=model_name,
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.1,
-                max_tokens=256,
+                max_tokens=max_tokens,
                 timeout=120,
                 extra_headers={"HTTP-Referer": "https://github.com/cioffiAI/rag-vs-markdown",
                                "X-Title": "RAG-vs-Markdown"} if llm_source == "OpenRouter" else {},
             )
             _last_request_time = time.time()
-            content = resp.choices[0].message.content
-            if content is None:
+            msg = resp.choices[0].message
+            content = msg.content
+            if not content:
+                rc = getattr(msg, 'reasoning_content', None)
+                if rc:
+                    return rc.strip()
                 reason = getattr(resp.choices[0], 'finish_reason', 'unknown')
                 return f"[ERROR LLM: Empty response (finish_reason={reason})]"
             return content.strip()
@@ -200,10 +210,10 @@ def ask_llm(prompt: str, model: str = "", api_key: str = "") -> str:
 
 _gemini_key = ""
 
-def answer(question: str, collection, log: bool = True, model: str = "") -> dict:
+def answer(question: str, collection, log: bool = True, model: str = "", max_tokens: int = 256) -> dict:
     chunks = retrieve(question, collection)
     prompt = build_prompt(question, chunks)
-    answer_text = ask_llm(prompt, model, api_key=_gemini_key)
+    answer_text = ask_llm(prompt, model, api_key=_gemini_key, max_tokens=max_tokens)
     result = {
         "question": question,
         "answer": answer_text,
@@ -230,8 +240,10 @@ def main():
     parser.add_argument("--tag", type=str, default="", help="Suffisso per il file di log batch")
     parser.add_argument("--model", type=str, default="",
                         help="Nome del modello LLM (default: qwen3.5-0.8b)")
-    parser.add_argument("--provider", choices=["lm-studio", "ollama", "openrouter", "gemini"], default="",
+    parser.add_argument("--provider", choices=["lm-studio", "ollama", "openrouter", "opencode-zen", "opencode-go", "gemini"], default="",
                         help="Provider LLM (default: auto-detect)")
+    parser.add_argument("--max-tokens", type=int, default=256,
+                        help="Max tokens per risposta (default: 256)")
     args = parser.parse_args()
 
     global llm_client, llm_source, _gemini_key
@@ -270,7 +282,7 @@ def main():
             if not question_text:
                 continue
             safe_print(f"\n---\nQ: {question_text[:80]}...")
-            result = answer(question_text, collection, model=args.model)
+            result = answer(question_text, collection, model=args.model, max_tokens=args.max_tokens)
             safe_print(f"A: {result['answer'][:200]}...")
             results.append(result)
             if (i + 1) % 10 == 0:
@@ -286,7 +298,7 @@ def main():
             parser.print_help()
             sys.exit(1)
         question = " ".join(args.question)
-        result = answer(question, collection, model=args.model)
+        result = answer(question, collection, model=args.model, max_tokens=args.max_tokens)
         print(f"\nDomanda: {result['question']}")
         print(f"Risposta: {result['answer']}")
         print(f"\nChunk sorgente: {result['retrieved_chunks'][0]['doc_name']}")

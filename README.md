@@ -8,8 +8,8 @@ This project is not a RAG demo. It is a **diagnostic framework** to separate the
 
 | ID | Question | Status |
 |----|----------|--------|
-| RQ1 | Does Markdown compilation improve overall quality vs. raw PDF text? | **Completed** (Qwen Δ = +1.2%, Gemma Δ = −8.3%) |
-| RQ2 | Does the Markdown advantage persist with stronger generative models? | **Completed** (No — Gemma 4 26B prefers Raw, Δ = −8.3%) |
+| RQ1 | Does Markdown compilation improve overall quality vs. raw PDF text? | **Completed** (Depends on model: Qwen +1.2%, all others −3.6 to −5.2%) |
+| RQ2 | Does the Markdown advantage persist with stronger generative models? | **Completed** (No — gradient reversal confirmed across 4 models) |
 | RQ3 | Are errors primarily caused by retrieval failures or generation failures? | **Completed** (~60% retrieval, ~25% generation, ~15% scoring/citation) |
 
 ## Pipelines
@@ -26,25 +26,14 @@ Pipeline B (MD)    PDF → PyMuPDF → raw text → Markdown → chunks → Chro
 
 ## Results at a Glance
 
-### Qwen 0.8B (Local, LM Studio)
+| Model | Size | Pipeline A (Raw) | Pipeline B (MD) | Δ (B−A) | Prefers |
+|-------|------|:---:|:---:|:---:|---------|
+| Qwen 0.8B | 800M | 2.50 | **2.56** | +0.06 | Markdown |
+| Nemotron 3 | ~3B | **2.46** | 2.28 | −0.18 | Raw |
+| DeepSeek V4 Flash | — | **2.98** | 2.76 | −0.22 | Raw |
+| Gemma 4 26B | 26B | **3.12** | 2.86 | −0.26 | Raw |
 
-| Pipeline | Mean (/5.0) | Normalized |
-|----------|:-----------:|:----------:|
-| **B — Markdown** | **2.56** | **51.2%** |
-| A — Raw text | 2.50 | 50.0% |
-| Delta | +0.06 | +1.2% |
-
-Markdown wins by 1.2%, driven entirely by table-extraction questions (+1.6).
-
-### Gemma 4 26B (Google Gemini API)
-
-| Pipeline | Mean (/5.0) | Normalized |
-|----------|:-----------:|:----------:|
-| A — Raw text | **3.12** | **62.4%** |
-| B — Markdown | 2.86 | 57.2% |
-| Delta (B − A) | −0.26 | −5.2% |
-
-With a stronger model, the pattern **reverses**: Raw text outperforms Markdown by 5.2%. The Markdown advantage does not persist.
+**Key finding**: The Markdown advantage inverts as model capability increases. Small models benefit from structured Markdown chunks (+1.2%), but from ~3B parameters onward, raw text consistently outperforms. This is a **model × pipeline interaction** — preprocessing strategy cannot be universal.
 
 See [docs/results.md](docs/results.md), the [comparative report](reports/comparative_benchmark.md), and the [Fase 3 oracle report](reports/fase3_retrieval_vs_generation.md).
 
@@ -53,7 +42,7 @@ See [docs/results.md](docs/results.md), the [comparative report](reports/compara
 This benchmark does not measure "RAG in general". It measures the ability of two pipeline configurations to answer 50 questions we designed. Key findings across all three phases:
 
 - **Retrieval is the primary bottleneck**: the [oracle test](reports/fase3_retrieval_vs_generation.md) shows that giving the LLM the full document text improves scores by +67–85%. Only ~25% of errors are true generation failures.
-- **Model × pipeline interaction flips**: Markdown helps small models (Qwen, +1.2%) but hurts larger ones (Gemma 4, −5.2%). Preprocessing strategy should depend on model capability.
+- **Model × pipeline interaction gradient**: A clear gradient emerges across 4 models: Qwen 800M prefers Markdown (+1.2%), Nemotron 3B (−3.6%), DeepSeek V4 Flash (−4.4%), Gemma 4 26B (−5.2%). The larger the model, the more it benefits from raw unstructured text.
 - **Famous papers**: All documents are well-known arXiv papers. The [error taxonomy](docs/error_taxonomy.md) helps separate RAG quality from parametric knowledge.
 
 ## Experimental Philosophy

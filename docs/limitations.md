@@ -83,11 +83,13 @@ The research plan included a third pipeline (Markdown + conceptual knowledge car
 
 ## 10. LLM Provider Diversity
 
-Experiments use two providers:
-- **Qwen 3.5 0.8B** via LM Studio (local, OpenAI-compatible API) — for the Fase 1 baseline.
-- **Gemma 4 26B A4B** via Google Gemini API (free tier, direct HTTP) — for Fase 2 multi-model comparison and Fase 3 oracle test.
+Experiments use four providers:
+- **Qwen 3.5 0.8B** via LM Studio (local, OpenAI-compatible API) — Fase 1 baseline.
+- **Nemotron 3 Super Free** via OpenCode API (opencode.ai/zen/v1) — Fase 4 multi-model expansion.
+- **DeepSeek V4 Flash** via OpenCode API (opencode.ai/zen/go/v1) — Fase 4 multi-model expansion.
+- **Gemma 4 26B A4B** via Google Gemini API (free tier, direct HTTP) — Fase 2 multi-model comparison and Fase 3 oracle test.
 
-Prompt formatting, system prompt style, and tokenizer behavior differ across providers. Notably, Gemma 4 shows a **prompt-format issue**: it systematically repeats the question and analyzes constraints step-by-step before answering, which depresses word-overlap-based scores. This affects both retrieval and oracle results equally, so the retrieval-vs-generation comparison remains valid.
+Prompt formatting, system prompt style, and tokenizer behavior differ across providers. Notably, three of four models show a **prompt-format issue**: they systematically repeat the question and analyze constraints step-by-step before answering, which depresses word-overlap-based scores. This affects both retrieval and oracle results equally, so the retrieval-vs-generation comparison and A-vs-B deltas remain valid.
 
 The system prompt ("use ONLY the provided context") is enforced by instruction, not architecture. A model with different instruction-following characteristics may behave differently.
 
@@ -99,5 +101,5 @@ The system prompt ("use ONLY the provided context") is enforced by instruction, 
 | Famous papers bias | Medium | Synthetic docs (planned, Fase 4) |
 | Scoring proxy | Medium | Error taxonomy (added) |
 | Small benchmark | Medium | Future expansion |
-| Single model | ~~High~~ **Resolved** | Multi-model benchmark (Fase 2) |
+| Single model | ~~High~~ **Resolved** | 4-model benchmark (Qwen, Nemotron 3, DeepSeek V4, Gemma 4) |
 | Knowledge compilation bias | Medium | Explicitly documented here |

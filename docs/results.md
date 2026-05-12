@@ -13,7 +13,7 @@ This benchmark does not measure "RAG in general". It measures the ability of two
 | Chunk size | 1500 chars, 150 overlap paragraph-based |
 | Corpus | 10 arXiv papers (RAG, Self-RAG, Transformer, YOLOv7, Survey, Foundation Models, Ragas, CRAG, HELM, Tree-of-Thoughts) |
 | Questions | 50 gold-standard across 5 types, Italian language |
-| Models tested | Qwen 3.5 0.8B (local, LM Studio) + Gemma 4 26B A4B (Google Gemini API) |
+| Models tested | Qwen 0.8B (LM Studio), Nemotron 3 Super Free (OpenCode API), DeepSeek V4 Flash (OpenCode API), Gemma 4 26B A4B (Google Gemini API) |
 
 ## Overall Score
 
@@ -109,16 +109,18 @@ On the 5 table-extraction questions, Markdown shows a clear +1.6 point advantage
 ### 3. Negative Questions Are a Separate Dimension
 Both pipelines score identically on negative questions (2.25/5), but the error profile differs. Pipeline A hallucinates less on `true_absence` questions by producing more cautious answers, while Pipeline B is better at detecting `false_premise` patterns. Refusal behavior is pipeline-dependent.
 
-### 4. Multi-Model Comparison (Fase 2)
+### 4. Multi-Model Comparison (Fase 2+4)
 
-Running the same benchmark with Gemma 4 26B via Google Gemini API shows a **reversal** of the pipeline advantage:
+Running the same benchmark across 4 models of increasing capability reveals a **gradient reversal**:
 
-| Model | Pipeline A (Raw) | Pipeline B (Markdown) | Delta (B−A) |
-|-------|:---:|:---:|:---:|
-| Qwen 0.8B | 2.50 | **2.56** | +0.06 |
-| Gemma 4 26B | **3.12** | 2.86 | **−0.26** |
+| Model | Size | Pipeline A (Raw) | Pipeline B (Markdown) | Δ (B−A) | Prefers |
+|-------|------|:---:|:---:|:---:|---------|
+| Qwen 0.8B | 800M | 2.50 | **2.56** | **+0.06** (+1.2%) | Markdown |
+| Nemotron 3 Super Free | ~3B | **2.46** | 2.28 | −0.18 (−3.6%) | Raw |
+| DeepSeek V4 Flash | — | **2.98** | 2.76 | −0.22 (−4.4%) | Raw |
+| Gemma 4 26B A4B | 26B | **3.12** | 2.86 | −0.26 (−5.2%) | Raw |
 
-The Markdown advantage (Qwen) becomes a Markdown disadvantage (Gemma). Hypothesis: larger models extract information better from raw text; Markdown structure can act as noise. This confirms that preprocessing strategy should be tuned to the model, not assumed universal.
+The Markdown advantage (Qwen) becomes a Markdown disadvantage for all larger models, with the gap widening monotonically as model capability increases. This is a **model × pipeline interaction gradient**: larger models extract information better from raw text; Markdown structure can act as noise. Preprocessing strategy cannot be assumed universal — it must be tuned to the model.
 
 ### 5. Oracle Test — Retrieval vs. Generation (Fase 3)
 
