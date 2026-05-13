@@ -21,7 +21,6 @@ COLLECTIONS = {
     "c": {"name": "rag_papers_md_filtered", "desc": "Markdown filtrato (shallow chunks rimossi)"},
 }
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
 
 
 def informative_text_len(text: str) -> int:
@@ -118,10 +117,16 @@ def main():
         "--shallow-threshold", type=int, default=200,
         help="Pipeline C only: max informative chars for a shallow chunk (default: 200)"
     )
+    parser.add_argument(
+        "--embedder", type=str, default="all-MiniLM-L6-v2",
+        help="Modello sentence-transformers per embedding (default: all-MiniLM-L6-v2)"
+    )
     args = parser.parse_args()
 
     pipeline = args.pipeline
     shallow_threshold = args.shallow_threshold
+    model = SentenceTransformer(args.embedder)
+    embedder_suffix = "" if args.embedder == "all-MiniLM-L6-v2" else f"_{args.embedder.replace('/', '_')}"
     col_info = COLLECTIONS[pipeline]
     print(f"Pipeline {pipeline.upper()} — {col_info['desc']}")
 
@@ -149,10 +154,10 @@ def main():
         all_chunks = kept
 
     print(f"\nTotali chunks: {len(all_chunks)}")
-    print("Generazione embedding con all-MiniLM-L6-v2...")
+    print(f"Generazione embedding con {args.embedder}...")
 
     texts = [c["text"] for c in all_chunks]
-    embeddings = model.encode(texts, show_progress_bar=True, convert_to_numpy=True)
+    embeddings = model.encode(texts, show_progress_bar=True, convert_to_numpy=True, batch_size=32)
 
     print("Scrittura su ChromaDB...")
     client = chromadb.PersistentClient(
@@ -160,7 +165,7 @@ def main():
         settings=Settings(anonymized_telemetry=False),
     )
 
-    collection_name = col_info["name"]
+    collection_name = col_info["name"] + embedder_suffix
     try:
         client.delete_collection(collection_name)
     except (ValueError, chromadb.errors.NotFoundError):
@@ -192,7 +197,7 @@ def main():
         suffix = f"_t{shallow_threshold}"
     else:
         suffix = ""
-    col_suffix = f"{pipeline}{suffix}"
+    col_suffix = f"{pipeline}{suffix}{embedder_suffix}"
 
     print(f"\nIndice creato: '{collection_name}' con {len(all_chunks)} chunks")
     metadata_path = CHROMADB_DIR / f"chunks_metadata_{col_suffix}.json"

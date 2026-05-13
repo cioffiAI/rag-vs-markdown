@@ -21,7 +21,6 @@ OPENROUTER_URL = "https://openrouter.ai/api/v1"
 OPENCODE_ZEN_URL = "https://opencode.ai/zen/v1"
 OPENCODE_GO_URL = "https://opencode.ai/zen/go/v1"
 GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta"
-EMBED_MODEL = "all-MiniLM-L6-v2"
 
 COLLECTIONS = {
     "a": "rag_papers_raw",
@@ -29,7 +28,7 @@ COLLECTIONS = {
     "c": "rag_papers_md_filtered",
 }
 
-embedder = SentenceTransformer(EMBED_MODEL)
+embedder = None
 
 client = chromadb.PersistentClient(
     path=str(CHROMADB_DIR),
@@ -83,8 +82,9 @@ Rules:
 - Be specific and factual."""
 
 
-def get_collection(pipeline: str):
-    col_name = COLLECTIONS.get(pipeline, "rag_papers")
+def get_collection(pipeline: str, embedder_name: str = "all-MiniLM-L6-v2"):
+    suffix = "" if embedder_name == "all-MiniLM-L6-v2" else f"_{embedder_name.replace('/', '_')}"
+    col_name = COLLECTIONS.get(pipeline, "rag_papers") + suffix
     try:
         return client.get_collection(col_name)
     except (ValueError, chromadb.errors.NotFoundError):
@@ -245,9 +245,12 @@ def main():
                         help="Provider LLM (default: auto-detect)")
     parser.add_argument("--max-tokens", type=int, default=256,
                         help="Max tokens per risposta (default: 256)")
+    parser.add_argument("--embedder", type=str, default="all-MiniLM-L6-v2",
+                        help="Modello sentence-transformers per embedding (default: all-MiniLM-L6-v2)")
     args = parser.parse_args()
 
-    global llm_client, llm_source, _gemini_key
+    global llm_client, llm_source, _gemini_key, embedder
+    embedder = SentenceTransformer(args.embedder)
     name, url, key = _detect_provider(args.provider)
     if name:
         if name == "Gemini":
@@ -260,7 +263,7 @@ def main():
     else:
         print("WARNING: Nessun LLM server rilevato.")
 
-    collection = get_collection(args.pipeline)
+    collection = get_collection(args.pipeline, args.embedder)
     print(f"Pipeline {args.pipeline.upper()} — collezione '{collection.name}'")
 
     if args.file:
