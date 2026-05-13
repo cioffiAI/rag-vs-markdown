@@ -16,9 +16,8 @@
 \usepackage{natbib}
 \usepackage{doi}
 
-\title{Does Markdown Preprocessing Help RAG?\\
-A Multi-Model Study of Document Format Effects\\
-on Retrieval-Augmented Generation}
+\title{When Markdown Hurts RAG:\\
+Shallow Structural Chunks as Dense Retrieval False Positives}
 
 \date{}
 
@@ -32,10 +31,10 @@ on Retrieval-Augmented Generation}
 }
 \fi
 
-\renewcommand{\shorttitle}{Does Markdown Preprocessing Help RAG?}
+\renewcommand{\shorttitle}{When Markdown Hurts RAG}
 
 \hypersetup{
-pdftitle={Does Markdown Preprocessing Help RAG? A Multi-Model Study of Document Format Effects on Retrieval-Augmented Generation},
+pdftitle={When Markdown Hurts RAG: Shallow Structural Chunks as Dense Retrieval False Positives},
 pdfsubject={cs.IR, cs.CL},
 pdfauthor={Antonio Cioffi},
 pdfkeywords={Retrieval-Augmented Generation, document preprocessing, Markdown, embedding, chunk quality, model-pipeline interaction},
@@ -45,7 +44,7 @@ pdfkeywords={Retrieval-Augmented Generation, document preprocessing, Markdown, e
 \maketitle
 
 \begin{abstract}
-Retrieval-Augmented Generation (RAG) pipelines typically embed raw document text into a vector database. An alternative---preprocessing documents into structured Markdown before indexing---promises better chunk coherence, preserved table structure, and clearer section boundaries. We benchmark both strategies across four language models of increasing capability (0.8B to 26B parameters) on a 50-question corpus of 10 arXiv papers. On Qwen~0.8B, Markdown preprocessing yields a modest advantage (+1.2\%). For all larger models tested (Nemotron~3~Super~Free, DeepSeek~V4~Flash, Gemma~4~26B), raw PDF text consistently outperforms Markdown, with the gap widening monotonically ($-$3.6\% to $-$5.2\%). We identify a mechanism: 25.3\% of retrieved Markdown chunks are \emph{shallow}---consisting solely of section headers or table markup---and compete with substantive chunks via cosine similarity, producing embedding false positives. An oracle test (full-document context) reveals an +85\% retrieval ceiling. These findings suggest that document preprocessing strategy interacts with generator capability and should not be assumed universal.
+Retrieval-Augmented Generation (RAG) pipelines typically embed raw document text into a vector database. An alternative---preprocessing documents into structured Markdown before indexing---promises better chunk coherence, preserved table structure, and clearer section boundaries. We benchmark both strategies across four model-provider configurations (0.8B to 26B parameters) on a 50-question corpus of 10 arXiv papers. On Qwen~0.8B (LM Studio), Markdown yields a +1.2\% advantage. For the three larger configurations (Nemotron~3, DeepSeek~V4~Flash, Gemma~4~26B across two providers), raw text outperforms Markdown ($-$3.6\% to $-$5.2\%). This reversal correlates with model capability but is confounded by provider identity. We identify a mechanism: 25.3\% of retrieved Markdown chunks are \emph{shallow}---section headers and table markup with $\leq$200 informative characters---that compete with substantive chunks via cosine similarity, producing embedding false positives. An oracle test reveals an +85\% retrieval ceiling. These findings show that document preprocessing strategy interacts with the generator configuration in a non-trivial way and cannot be assumed universal.
 \end{abstract}
 
 \keywords{Retrieval-Augmented Generation \and document preprocessing \and Markdown \and embedding quality \and model-pipeline interaction}
@@ -58,12 +57,12 @@ The preprocessing stage---how raw documents are transformed before embedding---r
 
 We test this intuition systematically. Two pipelines---Raw (text extracted directly from PDFs via PyMuPDF) and Markdown (PDF $\rightarrow$ raw text $\rightarrow$ structured Markdown compiled by a rule-based parser)---are evaluated on the same 50-question benchmark with the same embedding model (all-MiniLM-L6-v2) and vector database (ChromaDB, cosine distance). Four language models spanning two orders of magnitude in parameter count (Qwen~0.8B, Nemotron~3~Super~Free, DeepSeek~V4~Flash, Gemma~4~26B) serve as generators.
 
-Our central finding is that the preprocessing advantage is not universal: it inverts as model capability increases. The smallest model (Qwen~0.8B) benefits from Markdown; all larger models perform better with raw text. We argue this pattern is driven by a previously unreported phenomenon we call \emph{shallow chunks}: structurally rich but informationally empty Markdown fragments that capture embedding similarity via header keywords while contributing no factual content. An oracle test that bypasses retrieval entirely confirms that retrieval quality---not generation quality---dominates the performance gap, though the test has diagnostic limitations we discuss.
+Our central finding is that the preprocessing advantage is not universal: it inverts across the four model-provider configurations we tested. The smallest model (Qwen~0.8B) benefits from Markdown; all larger models perform better with raw text. We argue this pattern is driven by a retrieval failure mode we call \emph{shallow chunks}: structurally rich but informationally empty Markdown fragments that capture embedding similarity via header keywords while contributing no factual content. An oracle test that bypasses retrieval entirely confirms that retrieval quality---not generation quality---dominates the performance gap, though the test has diagnostic limitations we discuss.
 
 The paper makes three contributions:
 
 \begin{enumerate}
-    \item A 4-model, 2-pipeline benchmark revealing a \textbf{model $\times$ pipeline interaction gradient}: as model capability increases, the Markdown advantage erodes and reverses.
+    \item A 4-configuration, 2-pipeline benchmark revealing a \textbf{model $\times$ pipeline interaction}: the Markdown advantage erodes and reverses across the four configurations tested.
     \item The \textbf{formalization of shallow chunks} as a retrieval failure mode unique to structured preprocessing, with quantitative evidence (25.3\% of retrieved Markdown chunks).
     \item An \textbf{oracle-condition diagnostic} that isolates retrieval from generation errors across the pipeline comparison.
 \end{enumerate}
@@ -163,6 +162,33 @@ We test four language models accessed via different providers:
     \end{tabular}
 \end{table}
 
+\subsection{Experimental Parameters}
+
+\begin{table}[h]
+    \centering
+    \caption{Experimental parameters shared across all models and pipelines.}
+    \label{tab:params}
+    \begin{tabular}{ll}
+        \toprule
+        Parameter & Value \\
+        \midrule
+        Embedding model & all-MiniLM-L6-v2 (sentence-transformers) \\
+        Embedding device & CPU \\
+        Vector database & ChromaDB (persistent, cosine distance) \\
+        Chunking strategy & Paragraph-preserving closing threshold \\
+        Nominal chunk size & 1,500 characters \\
+        Overlap & 150 characters \\
+        Min chunk length & 40 characters \\
+        Retrieval depth & TOP\_K = 3 \\
+        LLM temperature & 0.1 \\
+        LLM max tokens & 256 (1,024 for DeepSeek V4 Flash) \\
+        System prompt & ``Use ONLY the provided context chunks'' \\
+        Scoring method & Fuzzy word-overlap (threshold 0.4) \\
+        Score range & 0--5 (2 answer + 2 evidence + 1 hallucination) \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 \textbf{Confound note:} These models differ along multiple correlated axes---parameter count, provider, API protocol, prompt formatting, system prompt enforcement, and instruction-following behavior. The observed gradient from Markdown-preferring to Raw-preferring correlates with model size but is confounded by provider identity. We report it as an observed pattern, not a controlled size experiment.
 
 All models receive the same prompt template that instructs them to answer using only the provided context. Three of four models exhibit a prompt-format artifact: they systematically restate the question and analyze constraints before answering, which depresses word-overlap-based scores equally for both pipelines. The $\Delta$ values (B $-$ A) are therefore more reliable than absolute scores.
@@ -229,7 +255,7 @@ Running the same benchmark with three additional models reveals a consistent pat
     \end{tabular}
 \end{table}
 
-The Markdown advantage (Qwen) becomes a Markdown disadvantage for all larger models, with the gap widening monotonically: $-$3.6\% (Nemotron 3), $-$4.4\% (DeepSeek V4 Flash), $-$5.2\% (Gemma 4 26B). This gradient is consistent across all four models: as generators become more capable, raw unstructured text outperforms Markdown with increasing margin.
+The Markdown advantage (Qwen) becomes a Markdown disadvantage for all larger models, with the gap widening monotonically: $-$3.6\% (Nemotron 3), $-$4.4\% (DeepSeek V4 Flash), $-$5.2\% (Gemma 4 26B). This gradient is consistent across all four configurations tested, but model size, provider, and API co-vary---we report it as an observed pattern, not a controlled experiment on model capability.
 
 \begin{figure}[t]
     \centering
@@ -328,7 +354,39 @@ For a model with 800M parameters, raw text is noisy and hard to parse. Markdown 
 
 \subsection{Why Large Models Prefer Raw Text}
 
-For models with 3B+ parameters, the situation reverses. These models can extract information from dense, unstructured text without structural scaffolding. Markdown's cost---25.3\% of the top-3 context window occupied by near-empty header chunks---becomes the dominant effect. The structural benefit (clearer section boundaries) is redundant when the model can already parse raw text. Stated differently: for a large model, the embedding budget spent on Markdown syntax is a deadweight loss, and the shallow chunks it introduces are strictly harmful.
+For models with 3B+ parameters, the situation reverses. These models can extract information from dense, unstructured text without structural scaffolding. Markdown's cost---25.3\% of the top-3 context window occupied by near-empty header chunks---becomes the dominant effect. The structural benefit (clearer section boundaries) is redundant when the model can already parse raw text. Stated differently: for a large model, the embedding budget spent on Markdown syntax is a deadweight loss, and the shallow chunks it introduces can outweigh any structural benefit in our setup.
+
+\subsection{Claims vs.\ Evidence}
+
+Before drawing implications, we assess the strength of each claim in our study:
+
+\begin{table}[h]
+    \centering
+    \small
+    \caption{Claims vs.\ evidence assessment.}
+    \label{tab:claims}
+    \begin{tabular}{>{\raggedright\arraybackslash}p{3.8cm}>{\raggedright\arraybackslash}p{7cm}>{\raggedright\arraybackslash}p{2.5cm}}
+        \toprule
+        Claim & Evidence & Status \\
+        \midrule
+        Markdown preprocessing can harm retrieval quality
+        & Supported in our setup ($\Delta$ $-$3.6\% to $-$5.2\% for 3B+ models)
+        & Moderate \\
+        Shallow chunks ($\sim$25\% of MD retrievals) compete with substantive chunks in cosine retrieval
+        & Supported: 38/150 MD chunks $\leq$200 chars vs.\ 0\% in Raw
+        & Strong \\
+        Larger models prefer raw text
+        & Observed across 4 configs but confounded by provider, API, prompt
+        & Weak --- needs controlled family test \\
+        Markdown is harmful in general
+        & Not demonstrated
+        & Do not claim \\
+        Filtering shallow chunks would recover Markdown's position
+        & Hypothesis only, not yet tested (Pipeline C planned)
+        & Untested \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \subsection{Practical Implications}
 
@@ -351,6 +409,7 @@ Nevertheless, the gradient is monotonic and observed across all four configurati
     \item \textbf{Single chunking strategy:} Paragraph-preserving chunking at 1,500-character threshold. Results may differ with semantic chunking or other window sizes.
     \item \textbf{Prompt-format artifact:} Three of four models restate the question and analyze constraints before answering, depressing absolute scores. $\Delta$ values are reliable but absolute scores are conservative.
     \item \textbf{Third pipeline not implemented:} A planned Pipeline C (Markdown + conceptual knowledge cards) was deferred.
+    \item \textbf{Single Markdown pipeline:} The Markdown preprocessing tested here is one specific rule-based compiler. A different compiler (e.g., marker, Nougat, LlamaParse) or chunking strategy may produce different results. We do not claim that Markdown preprocessing \emph{in general} harms RAG---only that this particular instantiation does under these conditions.
 \end{enumerate}
 
 \section{Conclusion}

@@ -1,0 +1,117 @@
+# Baseline configuration — v0.1-baseline (congelata)
+# Data: 2026-05-13
+# Descrizione: configurazione pre-revisione, prima di qualsiasi modifica
+
+# --- Embedding ---
+embedder:
+  model: all-MiniLM-L6-v2
+  source: sentence-transformers
+  device: cpu
+
+# --- Chunking ---
+chunking:
+  strategy: paragraph-preserving closing threshold
+  chunk_size: 1500
+  overlap: 150
+  min_chunk_length: 40
+  note: "CHUNK_SIZE=1500 è un closing threshold, non un hard limit. Paragrafi singoli >1500 vengono emessi come chunk standalone. Accumuli di paragrafi piccoli possono superare 1500. La lunghezza media effettiva è ~3100 (A) / ~3500 (B)."
+
+# --- Retrieval ---
+retrieval:
+  engine: ChromaDB
+  distance: cosine
+  top_k: 3
+
+# --- LLM Configuration ---
+llm:
+  temperature: 0.1
+  max_tokens: 256
+  max_tokens_deepseek: 1024  # DeepSeek richiede token extra per reasoning
+  system_prompt: "You are a precise RAG assistant. Answer the user's question using ONLY the provided context chunks.\n\nRules:\n- If the context contains enough information, answer concisely.\n- If the context does NOT contain enough information, say \"I cannot find sufficient information in the provided documents to answer this question.\"\n- Cite the source document name(s) in your answer.\n- Do NOT use prior knowledge or make up information.\n- Be specific and factual."
+  prompt_template: "{system_prompt}\n\nContext:\n{context}\n\nQuestion: {question}\n\nAnswer:"
+
+# --- Models ---
+models:
+  - id: qwen3.5-0.8b
+    provider: LM Studio
+    api_url: http://localhost:1234/v1
+    api_type: openai-compatible
+    api_key: not-needed
+    size_params: 800M
+    note: Fase 1 baseline
+
+  - id: nemotron-3-super-free
+    provider: OpenCode API
+    api_url: https://opencode.ai/zen/v1
+    api_type: openai-compatible
+    api_key: OPENROUTER_API_KEY
+    size_params: ~3B
+    note: Fase 4 multi-model
+
+  - id: deepseek-v4-flash
+    provider: OpenCode API
+    api_url: https://opencode.ai/zen/go/v1
+    api_type: openai-compatible
+    api_key: OPENROUTER_API_KEY
+    size_params: unknown
+    max_tokens: 1024
+    note: Fase 4 multi-model, reasoning model con Thinking preamble
+
+  - id: gemma-4-26b-a4b-it
+    provider: Google Gemini API
+    api_url: https://generativelanguage.googleapis.com/v1beta
+    api_type: direct HTTP POST
+    api_key: GEMINI_API_KEY
+    size_params: 26B total / ~4B active
+    note: Fase 2 multi-model, Fase 3 oracle test
+
+# --- Pipelines ---
+pipelines:
+  a:
+    name: rag_papers_raw
+    description: Testo grezzo da estrazione PDF
+    source_dir: data/extracted/
+    file_type: json
+    avg_chunk_length: ~3100
+
+  b:
+    name: rag_papers
+    description: Markdown compilato da compile_markdown.py
+    source_dir: data/processed/
+    file_type: md
+    avg_chunk_length: ~3500
+
+# --- Benchmark ---
+benchmark:
+  documents: 10
+  questions: 50
+  question_types:
+    - simple (factual): 15
+    - local_reasoning: 10
+    - multi_document: 10
+    - table_extraction: 5
+    - negative: 10
+  language: Italian (domande) / English (risposte LLM)
+  corpus: 10 famosi paper arXiv
+  gold_questions_file: data/gold_questions.csv
+
+# --- Scoring ---
+scoring:
+  method: fuzzy word-overlap
+  threshold: 0.4
+  components:
+    - answer_correct (0-2)
+    - evidence_correct (0-2)
+    - no_hallucination (0-1)
+  max_score: 5.0
+
+# --- Experimental Status ---
+status:
+  pipeline_c: NOT IMPLEMENTED
+  bootstrap: NOT RUN
+  permutation_test: NOT RUN
+  second_embedder: NOT TESTED
+  llm_judge: NOT IMPLEMENTED
+  human_audit: NOT DONE
+  synthetic_corpus: NOT CREATED
+  controlled_model_family: NOT TESTED

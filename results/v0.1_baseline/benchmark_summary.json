@@ -1,0 +1,673 @@
+{
+  "summary": {
+    "total_questions": 50,
+    "mean_score": 2.76,
+    "max_possible": 5.0,
+    "by_type": {
+      "local_reasoning": {
+        "count": 10,
+        "mean": 2.3,
+        "min": 1.0,
+        "max": 4.0
+      },
+      "multi_document": {
+        "count": 10,
+        "mean": 3.05,
+        "min": 1.5,
+        "max": 4.0
+      },
+      "negative": {
+        "count": 10,
+        "mean": 2.55,
+        "min": 1.5,
+        "max": 3.0
+      },
+      "simple": {
+        "count": 15,
+        "mean": 2.73,
+        "min": 1.0,
+        "max": 4.0
+      },
+      "table_extraction": {
+        "count": 5,
+        "mean": 3.6,
+        "min": 3.0,
+        "max": 4.0
+      }
+    },
+    "by_category": {
+      "comparison": {
+        "count": 10,
+        "mean": 3.05
+      },
+      "factual_evidence": {
+        "count": 15,
+        "mean": 2.73
+      },
+      "false_premise": {
+        "count": 3,
+        "mean": 2.5
+      },
+      "out_of_domain": {
+        "count": 2,
+        "mean": 2.25
+      },
+      "same_document": {
+        "count": 10,
+        "mean": 2.3
+      },
+      "table_metric": {
+        "count": 5,
+        "mean": 3.6
+      },
+      "true_absence": {
+        "count": 5,
+        "mean": 2.7
+      }
+    },
+    "detailed_scores": [
+      2.0,
+      3.0,
+      1.0,
+      2.0,
+      2.0,
+      4.0,
+      4.0,
+      3.0,
+      3.0,
+      4.0,
+      2.0,
+      3.0,
+      4.0,
+      1.0,
+      3.0,
+      2.0,
+      2.5,
+      1.0,
+      4.0,
+      2.0,
+      2.0,
+      1.0,
+      3.0,
+      1.5,
+      4.0,
+      4.0,
+      1.5,
+      3.0,
+      4.0,
+      2.5,
+      4.0,
+      2.0,
+      3.0,
+      2.5,
+      4.0,
+      4.0,
+      4.0,
+      4.0,
+      3.0,
+      3.0,
+      3.0,
+      3.0,
+      1.5,
+      1.5,
+      3.0,
+      1.5,
+      3.0,
+      3.0,
+      3.0,
+      3.0
+    ]
+  },
+  "detailed": [
+    {
+      "id": "Q001",
+      "question": "In RAG, qual è la differenza fondamentale tra RAG-Sequence e RAG-Token nella for",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Target: RAG (Retrieval-Augmented Generation).\n    *  ",
+      "scores": {
+        "answer_correct": 0.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 2.0
+      }
+    },
+    {
+      "id": "Q002",
+      "question": "Nel paper RAG, il retriever usa DPR. Cosa distingue il formato 'input order' dal",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   **Language:** Italian (User query: \"Nel paper RAG, il",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 0.0,
+        "no_hallucination": 1.0,
+        "total": 3.0
+      }
+    },
+    {
+      "id": "Q003",
+      "question": "Quali sono i tre tipi di critique token generati da Self-RAG e cosa valuta ciasc",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   **Question:** \"Quali sono i tre tipi di critique toke",
+      "scores": {
+        "answer_correct": 0.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 0.0,
+        "total": 1.0
+      }
+    },
+    {
+      "id": "Q004",
+      "question": "Il paper Self-RAG dichiara esplicitamente il numero di pagine, figure e tabelle.",
+      "answer_preview": "I cannot find sufficient information in the provided documents to answer this question. The context ",
+      "scores": {
+        "answer_correct": 1.0,
+        "evidence_correct": 0.0,
+        "no_hallucination": 1.0,
+        "total": 2.0
+      }
+    },
+    {
+      "id": "Q005",
+      "question": "Quali sono i tre iperparametri architetturali principali del modello Transformer",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Task: Answer the user's question using ONLY the provi",
+      "scores": {
+        "answer_correct": 0.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 2.0
+      }
+    },
+    {
+      "id": "Q006",
+      "question": "Nel Transformer, da quali due sotto-strati principali è composto ogni blocco enc",
+      "answer_preview": "Secondo il documento \"03_attention_transformer_vaswani_2017\", ogni blocco dell'encoder nel Transform",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 4.0
+      }
+    },
+    {
+      "id": "Q007",
+      "question": "Cosa sono i 'bag-of-freebies' in YOLOv7 e qual è il loro scopo principale?",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   User Question: \"Cosa sono i 'bag-of-freebies' in YOLO",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 4.0
+      }
+    },
+    {
+      "id": "Q008",
+      "question": "Quale architettura backbone viene utilizzata come base in YOLOv7?",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Goal: Answer the user's question using *only* the pro",
+      "scores": {
+        "answer_correct": 1.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 3.0
+      }
+    },
+    {
+      "id": "Q009",
+      "question": "Secondo il survey, quali sono le tre grandi aree in cui vengono organizzati i me",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Goal: Answer the question in Italian: \"Secondo il sur",
+      "scores": {
+        "answer_correct": 1.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 3.0
+      }
+    },
+    {
+      "id": "Q010",
+      "question": "Quali due benchmark specifici cita il survey rispettivamente per la valutazione ",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Language: Italian. \"Quali due benchmark specifici cit",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 4.0
+      }
+    },
+    {
+      "id": "Q011",
+      "question": "Secondo Bommasani et al., quali sono le due proprietà chiave che definiscono un ",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   User wants an answer *strictly* from the provided con",
+      "scores": {
+        "answer_correct": 0.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 2.0
+      }
+    },
+    {
+      "id": "Q012",
+      "question": "Quali sono le quattro metriche principali proposte da Ragas e cosa misura ciascu",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Goal: Identify the four main metrics proposed by Raga",
+      "scores": {
+        "answer_correct": 1.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 3.0
+      }
+    },
+    {
+      "id": "Q013",
+      "question": "Quali sono i cinque domini specifici del benchmark CRAG? Con quale criterio sono",
+      "answer_preview": "Thinking. 1.  **Identify the User's Question and Language.**\n    *   Question: \"Quali sono i cinque ",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 4.0
+      }
+    },
+    {
+      "id": "Q014",
+      "question": "Come sono suddivise le 4.409 domande di CRAG in base alla difficoltà e quali son",
+      "answer_preview": "I cannot find sufficient information in the provided documents to answer this question. The provided",
+      "scores": {
+        "answer_correct": 0.0,
+        "evidence_correct": 0.0,
+        "no_hallucination": 1.0,
+        "total": 1.0
+      }
+    },
+    {
+      "id": "Q015",
+      "question": "Quali sono le 7 metriche di valutazione usate da HELM e come si raggruppano in c",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Target: \"Quali sono le 7 metriche di valutazione usat",
+      "scores": {
+        "answer_correct": 1.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 3.0
+      }
+    },
+    {
+      "id": "Q016",
+      "question": "In RAG, descrivi come vengono integrate la memoria parametrica e la memoria non-",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Question: \"In RAG, descrivi come vengono integrate la",
+      "scores": {
+        "answer_correct": 0.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 2.0
+      }
+    },
+    {
+      "id": "Q017",
+      "question": "Descrivi come Self-RAG utilizza i retrieval token e i critique token per control",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Source Question: \"Descrivi come Self-RAG utilizza i r",
+      "scores": {
+        "answer_correct": 0.5,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 2.5
+      }
+    },
+    {
+      "id": "Q018",
+      "question": "Quali risultati emergono dagli ablation study di Self-RAG riguardo l'impatto del",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Question: \"Quali risultati emergono dagli ablation st",
+      "scores": {
+        "answer_correct": 0.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 0.0,
+        "total": 1.0
+      }
+    },
+    {
+      "id": "Q019",
+      "question": "Spiega come funziona il meccanismo di scaled dot-product attention nel Transform",
+      "answer_preview": "Thinking. 1.  **Identify the Goal:** The user wants an explanation of the Scaled Dot-Product Attenti",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 4.0
+      }
+    },
+    {
+      "id": "Q020",
+      "question": "Qual è il contributo specifico della 'planned re-parameterization' in YOLOv7 ris",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Target concept: \"Qual è il contributo specifico della",
+      "scores": {
+        "answer_correct": 0.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 2.0
+      }
+    },
+    {
+      "id": "Q021",
+      "question": "Il survey discute i compromessi tra valutazione automatica e valutazione umana. ",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Role: Precise RAG assistant.\n    *   User Question: \"",
+      "scores": {
+        "answer_correct": 0.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 2.0
+      }
+    },
+    {
+      "id": "Q022",
+      "question": "Quali sono i rischi principali associati ai foundation models secondo il report ",
+      "answer_preview": "Thinking. 1.  **Analyze the User's Request:**\n    *   Target Document: \"06_foundation_models_bommasa",
+      "scores": {
+        "answer_correct": 0.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 0.0,
+        "total": 1.0
+      }
+    },
+    {
+      "id": "Q023",
+      "question": "Come vengono calcolate faithfulness e answer relevancy in Ragas? Perché queste m",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   User is asking: \"Come vengono calcolate faithfulness ",
+      "scores": {
+        "answer_correct": 1.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 3.0
+      }
+    },
+    {
+      "id": "Q024",
+      "question": "CRAG analizza la degradazione della retrieval quality. Quali tipi di domande sof",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   **User Question:** \"CRAG analizza la degradazione del",
+      "scores": {
+        "answer_correct": 0.5,
+        "evidence_correct": 0.0,
+        "no_hallucination": 1.0,
+        "total": 1.5
+      }
+    },
+    {
+      "id": "Q025",
+      "question": "HELM valuta 7 metriche su 42 scenari. Quali metriche tendono a essere correlate ",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   User question (Italian): \"HELM valuta 7 metriche su 4",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 4.0
+      }
+    },
+    {
+      "id": "Q026",
+      "question": "Confronta i meccanismi di retrieval in RAG originale e Self-RAG. Quali limitazio",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Language: Italian (\"Confronta i meccanismi di retriev",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 4.0
+      }
+    },
+    {
+      "id": "Q027",
+      "question": "Quali sono le principali differenze metodologiche tra l'approccio di valutazione",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Role: Precise RAG assistant.\n    *   Source: ONLY pro",
+      "scores": {
+        "answer_correct": 0.5,
+        "evidence_correct": 0.0,
+        "no_hallucination": 1.0,
+        "total": 1.5
+      }
+    },
+    {
+      "id": "Q028",
+      "question": "Cosa distingue il dataset CRAG dalle domande e dal setting sperimentale usati ne",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Role: Precise RAG assistant.\n    *   Constraint: Answ",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 0.0,
+        "no_hallucination": 1.0,
+        "total": 3.0
+      }
+    },
+    {
+      "id": "Q029",
+      "question": "In che modo Self-RAG e CRAG affrontano il problema della factuality (accuratezza",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   **User:** Asks about Self-RAG and CRAG and how they a",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 4.0
+      }
+    },
+    {
+      "id": "Q030",
+      "question": "Quali elementi architetturali del Transformer (Vaswani et al., 2017) vengono ere",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Goal: Identify architectural elements of the Transfor",
+      "scores": {
+        "answer_correct": 0.5,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 2.5
+      }
+    },
+    {
+      "id": "Q031",
+      "question": "Quali metriche di valutazione sono comuni tra l'LLM Evaluation Survey (Chang et ",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Target: Identify common evaluation metrics between th",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 4.0
+      }
+    },
+    {
+      "id": "Q032",
+      "question": "Come vengono trattati i temi di bias e fairness nel report dei foundation models",
+      "answer_preview": "I cannot find sufficient information in the provided documents to answer this question.\n\nThe context",
+      "scores": {
+        "answer_correct": 0.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 2.0
+      }
+    },
+    {
+      "id": "Q033",
+      "question": "Sia Ragas che Self-RAG si occupano di faithfulness/factuality. In che modo i due",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   User question: \"Sia Ragas che Self-RAG si occupano di",
+      "scores": {
+        "answer_correct": 1.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 3.0
+      }
+    },
+    {
+      "id": "Q034",
+      "question": "Entrambi i paper (YOLOv7 e Transformer) usano residual connections. Confronta il",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   User wants a comparison of the *role* and *implementa",
+      "scores": {
+        "answer_correct": 0.5,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 2.5
+      }
+    },
+    {
+      "id": "Q035",
+      "question": "Quali sono le differenze nel concetto di 'retrieval' tra RAG originale, Self-RAG",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Target Question: \"Quali sono le differenze nel concet",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 4.0
+      }
+    },
+    {
+      "id": "Q036",
+      "question": "Nella tabella dei risultati BLEU sul WMT 2014 EN-DE, quale configurazione del Tr",
+      "answer_preview": "We need to answer the question: \"Nella tabella dei risultati BLEU sul WMT 2014 EN-DE, quale configur",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 4.0
+      }
+    },
+    {
+      "id": "Q037",
+      "question": "Nella tabella comparativa su MS COCO, quale AP (Average Precision) ottiene YOLOv",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   **Role:** Precise RAG assistant.\n    *   **Input:** C",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 4.0
+      }
+    },
+    {
+      "id": "Q038",
+      "question": "Secondo la tabella riassuntiva di HELM, quali modelli ottengono i migliori punte",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Target: Answer the user's question using *only* the p",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 4.0
+      }
+    },
+    {
+      "id": "Q039",
+      "question": "Nelle tabelle di ablation di Self-RAG, quale componente ha l'impatto maggiore su",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   User wants an answer based *only* on the provided con",
+      "scores": {
+        "answer_correct": 1.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 3.0
+      }
+    },
+    {
+      "id": "Q040",
+      "question": "Nella tabella dei risultati per dominio di CRAG, in quali domini la retrieval qu",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Language: Italian.\n    *   Target: Based exclusively ",
+      "scores": {
+        "answer_correct": 1.0,
+        "evidence_correct": 1.0,
+        "no_hallucination": 1.0,
+        "total": 3.0
+      }
+    },
+    {
+      "id": "Q041",
+      "question": "Quanto e' costato addestrare Self-RAG in termini di budget di calcolo (GPU-hours",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   User wants the cost to train Self-RAG in terms of com",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 0.0,
+        "no_hallucination": 1.0,
+        "total": 3.0
+      }
+    },
+    {
+      "id": "Q042",
+      "question": "Quale framework di deep learning (PyTorch, TensorFlow, JAX) e' stato usato per i",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   User question: \"Quale framework di deep learning (PyT",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 0.0,
+        "no_hallucination": 1.0,
+        "total": 3.0
+      }
+    },
+    {
+      "id": "Q043",
+      "question": "In RAG, quale dataset specifico (oltre a Wikipedia) e' stato usato per il fine-t",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Target: The specific dataset used (besides Wikipedia)",
+      "scores": {
+        "answer_correct": 1.0,
+        "evidence_correct": 0.0,
+        "no_hallucination": 0.5,
+        "total": 1.5
+      }
+    },
+    {
+      "id": "Q044",
+      "question": "Quale GPU e' stata usata per eseguire la valutazione HELM sui modelli?",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Goal: Answer the user's question using ONLY the provi",
+      "scores": {
+        "answer_correct": 1.0,
+        "evidence_correct": 0.0,
+        "no_hallucination": 0.5,
+        "total": 1.5
+      }
+    },
+    {
+      "id": "Q045",
+      "question": "Il paper RAG originale menziona 12 autori nel paper. Quanti sono esattamente?",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   User: \"Il paper RAG originale menziona 12 autori nel ",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 0.0,
+        "no_hallucination": 1.0,
+        "total": 3.0
+      }
+    },
+    {
+      "id": "Q046",
+      "question": "Tree of Thoughts propone un metodo specifico per migliorare il retrieval in sist",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   User question: \"Tree of Thoughts propone un metodo sp",
+      "scores": {
+        "answer_correct": 1.0,
+        "evidence_correct": 0.0,
+        "no_hallucination": 0.5,
+        "total": 1.5
+      }
+    },
+    {
+      "id": "Q047",
+      "question": "Nel paper Transformer, quale learning rate costante viene usato per tutto il tra",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Target: \"Nel paper Transformer, quale learning rate c",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 0.0,
+        "no_hallucination": 1.0,
+        "total": 3.0
+      }
+    },
+    {
+      "id": "Q048",
+      "question": "In HELM, quale modello ha ottenuto il punteggio massimo assoluto (5/5) in tutte ",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Goal: Find if a model achieved a perfect absolute sco",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 0.0,
+        "no_hallucination": 1.0,
+        "total": 3.0
+      }
+    },
+    {
+      "id": "Q049",
+      "question": "Quali sono i nomi dei revisori del paper CRAG?",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   Goal: Find the names of the reviewers of the \"CRAG\" p",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 0.0,
+        "no_hallucination": 1.0,
+        "total": 3.0
+      }
+    },
+    {
+      "id": "Q050",
+      "question": "Tree of Thoughts valuta la qualita' del retrieval su documenti esterni durante l",
+      "answer_preview": "Thinking. 1.  **Analyze the Request:**\n    *   User's question: \"Tree of Thoughts valuta la qualita'",
+      "scores": {
+        "answer_correct": 2.0,
+        "evidence_correct": 0.0,
+        "no_hallucination": 1.0,
+        "total": 3.0
+      }
+    }
+  ]
+}

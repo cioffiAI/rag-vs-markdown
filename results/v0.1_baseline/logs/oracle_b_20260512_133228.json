@@ -1,0 +1,912 @@
+[
+  {
+    "question": "In RAG, qual è la differenza fondamentale tra RAG-Sequence e RAG-Token nella formulazione della probabilità target?",
+    "answer": "*   Question: \"In RAG, qual è la differenza fondamentale tra RAG-Sequence e RAG-Token nella formulazione della probabilità target?\" (In RAG, what is the fundamental difference between RAG-Sequence and RAG-Token in the formulation of the target probability?)\n    *   Constraint: Use ONLY the provided context. Answer concisely. Cite source document name(s).\n\n    *   Keywords: \"RAG-Sequence\", \"RAG-Token\", \"probability\", \"difference\", \"target\".\n    *   Document 3, Section 2.1 \"Models\" contains the specific definitions.\n\n    *   *RAG-Sequence Model:* \"The RAG-Sequence model uses the same retrieved document to generate the complete sequence. Technically, it treats the retrieved document as a single latent variable that is marginalized to get the seq2seq probability $p(y|x)$ via a top-K approximation.\"\n    *   *RAG-Token Model:* \"In the RAG-Token model we can draw a different latent document for each target token and marginalize accordingly. This allows the generator to choose content from several documents when producing an answer.\"\n\n    *   RAG-Sequence uses the same document for the entire sequence.\n    *   RAG-Token can use a different document for each target token.\n\n    *   The difference is that the RAG-Sequence model uses the same retrieved document to generate the complete sequence, treating it as a single latent variable. In contrast, the RAG-Token model can draw a different latent document for each target token, allowing the generator to choose content from several documents when producing an answer.\n\n    *   Source: [Document 3: 01_rag_original_lewis_2020]\n\n    *   \"La differenza fondamentale è che il modello RAG-Sequence utilizza lo stesso documento recuperato per generare l'intera sequenza, trattandolo come una singola variabile latente. Al contrario, il modello RAG-Token può estrarre un documento latente diverso per ogni token target, consentendo al generatore di scegliere contenuti da diversi documenti durante la produzione di una risposta [Document 3: 01_rag_original_lewis_2020].\"\n\n    *Wait, the user asked in Italian, but the instructions are in English. Usually, I should answer in the language of the question unless specified otherwise. The prompt says \"Answer the user's question\".*\n\n    *Let's refine the English version first to ensure accuracy:*\n    The fundamental difference is that the RAG-Sequence model uses the same retrieved document to generate the complete sequence, treating the document as a single latent variable. The RAG-Token model, however, can draw a different latent document for each target token, which allows the generator to select content from multiple documents when producing an answer [Document 3: 01_rag_original_lewis_2020].\n\n    *Let's provide the answer in Italian as requested by the question language:*\n    La differenza fondamentale è che il modello RAG-Sequence utilizza lo stesso documento recuperato per generare l'intera sequenza, trattandolo come una singola variabile latente. Al contrario, il modello RAG-Token può utilizzare un documento latente diverso per ogni token target, consentendo al generatore di scegliere contenuti da diversi documenti durante la produzione di una risposta [Document 3: 01_rag_original_lewis_2020].\n\n    *   Only provided context? Yes.\n    *   Concise? Yes.\n    *   Cite source? Yes.\n    *   No prior knowledge? Yes.\n\n    *Self-Correction on language:* The prompt is in English, the question is in Italian. I will answer in Italian to be helpful, as is standard for RAG assistants.\n\n    *Final check of the text in Document 3:*\n    \"In one approach, RAG-Sequence, the model uses the same document to predict each target token. The second approach, RAG-Token, can predict each target token based on a different document.\"\n    \"The RAG-Sequence model uses the same retrieved document to generate the complete sequence. ... The RAG-Token model we can draw a different latent document for each target token and marginalize accordingly.\"\n\n    *Drafting final response:*\n    La differenza fondamentale è che il modello RAG-Sequence utilizza lo stesso documento recuperato per generare l'intera sequenza, trattandolo come una singola variabile latente. Il modello RAG-Token, invece, può estrarre un documento latente diverso per ogni token target, permettendo al generatore di scegliere contenuti da più documenti durante la produzione di una risposta [Document 3: 01_rag_original_lewis_2020].",
+    "oracle_chunks": [
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      }
+    ],
+    "oracle_chunk_count": 19,
+    "expected_docs": [
+      "01_rag_original_lewis_2020.pdf"
+    ],
+    "timestamp": "2026-05-12T13:32:54.720957",
+    "pipeline": "rag_papers",
+    "model": "gemma-4-26b-a4b-it"
+  },
+  {
+    "question": "Nel paper RAG, il retriever usa DPR. Cosa distingue il formato 'input order' dal formato 'index order' nella rappresentazione dei documenti?",
+    "answer": "*   Question: \"Nel paper RAG, il retriever usa DPR. Cosa distingue il formato 'input order' dal formato 'index order' nella rappresentazione dei documenti?\" (In the RAG paper, the retriever uses DPR. What distinguishes the 'input order' format from the 'index order' format in the representation of documents?)\n    *   Constraint: Use ONLY the provided context.\n    *   Language: The question is in Italian, so the answer should ideally be in Italian (or English if the user prefers, but usually, I respond in the language of the question unless specified otherwise. However, the prompt is in English. I will provide the answer in Italian to match the user's query).\n\n    *   Keywords: \"DPR\", \"input order\", \"index order\", \"document representation\", \"retriever\".\n\n    *   Document 1: Mentions RAG uses a pre-trained neural retriever and a dense vector index of Wikipedia.\n    *   Document 2: Mentions DPR (Dense Passage Retriever) provides latent documents.\n    *   Document 3: Section 2.2 \"Retriever: DPR\" explains the bi-encoder architecture. It mentions $d(z)$ is a dense representation of a document produced by a BERTBASE document encoder and $q(x)$ is a query representation. It mentions Maximum Inner Product Search (MIPS).\n    *   Document 4: Discusses training.\n    *   Document 5: Discusses decoding.\n    *   Document 6: Discusses experiments (Wikipedia dump, 100-word chunks, 21M documents, FAISS, MIPS).\n    *   Document 7: Discusses results.\n    *   Document 8: Discusses human evaluation and diversity.\n    *   Document 9: Discusses index hot-swapping (comparing 2016 and 2018 indices).\n    *   Document 10: Discusses related work.\n    *   Document 11: Discusses discussion.\n    *   Document 12: Discusses broader impact.\n    *   Document 13: References.\n    *   Document 14: References.\n    *   Document 15: References.\n    *   Document 16: References.\n    *   Document 17: Appendices.\n    *   Document 18: Appendices.\n    *   Document 19: Appendices (Parameters).\n\n    *   I have searched for \"input order\" and \"index order\" in the provided text.\n    *   Scanning Document 3 (Section 2.2): It talks about $d(z)$ and $q(x)$, but not \"input order\" or \"index order\".\n    *   Scanning Document 6 (Experiments): It talks about splitting Wikipedia into 100-word chunks and building a MIPS index.\n    *   Scanning Document 9 (Index hot-swapping): It talks about replacing the index.\n    *   Scanning Document 19 (Parameters): It talks about the number of parameters and the non-parametric memory index.\n\n    *   The terms \"input order\" and \"index order\" do not appear in the provided context.\n\n    *   Since the information is not in the context, I must use the required phrase.\n\n    *   \"I cannot find sufficient information in the provided documents to answer this question.\"\n\n    *   Did I miss anything? Let me re-read carefully.\n    *   Document 3, 2.2: \"The retrieval component $p_{\\eta}(z|x)$ is based on DPR [26]. DPR follows a bi-encoder architecture... where $d(z)$ is a dense representation of a document... and $q(x)$ a query representation...\"\n    *   Document 6: \"Each Wikipedia article is split into disjoint 100-word chunks... We use the document encoder to compute an embedding for each document, and build a single MIPS index...\"\n    *   No mention of \"input order\" or \"index order\".\n\n    *   \"I cannot find sufficient information in the provided documents to answer this question.\"",
+    "oracle_chunks": [
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      },
+      {
+        "doc_name": "01_rag_original_lewis_2020"
+      }
+    ],
+    "oracle_chunk_count": 19,
+    "expected_docs": [
+      "01_rag_original_lewis_2020.pdf"
+    ],
+    "timestamp": "2026-05-12T13:33:19.184794",
+    "pipeline": "rag_papers",
+    "model": "gemma-4-26b-a4b-it"
+  },
+  {
+    "question": "Quali sono i tre tipi di critique token generati da Self-RAG e cosa valuta ciascuno?",
+    "answer": "*   Question: \"Quali sono i tre tipi di critique token generati da Self-RAG e cosa valuta ciascuno?\" (What are the three types of critique tokens generated by Self-RAG and what does each evaluate?)\n    *   Language: Italian.\n    *   Constraint: Use ONLY the provided context. Answer concisely. Cite source document name(s).\n\n    *   Keywords: \"critique token\", \"types\", \"evaluate\", \"critique\".\n    *   Document 1: Mentions \"Reflection tokens are categorized into retrieval and critique tokens to indicate the need for retrieval and its generation quality respectively\".\n    *   Document 2: Mentions \"It then generates critique tokens to criticize its own output and choose best one (Step 3) in terms of factuality and overall quality.\"\n    *   Document 4: Table 1 lists \"Four types of reflection tokens used in SELF-RAG. The bottom three rows are three types of Critique tokens...\".\n    *   Document 4 (Table 1 details):\n        *   `## ISREL`: \"whether the evidence provides useful information (Relevant) or not (Irrelevant).\" (Wait, Table 1 says \"The bottom three rows are three types of Critique tokens\". Let's look at the table rows).\n        *   Row 2: `## ISREL` (Input: x, d; Output: {relevant, irrelevant}). Definition: \"d provides useful information to solve x.\"\n        *   Row 3: `## ISSUP` (Input: x, d, y; Output: {fully supported, partially supported, no support}). Definition: \"All of the verification-worthy statement in y is supported by d.\"\n        *   Row 4: `## ISUSE` (Input: x, y; Output: {5, 4, 3, 2, 1}). Definition: \"y is a useful response to x.\"\n    *   Document 4 (Inference overview): \"If retrieval is needed, the model generates: a critique token to evaluate the retrieved passage’s relevance, the next response segment, and a critique token to evaluate if the information in the response segment is supported by the passage. Finally, a new critique token evaluates the overall utility of the response.\"\n    *   Document 4 (Table 1 caption): \"The bottom three rows are three types of Critique tokens...\"\n    *   Document 17 (Appendix A.1): \"The first three aspects will be provided at each segment level, while the final aspect is only given at each output level. ... • Relevant (## ISREL): ... indicates whether the evidence provides useful information (Relevant) or not (Irrelevant). • Supported (## ISSUP): ... judges how much information in the output is entailed by the evidence. • Useful (## ISUSE): ... defines the perceived utility as whether the response is a helpful and informative answer to the query...\"\n\n    *   The three critique tokens are:\n        1.  `## ISREL` (Relevance): Evaluates whether the retrieved evidence provides useful information to solve the input (x) [Document 4, Document 17].\n        2.  `## ISSUP` (Support): Evaluates whether the information in the output (y) is supported by the evidence (d) [Document 4, Document 17].\n        3.  `## ISUSE` (Utility): Evaluates whether the response (y) is a helpful and informative answer to the query (x) [Document 4, Document 17].\n\n    *   Translate to Italian:\n        I tre tipi di critique token generati da Self-RAG sono:\n        1.  **## ISREL (Relevance)**: Valuta se l'evidenza fornita contiene informazioni utili per risolvere l'input (x) [Document 4, Document 17].\n        2.  **## ISSUP (Support)**: Valuta se le informazioni nell'output (y) sono supportate dall'evidenza (d) [Document 4, Document 17].\n        3.  **## ISUSE (Utility)**: Valuta l'utilità percepita, ovvero se la risposta (y) è una risposta utile e informativa alla query (x) [Document 4, Document 17].\n\n    *   Check against rules:\n        *   Only provided context? Yes.\n        *   Concise? Yes.\n        *   Cite source? Yes.\n        *   No prior knowledge? Yes.\n\n    *   Refining the Italian:\n        I tre tipi di critique token generati da SELF-RAG sono:\n        - **## ISREL (Relevance)**: Valuta se l'evidenza (d) fornisce informazioni utili per risolvere l'input (x) [Document 4, Document 17].\n        - **## ISSUP (Support)**: Valuta se le informazioni nell'output (y) sono supportate dall'evidenza (d) [Document 4, Document 17].\n        - **## ISUSE (Utility)**: Valuta se la risposta (y) è una risposta utile e informativa alla query (x) [Document 4, Document 17].\n\n    *   Wait, let me double check Document 4 Table 1.\n        Row 2: `## ISREL` (Input: x, d). Definition: \"d provides useful information to solve x.\"\n        Row 3: `## ISSUP` (Input: x, d, y). Definition: \"All of the verification-worthy statement in y is supported by d.\"\n        Row 4: `## ISUSE` (Input: x, y). Definition: \"y is a useful response to x.\"\n        The caption says \"The bottom three rows are three types of Critique tokens\".\n\n    *   Final check of the question: \"Quali sono i tre tipi di critique token generati da Self-RAG e cosa valuta ciascuno?\"\n\n    *   Final Answer Construction:\n        I tre tipi di critique token generati da SELF-RAG sono:\n        1. **## ISREL (Relevance)**: Valuta se l'evidenza fornisce informazioni utili per risolvere l'input [Document 4, Document 17].\n        2. **## ISSUP (Support)**: Valuta se le informazioni nell'output sono supportate dall'evidenza [Document 4, Document 17].\n        3. **## ISUSE (Utility)**: Valuta se la risposta è una risposta utile e informativa alla query [Document 4, Document 17].\n\n    *   Wait, I should ensure I use the exact terms from the text.\n        `## ISREL`: \"d provides useful information to solve x\"\n        `## ISSUP`: \"All of the verification-worthy statement in y is supported by d\"\n        `## ISUSE`: \"y is a useful response to x\"\n\n    *   Let's provide the answer in Italian as requested.\n\n    *   *Self-Correction*: The user asked in Italian, so I will answer in Italian.\n\n    *   *Final Polish*:\n        I tre tipi di critique token generati da SELF-RAG sono:\n        - **## ISREL (Relevance)**: Valuta se l'evidenza fornisce informazioni utili per risolvere l'input [Document 4, Document 17].\n        - **## ISSUP (Support)**: Valuta se le informazioni nell'output sono supportate dall'evidenza [Document 4, Document 17].\n        - **## ISUSE (Utility)**: Valuta se la risposta è una risposta utile e informativa alla query [Document 4, Document 17].",
+    "oracle_chunks": [
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      }
+    ],
+    "oracle_chunk_count": 30,
+    "expected_docs": [
+      "02_self_rag_asai_2023.pdf"
+    ],
+    "timestamp": "2026-05-12T13:34:02.504005",
+    "pipeline": "rag_papers",
+    "model": "gemma-4-26b-a4b-it"
+  },
+  {
+    "question": "Il paper Self-RAG dichiara esplicitamente il numero di pagine, figure e tabelle. Quali sono questi numeri?",
+    "answer": "*   Question: \"Il paper Self-RAG dichiara esplicitamente il numero di pagine, figure e tabelle. Quali sono questi numeri?\" (Does the Self-RAG paper explicitly state the number of pages, figures, and tables? What are these numbers?)\n    *   Constraint: Use ONLY the provided context.\n    *   Rules: Concise answer if info is present; \"I cannot find sufficient information...\" if not; cite source document name(s); no prior knowledge; be specific and factual.\n\n    *   Document 1: Abstract and Introduction. Mentions \"Figure 1\".\n    *   Document 2: Figure 1 overview, mentions \"Table 1\".\n    *   Document 3: Related work, mentions \"Table 1\".\n    *   Document 4: Table 1, Algorithm 1.\n    *   Document 5: Figure 2, mentions \"Table 1\".\n    *   Document 6: Mentions \"Table 1\".\n    *   Document 7: Tasks and Datasets, mentions \"Table 2\".\n    *   Document 8: Table 2, Results and Analysis.\n    *   Document 9: Figure 3, Analysis.\n    *   Document 10: Figure 4, Training scale.\n    *   Document 11: Conclusion, Ethical Concerns, Acknowledgments, References.\n    *   Document 12: References.\n    *   Document 13: References.\n    *   Document 14: References.\n    *   Document 15: References.\n    *   Document 16: Appendix.\n    *   Document 17: Appendix A.1, mentions \"Table 1\", \"Table 5\".\n    *   Document 18: Algorithm 2, Table 3, Figure 5.\n    *   Document 19: Algorithm 3.\n    *   Document 20: Appendix B.2, mentions \"Table 5\".\n    *   Document 21: Table 6.\n    *   Document 22: Table 4, Table 8.\n    *   Document 23: Table 5.\n    *   Document 24: Table 6, Table 7.\n    *   Document 25: Table 7.\n    *   Document 26: Table 8.\n    *   Document 27: Table 9, Table 10.\n    *   Document 28: Table 10, Table 11.\n    *   Document 29: Table 11, Table 12.\n    *   Document 30: Table 12.\n\n    *   *Pages:* The documents are numbered 1 through 30. However, the question asks if the *paper* explicitly declares the number of pages. I need to check if there is a sentence like \"This paper has X pages.\"\n    *   *Figures:* I see Figure 1, Figure 2, Figure 3, Figure 4, Figure 5. I do not see a statement declaring the total number of figures.\n    *   *Tables:* I see Table 1, Table 2, Table 3, Table 4, Table 5, Table 6, Table 7, Table 8, Table 9, Table 10, Table 11, Table 12. I do not see a statement declaring the total number of tables.\n\n    *   Scanning all documents for \"number of pages\", \"total figures\", \"total tables\", \"contains X figures\", etc.\n    *   Document 1-30: No explicit declaration of the total number of pages, figures, or tables is found in the text.\n\n    *   Since the text does not explicitly state the total number of pages, figures, or tables, I must follow the rule: \"If the context does NOT contain enough information, say 'I cannot find sufficient information in the provided documents to answer this question.'\"\n\n    *   Does the context contain the numbers? No.\n    *   Does it say \"This paper has X pages\"? No.\n    *   Does it say \"There are Y figures\"? No.\n    *   Does it say \"There are Z tables\"? No.\n\n    *   \"I cannot find sufficient information in the provided documents to answer this question.\"",
+    "oracle_chunks": [
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      },
+      {
+        "doc_name": "02_self_rag_asai_2023"
+      }
+    ],
+    "oracle_chunk_count": 30,
+    "expected_docs": [
+      "02_self_rag_asai_2023.pdf"
+    ],
+    "timestamp": "2026-05-12T13:34:28.221705",
+    "pipeline": "rag_papers",
+    "model": "gemma-4-26b-a4b-it"
+  },
+  {
+    "question": "Quali sono i tre iperparametri architetturali principali del modello Transformer base riportati nella sezione 3 del paper?",
+    "answer": "*   Question: \"Quali sono i tre iperparametri architetturali principali del modello Transformer base riportati nella sezione 3 del paper?\" (What are the three main architectural hyperparameters of the base Transformer model reported in section 3 of the paper?)\n    *   Language: Italian.\n    *   Constraint: Use ONLY the provided context. Cite source document name(s).\n\n    *   Section 3 is \"Model Architecture\".\n    *   Document 4 contains Section 3.1 \"Encoder and Decoder Stacks\".\n    *   Document 4, Section 3.1 (Encoder): \"The encoder is composed of a stack of N = 6 identical layers. Each layer has two sub-layers... all sub-layers in the model, as well as the embedding layers, produce outputs of dimension dmodel = 512.\"\n    *   Document 4, Section 3.1 (Decoder): \"The decoder is also composed of a stack of N = 6 identical layers.\"\n    *   Document 6, Section 3.3 (Position-wise Feed-Forward Networks): \"The dimensionality of input and output is dmodel = 512, and the inner-layer has dimensionality dff = 2048.\"\n    *   Document 10, Table 3 (Variations on the Transformer architecture): This table lists \"base\" model parameters:\n        *   N = 6\n        *   dmodel = 512\n        *   dff = 2048\n        *   h = 8\n        *   dk = 64\n        *   dv = 64\n\n    *   The question asks for the \"three main architectural hyperparameters\" reported in *Section 3*.\n    *   Looking at Section 3.1 (Document 4):\n        *   $N = 6$ (number of layers).\n        *   $d_{model} = 512$ (dimension of outputs/embeddings).\n    *   Looking at Section 3.3 (Document 6):\n        *   $d_{ff} = 2048$ (inner-layer dimensionality of the feed-forward network).\n    *   Looking at Section 3.2.2 (Document 6):\n        *   $h = 8$ (number of attention heads).\n        *   $d_k = d_v = d_{model}/h = 64$.\n\n    *   Wait, the question asks for \"the three main architectural hyperparameters... reported in section 3\".\n    *   Section 3.1 mentions $N=6$ and $d_{model}=512$.\n    *   Section 3.3 mentions $d_{ff}=2048$.\n    *   Section 3.2.2 mentions $h=8$ and $d_k=d_v=64$.\n\n    *   Let's re-read Section 3 carefully.\n    *   3.1: $N=6$, $d_{model}=512$.\n    *   3.2.2: $h=8$, $d_k=d_v=64$.\n    *   3.3: $d_{ff}=2048$.\n\n    *   The question asks for \"the three main\" (i tre... principali). This is slightly subjective, but usually, in the context of the Transformer architecture, $N$, $d_{model}$, and $d_{ff}$ (or $h$) are the key ones.\n    *   However, looking at the text in Section 3:\n        *   $N=6$ (layers)\n        *   $d_{model}=512$ (dimension)\n        *   $d_{ff}=2048$ (feed-forward dimension)\n    *   These are explicitly defined in the text of Section 3.\n\n    *   Let's check if there's a specific list of \"three\" mentioned.\n    *   Section 3.1: $N=6$, $d_{model}=512$.\n    *   Section 3.3: $d_{ff}=2048$.\n    *   Section 3.2.2: $h=8$.\n\n    *   Actually, looking at the prompt's question in Italian, it asks for \"i tre iperparametri architetturali principali\".\n    *   If I look at the \"base\" model in Table 3 (Document 10), it lists: $N=6$, $d_{model}=512$, $d_{ff}=2048$, $h=8$, $d_k=64$, $d_v=64$.\n    *   But the question specifies \"riportati nella sezione 3\" (reported in section 3).\n    *   In Section 3.1: $N=6$ and $d_{model}=512$.\n    *   In Section 3.3: $d_{ff}=2048$.\n    *   In Section 3.2.2: $h=8$.\n\n    *   Let's provide the most prominent ones mentioned in the text of Section 3.\n    *   $N=6$ (number of layers) [Document 4]\n    *   $d_{model}=512$ (dimension of outputs/embeddings) [Document 4]\n    *   $d_{ff}=2048$ (inner-layer dimensionality of the feed-forward network) [Document 6]\n\n    *   Wait, Section 3.2.2 also mentions $h=8$.\n    *   Is there a set of three?\n    *   Let's look at the text again.\n    *   Section 3.1: \"The encoder is composed of a stack of N = 6 identical layers... all sub-layers... produce outputs of dimension dmodel = 512.\"\n    *   Section 3.3: \"The dimensionality of input and output is dmodel = 512, and the inner-layer has dimensionality dff = 2048.\"\n\n    *   The question asks for \"the three main\". I will list $N$, $d_{model}$, and $d_{ff}$ as they are the primary dimensions/counts described in the architecture sections. Or perhaps $N$, $d_{model}$, and $h$.\n    *   Actually, $N$, $d_{model}$, and $d_{ff}$ are the most standard \"architectural\" parameters for the layers themselves.\n\n    *   Let's check if the question implies something else. \"Quali sono i tre iperparametri architetturali principali...\".\n    *   In Section 3.1: $N=6$ and $d_{model}=512$.\n    *   In Section 3.3: $d_{ff}=2048$.\n    *   These three are clearly stated in the text of Section 3.\n\n    *   Let's refine the answer in Italian.\n    *   Iperparametri:\n        1. $N = 6$ (numero di strati identici nell'encoder e nel decoder) [Document 4].\n        2. $d_{model} = 512$ (dimensione degli output di tutti i sub-layer e dei layer di embedding) [Document 4].\n        3. $d_{ff} = 2048$ (dimensione dello strato interno della rete feed-forward position-wise) [Document 6].\n\n    *   Wait, Section 3.2.2 also says $h=8$.\n    *   If I have to pick \"the three\", $N$, $d_{model}$, and $d_{ff}$ are the most fundamental to the layer structure described in 3.1 and 3.3.\n\n    *   Let's check if there's any other \"three\" mentioned.\n    *   Section 4 mentions \"three desiderata\" (computational complexity, parallelization, path length). These are not architectural hyperparameters.\n    *   Section 5.4 mentions \"three types of regularization\" (Residual Dropout, Label Smoothing... wait, it says \"three types\" but only lists two explicitly in the text provided? No, it says \"We employ three types of regularization during training:\" then lists Residual Dropout and Label Smoothing. It might be missing one or the third is implied/in a part not shown, but the question asks for *architectural hyperparameters*).\n\n    *   Back to Section 3.\n    *   $N=6$\n    *   $d_{model}=512$\n    *   $d_{ff}=2048$\n    *   $h=8$\n    *   $d_k=64$\n    *   $d_v=64$\n\n    *   The question asks for \"the three main\". I will provide $N$, $d_{model}$, and $d_{ff}$ as they are the primary structural dimensions mentioned in the text of Section 3.\n\n    *   Let's double check Section 3.1 and 3.3.\n    *   3.1: $N=6$, $d_{model}=512$.\n    *   3.3: $d_{ff}=2048$.\n    *   This covers the \"three\" most likely intended.\n\n    *   Answer construction:\n        Gli iperparametri architetturali principali del modello Transformer base riportati nella sezione 3 sono:\n        1. $N = 6$ (il numero di strati identici nell'encoder e nel decoder) [Document 4].\n        2. $d_{model} = 512$ (la dimensione degli output di tutti i sub-layer e dei layer di embedding) [Document 4].\n        3. $d_{ff} = 2048$ (la dimensione dello strato interno della rete feed-forward position-wise) [Document 6].\n\n    *   Wait, I should check if $h=8$ is more \"main\".\n    *   Section 3.2.2: \"In this work we employ h = 8 parallel attention layers, or heads.\"\n    *   Usually, $N$, $d_{model}$, and $d_{ff}$ are the core dimensions.\n\n    *   Let's look at the question again. \"Quali sono i tre iperparametri architetturali principali...\".\n    *   If I look at the text, $N$, $d_{model}$, and $d_{ff}$ are the most prominent.\n\n    *   Let's check if there's any other grouping.\n    *   Actually, $N$, $d_{model}$, and $h$ are also very common.\n    *   However, $d_{ff}$ is a very specific architectural parameter of the FFN.\n\n    *   Let's provide $N$, $d_{model}$, and $d_{ff}$ as they are explicitly defined in the text of sections 3.1 and 3.3.\n\n    *   Final check of the documents:\n        *   Doc 4, Sec 3.1: $N=6$, $d_{model}=512$.\n        *   Doc 6, Sec 3.3: $d_{ff}=2048$.\n        *   Doc 6, Sec 3.2.2: $h=8$.\n\n    *   I will list $N$, $d_{model}$, and $d_{ff}$ as they are the primary dimensions of the layers.\n\n    *   Wait, I'll check if the question might be referring to the \"three sub-layers\" in the decoder? No, those are components, not hyperparameters.\n\n    *   Let's stick to the numerical values provided in Section 3.\n    *   $N=6$ [Document 4]\n    *   $d_{model}=512$ [Document 4]\n    *   $d_{ff}=2048$ [Document 6]\n\n    *   (Self-correction): The question asks for \"the three main\". I will present these three.\n\n    *   One more check: Section 3.2.2 says $h=8$.\n    *   If I look at Table 3 (Document 10), the \"base\" model has $N=6, d_{model}=512, d_{ff}=2048, h=8, d_k=64, d_v=64$.\n    *   The question specifically says \"riportati nella sezione 3\".\n    *   Section 3.1: $N=6$, $d_{model}=512$.\n    *   Section 3.2.2: $h=8$.\n    *   Section 3.3: $d_{ff}=2048$.\n    *   All are in Section 3.\n    *   I will provide $N$, $d_{model}$, and $d_{ff}$ as they are the most fundamental to the layer structure.\n\n    *   Actually, looking at the text, $N$, $d_{model}$, and $d_{ff}$ are the most clearly defined \"dimensions\" of the architecture in the text.\n\n    *   Let's write the response.\n\n    *   *Drafting response*:\n        In base alla sezione 3 del paper, i tre principali iperparametri architetturali del modello Transformer base sono:\n        - $N = 6$ (il numero di strati identici che compongono lo stack dell'encoder e del decoder) [Document 4].\n        - $d_{model} = 512$ (la dimensione degli output di tutti i sub-layer e dei layer di embedding) [Document 4].\n        - $d_{ff} = 2048$ (la dimensione dello strato interno della rete feed-forward position-wise) [Document 6].\n\n    *   Wait, I should check if $h=8$ is more important. $h$ is the number of heads.\n    *   In many contexts, $N$, $d_{model}$, and $h$ are the \"big three\".\n    *   But $d_{ff}$ is also a major one.\n    *   Since the question asks for \"the three\", and the text provides several, I will select the ones that define the layer dimensions most directly.\n\n    *   Let's check if there's any mention of \"three\" in Section 3.\n    *   \"The decoder... inserts a third sub-layer...\" (This is a component, not a hyperparameter).\n    *   \"The Transformer uses multi-head attention in three different ways...\" (This is a usage description).\n\n    *   Okay, I will provide $N$, $d_{model}$, and $d_{ff}$.\n\n    *   Wait, I'll check if $d_k$ and $d_v$ are considered \"main\". They are derived ($d_{model}/h$).\n    *   $N$, $d_{model}$, and $d_{ff}$ are independent parameters in the description.\n\n    *   Final Answer Plan:\n        1. $N=6$ (layers) [Doc 4]\n        2. $d_{model}=512$ (dimension) [Doc 4]\n        3. $d_{ff}=2048$ (FFN inner dimension) [Doc 6]\n\n    *   Wait, I'll check if $h=8$ is better.\n    *   Actually, $N$, $d_{model}$, and $h$ are the most common.\n    *   But $d_{ff}$ is explicitly given in 3.3.\n    *   I will list $N$, $d_{model}$, and $d_{ff}$.\n\n    *   Let's re-read 3.1: \"The encoder is composed of a stack of N = 6 identical layers... all sub-layers... produce outputs of dimension dmodel = 512.\"\n    *   Let's re-read 3.3: \"The dimensionality of input and output is dmodel = 512, and the inner-layer has dimensionality dff = 2048.\"\n    *   These are the most prominent.\n\n    *   One detail: The question is in Italian. I should answer in Italian.\n\n    *   *Final Polish*:\n        Gli iperparametri architetturali principali del modello Transformer base riportati nella sezione 3 sono:\n        - $N = 6$ (il numero di strati identici nello stack dell'encoder e del decoder) [Document 4].\n        - $d_{model} = 512$ (la dimensione degli output di tutti i sub-layer e dei layer di embedding) [Document 4].\n        - $d_{ff} = 2048$ (la dimensione dello strato interno della rete feed-forward position-wise) [Document 6].\n\n    *   Wait, I should check if $h=8$ is mentioned in Section 3. Yes, in 3.2.2.\n    *   If I have to choose \"the three\", $N$, $d_{model}$, and $d_{ff}$ are the most structural.\n\n    *   Let's check if there's any other \"three\".\n    *   Section 3.2.3: \"The Transformer uses multi-head attention in three different ways\". This is not hyperparameters.\n\n    *   I'll go with $N$, $d_{model}$, and $d_{ff}$.\n\n    *   Wait, I'll check if $d_{model}$ is mentioned in 3.1 and 3.3. Yes.\n    *   $N$ is in 3.1.\n    *   $d_{ff}$ is in 3.3.\n    *   $h$ is in 3.2.2.\n    *   $d_k$ and $d_v$ are in 3.2.2.\n\n    *   I will provide $N$, $d_{model}$, and $d_{ff}$.\n\n    *   Actually, looking at the question again, it might be a trick question if there's a specific list of three. But there isn't. I will provide the most significant ones.\n\n    *   Let's check if $d_{model}$ is considered one hyperparameter and $N$ another. Yes.\n    *   I will provide $N$, $d_{model}$, and $d_{ff}$.\n\n    *   One more look at Section 3.1: \"The encoder is composed of a stack of N = 6 identical layers... all sub-layers... produce outputs of dimension dmodel = 512.\"\n    *   Section 3.3: \"The dimensionality of input and output is dmodel = 512, and the inner-layer has dimensionality dff = 2048.\"\n\n    *   This seems solid.\n\n    *   *Self-Correction*: The question asks for \"the three main...\". I will list $N$, $d_{model}$, and $d_{ff}$.\n\n    *   Wait, I should check if $h$ is more \"main\" than $d_{ff}$.\n    *   In the context of Transformer, $N$, $d_{model}$, and $h$ are often the primary ones.\n    *   However, $d_{ff}$ is a fundamental part of the architecture described in Section 3.\n    *   I'll include $N$, $d_{model}$, and $d_{ff}$.\n\n    *   Let's check if $d_{model}$ is mentioned as a single value. Yes, 512.\n    *   $N=6$.\n    *   $d_{ff}=2048$.\n\n    *   Final Answer:\n        Gli iperparametri architetturali principali del modello Transformer base riportati nella sezione 3 sono:\n        - $N = 6$ (il numero di strati identici nello stack dell'encoder e del decoder) [Document 4].\n        - $d_{model} = 512$ (la dimensione degli output di tutti i sub-layer e dei layer di embedding) [Document 4].\n        - $d_{ff} = 2048$ (la dimensione dello strato interno della rete feed-forward position-wise) [Document 6].",
+    "oracle_chunks": [
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      }
+    ],
+    "oracle_chunk_count": 16,
+    "expected_docs": [
+      "03_attention_transformer_vaswani_2017.pdf"
+    ],
+    "timestamp": "2026-05-12T13:36:11.041824",
+    "pipeline": "rag_papers",
+    "model": "gemma-4-26b-a4b-it"
+  },
+  {
+    "question": "Nel Transformer, da quali due sotto-strati principali è composto ogni blocco encoder e in che ordine appaiono?",
+    "answer": "*   Question: \"Nel Transformer, da quali due sotto-strati principali è composto ogni blocco encoder e in che ordine appaiono?\" (In the Transformer, what two main sub-layers is each encoder block composed of and in what order do they appear?)\n    *   Language: Italian.\n    *   Constraint: Use ONLY the provided context. Cite source document name(s).\n\n    *   Keywords: \"encoder\", \"sub-layers\", \"composed of\", \"order\".\n    *   Document 4 (Section 3.1 Encoder and Decoder Stacks):\n        *   \"Encoder: The encoder is composed of a stack of N = 6 identical layers. Each layer has two sub-layers. The first is a multi-head self-attention mechanism, and the second is a simple, position-wise fully connected feed-forward network.\"\n\n    *   The encoder is composed of a stack of 6 identical layers.\n    *   Each layer has two sub-layers.\n    *   First sub-layer: multi-head self-attention mechanism.\n    *   Second sub-layer: position-wise fully connected feed-forward network.\n\n    *   \"Ogni blocco (o strato) dell'encoder è composto da due sotto-strati: il primo è un meccanismo di multi-head self-attention e il secondo è una rete feed-forward completamente connessa position-wise (position-wise fully connected feed-forward network).\"\n    *   Source: [Document 4: 03_attention_transformer_vaswani_2017]\n\n    *   Does it answer the question? Yes.\n    *   Is it concise? Yes.\n    *   Does it use only provided context? Yes.\n    *   Does it cite the source? Yes.\n\n    *Self-Correction during drafting:* The question asks about \"ogni blocco encoder\" (each encoder block/layer). The text says \"The encoder is composed of a stack of N = 6 identical layers. Each layer has two sub-layers.\"\n\n    *Drafting final response:*\n    Ogni strato dell'encoder è composto da due sotto-strati: il primo è un meccanismo di multi-head self-attention e il secondo è una rete feed-forward completamente connessa position-wise (position-wise fully connected feed-forward network) [Document 4: 03_attention_transformer_vaswani_2017].",
+    "oracle_chunks": [
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      },
+      {
+        "doc_name": "03_attention_transformer_vaswani_2017"
+      }
+    ],
+    "oracle_chunk_count": 16,
+    "expected_docs": [
+      "03_attention_transformer_vaswani_2017.pdf"
+    ],
+    "timestamp": "2026-05-12T13:36:28.909678",
+    "pipeline": "rag_papers",
+    "model": "gemma-4-26b-a4b-it"
+  },
+  {
+    "question": "Cosa sono i 'bag-of-freebies' in YOLOv7 e qual è il loro scopo principale?",
+    "answer": "*   Question: \"Cosa sono i 'bag-of-freebies' in YOLOv7 e qual è il loro scopo principale?\" (What are the 'bag-of-freebies' in YOLOv7 and what is their main purpose?)\n    *   Language: Italian.\n    *   Constraint: Use ONLY the provided context. Cite source document name(s).\n\n    *   Keywords: \"bag-of-freebies\", \"YOLOv7\", \"purpose\", \"scopo\".\n\n    *   Document 2: \"We call the proposed modules and optimization methods trainable bag-of-freebies.\"\n    *   Document 2: \"Our focus will be on some optimized modules and optimization methods which may strengthen the training cost for improving the accuracy of object detection, but without increasing the inference cost. We call the proposed modules and optimization methods trainable bag-of-freebies.\"\n    *   Document 4: \"we design several trainable bag-of-freebies methods, so that real-time object detection can greatly improve the detection accuracy without increasing the inference cost;\"\n    *   Document 7: \"In this paper, we call the mechanism that considers the network prediction results together with the ground truth and then assigns soft labels as 'label assigner.' ... We will design new trainable bag-of-freebies method for the issues derived from the state-of-the-art methods associated with (4), (5), and (6) mentioned above.\" (Note: (4), (5), (6) refer to robust loss function, efficient label assignment, and efficient training method).\n    *   Document 9: Lists some \"other trainable bag-of-freebies\":\n        1.  Batch normalization in conv-bn-activation topology.\n        2.  Implicit knowledge in YOLOR combined with convolution feature map.\n        3.  EMA model.\n\n    *   *Definition:* I \"trainable bag-of-freebies\" sono moduli e metodi di ottimizzazione proposti in YOLOv7 [Document 2].\n    *   *Purpose:* Il loro scopo principale è migliorare significativamente l'accuratezza della rilevazione degli oggetti senza aumentare il costo di inferenza (inference cost) [Document 2, Document 4]. In altre parole, possono aumentare il costo dell'addestramento per migliorare l'accuratezza, ma non influenzano la velocità di inferenza [Document 2].\n    *   *Examples (optional but helpful for completeness):* Esempi includono il \"planned re-parameterized convolution\", il \"coarse-to-fine lead head guided label assignment\", la normalizzazione batch nella topologia conv-bn-activation, la conoscenza implicita di YOLOR e il modello EMA [Document 4, Document 7, Document 9].\n\n    *   \"I 'trainable bag-of-freebies' in YOLOv7 sono moduli e metodi di ottimizzazione progettati per migliorare significativamente l'accuratezza della rilevazione degli oggetti senza aumentare il costo di inferenza [Document 2, Document 4]. Il loro scopo è quello di potenziare l'accuratezza attraverso un maggiore costo in fase di addestramento, mantenendo invariato il costo di inferenza [Document 2].\"\n\n    *   Only provided context? Yes.\n    *   Concise? Yes.\n    *   Cite source? Yes.\n    *   No prior knowledge? Yes.\n    *   Specific and factual? Yes.\n\n    *Self-Correction during drafting:* The user asked in Italian, so I should answer in Italian.\n\n    *Drafting final response:*\n    I \"trainable bag-of-freebies\" in YOLOv7 sono moduli e metodi di ottimizzazione [Document 2]. Il loro scopo principale è migliorare significativamente l'accuratezza della rilevazione degli oggetti senza aumentare il costo di inferenza [Document 2, Document 4]. Questi metodi possono aumentare il costo dell'addestramento per migliorare l'accuratezza, ma non aumentano il costo di inferenza [Document 2].\n\n    (Checking if I should include specific examples from the text to be more \"precise\" as requested).\n    Examples mentioned:\n    - Planned re-parameterized convolution [Document 4]\n    - Coarse-to-fine lead head guided label assignment [Document 4]\n    - Batch normalization in conv-bn-activation topology [Document 9]\n    - Implicit knowledge in YOLOR combined with convolution feature map [Document 9]\n    - EMA model [Document 9]\n\n    Let's stick to the core definition and purpose as requested.\n\n    *Final Polish:*\n    I \"trainable bag-of-freebies\" in YOLOv7 sono moduli e metodi di ottimizzazione [Document 2]. Il loro scopo principale è migliorare significativamente l'accuratezza della rilevazione degli oggetti senza aumentare il costo di inferenza [Document 2, Document 4]. In particolare, questi metodi mirano a potenziare l'accuratezza della rilevazione aumentando il costo dell'addestramento, ma senza incrementare il costo di inferenza [Document 2].",
+    "oracle_chunks": [
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      }
+    ],
+    "oracle_chunk_count": 19,
+    "expected_docs": [
+      "04_yolov7_wang_2022.pdf"
+    ],
+    "timestamp": "2026-05-12T13:36:59.818597",
+    "pipeline": "rag_papers",
+    "model": "gemma-4-26b-a4b-it"
+  },
+  {
+    "question": "Quale architettura backbone viene utilizzata come base in YOLOv7?",
+    "answer": "*   Question: \"Quale architettura backbone viene utilizzata come base in YOLOv7?\" (Which backbone architecture is used as a base in YOLOv7?)\n    *   Constraint: Use ONLY the provided context. Cite source document name(s).\n\n    *   Document 2: Mentions YOLOv7 surpasses all known object detectors.\n    *   Document 4: Mentions \"The development direction of the proposed methods in this paper are different from that of the current mainstream real-time object detectors... In addition to architecture optimization, our proposed methods will focus on the optimization of the training process.\"\n    *   Document 5: Discusses \"Extended efficient layer aggregation networks\" (E-ELAN). It mentions ELAN [1] and proposes E-ELAN.\n    *   Document 6: Discusses model scaling for concatenation-based models.\n    *   Document 7: Discusses \"Planned re-parameterized convolution\".\n    *   Document 10: Mentions \"We designed basic model for edge GPU, normal GPU, and cloud GPU, and they are respectively called YOLOv7-tiny, YOLOv7, and YOLOv7-W6.\"\n    *   Document 11: Discusses comparison with state-of-the-art.\n    *   Document 12: Discusses ablation studies.\n    *   Document 13: Discusses auxiliary head.\n    *   Document 14: Comparison table.\n    *   Document 15: Comparison with other detectors.\n\n    *   The text mentions \"E-ELAN\" (Extended-ELAN) as the main architecture proposed in the paper.\n    *   Document 5 says: \"In this paper, we propose Extended-ELAN (E-ELAN) based on ELAN and its main architecture is shown in Figure 2 (d).\"\n    *   Document 5 also says: \"The proposed E-ELAN uses expand, shuffle, merge cardinality to achieve the ability to continuously enhance the learning ability of the network without destroying the original gradient path.\"\n    *   Does it explicitly name a \"backbone\" architecture used as a base? It says E-ELAN is based on ELAN.\n    *   Looking for \"backbone\" specifically:\n        *   Document 5: \"In terms of architecture, E-ELAN only changes the architecture in computational block, while the architecture of transition layer is completely unchanged.\"\n        *   Document 10: \"We designed basic model for edge GPU, normal GPU, and cloud GPU, and they are respectively called YOLOv7-tiny, YOLOv7, and YOLOv7-W6.\"\n    *   The question asks for the backbone architecture used as a base. The text states that E-ELAN is proposed based on ELAN [Document 5].\n\n    *   The provided documents state that the paper proposes **Extended-ELAN (E-ELAN)**, which is based on **ELAN** [Document 5].\n\n    *   \"In this paper, we propose Extended-ELAN (E-ELAN) based on ELAN...\" [Document 5].\n\n    *   Answer: YOLOv7 utilizza l'architettura **Extended-ELAN (E-ELAN)**, che è basata su **ELAN** [Document 5].\n\n    *   Wait, let me check if there's any other mention of a backbone.\n    *   Document 5: \"ELAN [1] in Figure 2 (c) considers the following design strategy... In this paper, we propose Extended-ELAN (E-ELAN) based on ELAN...\"\n    *   The question is in Italian, so I should answer in Italian or English? Usually, if the question is in Italian, I answer in Italian, but the prompt says \"Answer the user's question using ONLY the provided context chunks.\" It doesn't specify language. I will provide the answer in Italian to match the user.\n\n    *   *Self-Correction*: The prompt is in English. The user question is in Italian. I will answer in Italian.\n\n    *   *Drafting the response*:\n        L'architettura proposta è la **Extended-ELAN (E-ELAN)**, che si basa su **ELAN** [Document 5].\n\n    *   *Double check*: Is there any mention of ResNet or DarkNet being the base?\n        *   Document 2: Mentions \"convolutional-based detector ConvNeXt-XL... as well as YOLOv7 outperforms: YOLOR, YOLOX, Scaled-YOLOv4, YOLOv5, DETR, Deformable DETR, DINO-5scale-R50, ViT-Adapter-B...\"\n        *   Document 4: Mentions \"Another mainstream real-time object detectors are developed for GPU [81, 21, 97], they mostly use ResNet [26], DarkNet [63], or DLA [87]...\" but this is describing *other* detectors.\n        *   Document 5: \"In this paper, we propose Extended-ELAN (E-ELAN) based on ELAN...\"\n\n    *   Final Answer seems to be E-ELAN based on ELAN.\n\n    *   *Refining the answer*:\n        YOLOv7 utilizza l'architettura **Extended-ELAN (E-ELAN)**, che è basata su **ELAN** [Document 5].\n\n    *   *Wait*, let me check if \"backbone\" is used in a specific way.\n        Document 5: \"In terms of architecture, E-ELAN only changes the architecture in computational block, while the architecture of transition layer is completely unchanged.\"\n        It doesn't explicitly call E-ELAN \"the backbone\", but it is the proposed architecture.\n\n    *   Let's look at Document 10: \"We designed basic model for edge GPU, normal GPU, and cloud GPU, and they are respectively called YOLOv7-tiny, YOLOv7, and YOLOv7-W6.\"\n\n    *   The most accurate answer based *only* on the text is that the proposed architecture is E-ELAN based on ELAN.\n\n    *   *Final check of the question*: \"Quale architettura backbone viene utilizzata come base in YOLOv7?\"\n    *   The text says: \"In this paper, we propose Extended-ELAN (E-ELAN) based on ELAN...\" [Document 5].\n\n    *   Result: YOLOv7 utilizza l'architettura **Extended-ELAN (E-ELAN)**, basata su **ELAN** [Document 5].",
+    "oracle_chunks": [
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      },
+      {
+        "doc_name": "04_yolov7_wang_2022"
+      }
+    ],
+    "oracle_chunk_count": 19,
+    "expected_docs": [
+      "04_yolov7_wang_2022.pdf"
+    ],
+    "timestamp": "2026-05-12T13:37:36.079527",
+    "pipeline": "rag_papers",
+    "model": "gemma-4-26b-a4b-it"
+  },
+  {
+    "question": "Secondo il survey, quali sono le tre grandi aree in cui vengono organizzati i metodi di valutazione degli LLM?",
+    "answer": "*   Question: \"Secondo il survey, quali sono le tre grandi aree in cui vengono organizzati i metodi di valutazione degli LLM?\" (According to the survey, what are the three main areas in which LLM evaluation methods are organized?)\n    *   Language: Italian.\n    *   Constraint: Use ONLY the provided context. Answer concisely. Cite source document name(s).\n\n    *   Keywords: \"three key dimensions\", \"three aspects\", \"three categories\", \"organize\", \"evaluation methods\".\n\n    *   Document 2 (Abstract): \"This paper presents a comprehensive review of these evaluation methods for LLMs, focusing on three key dimensions: **what to evaluate**, **where to evaluate**, and **how to evaluate**.\"\n    *   Document 5 (Introduction): \"As depicted in Figure 1, we explore existing work in three dimensions: 1) **What to evaluate**, 2) **Where to evaluate**, and 3) **How to evaluate**.\"\n    *   Document 5 (Contributions): \"(1) We provide a comprehensive overview of LLMs evaluations from three aspects: **what to evaluate**, **where to evaluate**, and **how to evaluate**.\"\n\n    *   The three areas are:\n        1.  What to evaluate (Cosa valutare)\n        2.  Where to evaluate (Dove valutare)\n        3.  How to evaluate (Come valutare)\n\n    *   The user asked in Italian, so I should answer in Italian (or English if the prompt implies a specific language, but usually, RAG assistants respond in the language of the query). However, the instructions say \"Answer the user's question using ONLY the provided context chunks.\" The context is in English. I will provide the answer in Italian to be helpful, but I must ensure the terms are directly from the text.\n\n    *   Drafting the response:\n        Secondo il survey, i metodi di valutazione degli LLM sono organizzati in tre dimensioni chiave: \"what to evaluate\" (cosa valutare), \"where to evaluate\" (dove valutare) e \"how to evaluate\" (come valutare) [Document 2, Document 5].\n\n    *   Check against rules:\n        *   Concise? Yes.\n        *   Sufficient info? Yes.\n        *   Cite source? Yes.\n        *   No prior knowledge? Yes.\n        *   Specific and factual? Yes.\n\n    *   Refining the citation:\n        The text says: \"focusing on three key dimensions: what to evaluate, where to evaluate, and how to evaluate.\" (Document 2).\n        It also says: \"we explore existing work in three dimensions: 1) What to evaluate, 2) Where to evaluate, and 3) How to evaluate.\" (Document 5).\n\n    *   Final Answer Construction (Italian):\n        Secondo il survey, i metodi di valutazione degli LLM sono organizzati in tre dimensioni chiave: \"what to evaluate\" (cosa valutare), \"where to evaluate\" (dove valutare) e \"how to evaluate\" (come valutare) [Document 2, Document 5].\n\n    *   Wait, I should check if there are other \"three\" things.\n        *   Document 24: \"we divide these benchmarks into three categories: benchmarks for general language tasks, benchmarks for specific downstream tasks, and for multi-modal tasks.\" -> This is about *benchmarks*, not the *evaluation methods* in general.\n        *   Document 27: \"We categorize these applications into three aspects...: medical query, medical examination, and medical assistants.\" -> This is about *medical applications*.\n\n    *   The question asks for the organization of the *evaluation methods* (metodi di valutazione). The abstract and introduction explicitly state the three dimensions of the review of evaluation methods.\n\n    *   Final Answer:\n        Secondo il survey, i metodi di valutazione degli LLM sono organizzati in tre dimensioni chiave: \"what to evaluate\" (cosa valutare), \"where to evaluate\" (dove valutare) e \"how to evaluate\" (come valutare) [Document 2, Document 5].",
+    "oracle_chunks": [
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      }
+    ],
+    "oracle_chunk_count": 46,
+    "expected_docs": [
+      "05_llm_evaluation_survey_chang_2023.pdf"
+    ],
+    "timestamp": "2026-05-12T13:37:59.068185",
+    "pipeline": "rag_papers",
+    "model": "gemma-4-26b-a4b-it"
+  },
+  {
+    "question": "Quali due benchmark specifici cita il survey rispettivamente per la valutazione della conoscenza generale e del ragionamento matematico?",
+    "answer": "*   Question: \"Quali due benchmark specifici cita il survey rispettivamente per la valutazione della conoscenza generale e del ragionamento matematico?\" (Which two specific benchmarks does the survey cite respectively for the evaluation of general knowledge and mathematical reasoning?)\n    *   Constraints: Use ONLY the provided context. Answer concisely. Cite source document name(s). If no info, say \"I cannot find sufficient information...\".\n\n    *   Keywords: \"general knowledge\", \"mathematical reasoning\", \"benchmark\", \"conoscenza generale\", \"ragionamento matematico\".\n\n    *   *Document 4 (Table 2/Figure 1):* Mentions \"General benchmarks\" like MMLU, C-Eval, etc.\n    *   *Document 24 (Section 4.1):* Discusses \"Benchmarks for General Tasks\".\n        *   Mentions MMLU [70] provides a comprehensive suite of tests for assessing text models in multi-task contexts.\n        *   Mentions Xiezhi [59] presents a comprehensive suite for assessing the knowledge level of large-scale language models in different subject areas.\n    *   *Document 26 (Section 4.2):* Discusses \"Benchmarks for Specific Downstream Tasks\".\n        *   Mentions MATH [72] concentrates on assessing reasoning and problem-solving proficiencies of AI models within the domain of mathematics.\n    *   *Document 23 (Table 7):*\n        *   MMLU [70]: Focus: Text models, Domain: General language task, Criteria: Multitask accuracy.\n        *   MATH [72]: Focus: Mathematical problem, Domain: Specific downstream task, Criteria: Mathematical ability.\n\n    *   *General Knowledge:*\n        *   Document 24 says: \"Xiezhi [59] presents a comprehensive suite for assessing the knowledge level of large-scale language models in different subject areas.\"\n        *   Document 24 also says: \"MMLU [70] provides a comprehensive suite of tests for assessing text models in multi-task contexts.\"\n        *   Document 23 (Table 7) lists MMLU as \"Text models\" for \"General language task\".\n        *   Document 24 says: \"Xiezhi [59] presents a comprehensive suite for assessing the knowledge level of large-scale language models in different subject areas.\"\n        *   Let's look for \"general knowledge\" specifically.\n        *   Document 24: \"Xiezhi [59] presents a comprehensive suite for assessing the knowledge level of large-scale language models in different subject areas.\"\n        *   Document 23 (Table 7): MMLU [70] is for \"General language task\".\n\n    *   *Mathematical Reasoning:*\n        *   Document 26: \"MATH [72] concentrates on assessing reasoning and problem-solving proficiencies of AI models within the domain of mathematics.\"\n        *   Document 23 (Table 7): MATH [72] is for \"Mathematical problem\".\n\n    *   The question asks for \"conoscenza generale\" (general knowledge) and \"ragionamento matematico\" (mathematical reasoning).\n    *   For general knowledge: Xiezhi [59] is described as assessing the \"knowledge level... in different subject areas\" (Doc 24). MMLU [70] is for \"General language task\" (Doc 23/24).\n    *   For mathematical reasoning: MATH [72] is for \"Mathematical problem\" and \"assessing reasoning and problem-solving proficiencies... within the domain of mathematics\" (Doc 26).\n\n    *Refining the \"General Knowledge\" part:*\n    Document 24 states: \"Xiezhi [59] presents a comprehensive suite for assessing the knowledge level of large-scale language models in different subject areas.\"\n    Document 23 (Table 7) lists MMLU [70] for \"General language task\".\n\n    Let's check if there's a more direct match for \"general knowledge\".\n    Document 24: \"Xiezhi [59] presents a comprehensive suite for assessing the knowledge level of large-scale language models in different subject areas.\"\n    Document 26: \"MATH [72] concentrates on assessing reasoning and problem-solving proficiencies of AI models within the domain of mathematics.\"\n\n    *Wait, let's look at Table 7 again (Doc 23):*\n    MMLU [70] -> General language task.\n    MATH [72] -> Mathematical problem.\n\n    *Let's look at Section 4.1 (Doc 24):*\n    \"Xiezhi [59] presents a comprehensive suite for assessing the knowledge level of large-scale language models in different subject areas.\"\n\n    The question asks for \"conoscenza generale\" and \"ragionamento matematico\".\n    Xiezhi is for \"knowledge level\".\n    MATH is for \"reasoning and problem-solving... in mathematics\".\n\n    *Alternative:*\n    MMLU is for \"General language task\".\n\n    Let's provide the most specific ones mentioned in the text.\n    For general knowledge: Xiezhi [59] (assessing knowledge level in different subject areas) or MMLU [70] (general language task).\n    For mathematical reasoning: MATH [72] (assessing reasoning and problem-solving in mathematics).\n\n    Actually, looking at Table 7 (Doc 23):\n    MMLU [70] is listed under \"General language task\".\n    MATH [72] is listed under \"Mathematical problem\".\n\n    Looking at Section 4.1 (Doc 24):\n    \"Xiezhi [59] presents a comprehensive suite for assessing the knowledge level of large-scale language models in different subject areas.\"\n\n    Looking at Section 4.2 (Doc 26):\n    \"MATH [72] concentrates on assessing reasoning and problem-solving proficiencies of AI models within the domain of mathematics.\"\n\n    The most accurate answer based on the text:\n    - General knowledge: Xiezhi [59] (assessing knowledge level in different subject areas) [Document 24].\n    - Mathematical reasoning: MATH [72] (assessing reasoning and problem-solving proficiencies in mathematics) [Document 26].\n\n    *Self-Correction:* The question asks for \"conoscenza generale\" (general knowledge). Xiezhi is explicitly linked to \"knowledge level\". MATH is explicitly linked to \"reasoning... in mathematics\".\n\n    Let's check if MMLU is better for \"general knowledge\". Table 7 says MMLU is for \"General language task\".\n    Xiezhi is for \"comprehensive domain knowledge\" (Table 7).\n\n    So:\n    General knowledge -> Xiezhi [59] (Document 23/24).\n    Mathematical reasoning -> MATH [72] (Document 23/26).\n\n    *Drafting the response in Italian:*\n    Il survey cita **Xiezhi [59]** per la valutazione del livello di conoscenza in diverse aree disciplinari (conoscenza generale) e **MATH [72]** per la valutazione delle capacità di ragionamento e risoluzione di problemi nel dominio della matematica (ragionamento matematico) [Document 23, Document 24, Document 26].\n\n    *Wait, let's check Document 23 (Table 7) again for Xiezhi:*\n    Xiezhi [59] | Focus: Comprehensive domain knowledge | Domain: General language task.\n\n    *Let's check MATH in Table 7:*\n    MATH [72] | Focus: Mathematical problem | Domain: Specific downstream task.\n\n    *Let's check Section 4.1 (Doc 24) for Xiezhi:*\n    \"Xiezhi [59] presents a comprehensive suite for assessing the knowledge level of large-scale language models in different subject areas.\"\n\n    *Let's check Section 4.2 (Doc 26) for MATH:*\n    \"MATH [72] concentrates on assessing reasoning and problem-solving proficiencies of AI models within the domain of mathematics.\"\n\n    This fits perfectly.\n\n    *Final Answer Construction:*\n    Il survey cita **Xiezhi [59]** per la valutazione della conoscenza (comprehensive domain knowledge) e **MATH [72]** per la valutazione del ragionamento e della risoluzione di problemi matematici [Document 23, Document 24, Document 26].\n\n    *Double check:*\n    Question: \"Quali due benchmark specifici cita il survey rispettivamente per la valutazione della conoscenza generale e del ragionamento matematico?\"\n    Answer: Xiezhi [59] (general knowledge/domain knowledge) and MATH [72] (mathematical reasoning).\n\n    *Source check:*\n    Xiezhi [59] is in Doc 23 (Table 7) and Doc 24.\n    MATH [72] is in Doc 23 (Table 7) and Doc 26.\n\n    *Conciseness check:*\n    The answer is direct.\n\n    *Final Polish:*\n    Il survey cita **Xiezhi [59]** per la valutazione della conoscenza (comprehensive domain knowledge) e **MATH [72]** per la valutazione delle capacità di ragionamento e risoluzione di problemi nel dominio della matematica [Document 23, Document 24, Document 26].\n\n    *Wait, I should check if MMLU is a better fit for \"general knowledge\".*\n    Table 7: MMLU [70] | Focus: Text models | Domain: General language task.\n    Table 7: Xiezhi [59] | Focus: Comprehensive domain knowledge | Domain: General language task.\n    Since the question asks for \"conoscenza generale\" (general knowledge), Xiezhi's focus \"Comprehensive domain knowledge\" is a closer semantic match than MMLU's \"Text models\".\n\n    *Wait, let's look at Section 4.1 again:*\n    \"Xiezhi [59] presents a comprehensive suite for assessing the knowledge level of large-scale language models in different subject areas.\"\n    This is a very strong match for \"conoscenza generale\".\n\n    *Let's look at MATH again:*\n    \"MATH [72] concentrates on assessing reasoning and problem-solving proficiencies of AI models within the domain of mathematics.\"\n    This is a very strong match for \"ragionamento matematico\".\n\n    *Final Answer:*\n    Il survey cita **Xiezhi [59]** per la valutazione della conoscenza (comprehensive domain knowledge) e **MATH [72]** per la valutazione delle capacità di ragionamento e risoluzione di problemi nel dominio della matematica [Document 23, Document 24, Document 26].",
+    "oracle_chunks": [
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      },
+      {
+        "doc_name": "05_llm_evaluation_survey_chang_2023"
+      }
+    ],
+    "oracle_chunk_count": 46,
+    "expected_docs": [
+      "05_llm_evaluation_survey_chang_2023.pdf"
+    ],
+    "timestamp": "2026-05-12T13:38:44.894066",
+    "pipeline": "rag_papers",
+    "model": "gemma-4-26b-a4b-it"
+  }
+]

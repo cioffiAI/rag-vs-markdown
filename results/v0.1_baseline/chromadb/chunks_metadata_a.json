@@ -1,0 +1,3259 @@
+{
+  "pipeline": "a",
+  "total_chunks": 542,
+  "collection": "rag_papers_raw",
+  "chunks": [
+    {
+      "id": "chunk_0",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 2898,
+      "preview": "Retrieval-Augmented Generation for\nKnowledge-Intensive NLP Tasks\nPatrick Lewis†‡, Ethan Perez⋆,\nAleksandra Piktus†, Fabio Petroni†, Vladimir Karpukhin"
+    },
+    {
+      "id": "chunk_1",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 4554,
+      "preview": "The Divine\nComedy (x)\nq\nQuery\nEncoder\nq(x)\nMIPS\npθ\nGenerator pθ\n(Parametric)\nMargin-\nalize\nThis 14th century work\nis divided into 3\nsections: \"Inferno"
+    },
+    {
+      "id": "chunk_2",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 3674,
+      "preview": "by θ that generates a current token based on a context of the previous i −1 tokens y1:i−1, the original\ninput x and a retrieved passage z.\nTo train th"
+    },
+    {
+      "id": "chunk_3",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 4224,
+      "preview": "minimize the negative marginal log-likelihood of each target, P\nj −log p(yj|xj) using stochastic\ngradient descent with Adam [28]. Updating the documen"
+    },
+    {
+      "id": "chunk_4",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 4551,
+      "preview": "MSMARCO as an open-domain abstractive QA task. MSMARCO has some questions that cannot be\nanswered in a way that matches the reference answer without a"
+    },
+    {
+      "id": "chunk_5",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 4110,
+      "preview": "Table 1: Open-Domain QA Test Scores. For TQA,\nleft column uses the standard test set for Open-\nDomain QA, right column uses the TQA-Wiki\ntest set. See"
+    },
+    {
+      "id": "chunk_6",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 4339,
+      "preview": "Document 1: his works are considered classics of American\nliterature ... His wartime experiences formed the basis for his novel\n”A Farewell to Arms” ("
+    },
+    {
+      "id": "chunk_7",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 3159,
+      "preview": "Table 4: Human assessments for the Jeopardy\nQuestion Generation Task.\nFactuality\nSpeciﬁcity\nBART better\n7.1%\n16.8%\nRAG better\n42.7%\n37.4%\nBoth good\n11"
+    },
+    {
+      "id": "chunk_8",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 4122,
+      "preview": "General-Purpose Architectures for NLP\nPrior work on general-purpose architectures for NLP\ntasks has shown great success without the use of retrieval. "
+    },
+    {
+      "id": "chunk_9",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 3777,
+      "preview": "Broader Impact\nThis work offers several positive societal beneﬁts over previous work: the fact that it is more\nstrongly grounded in real factual knowl"
+    },
+    {
+      "id": "chunk_10",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 3763,
+      "preview": "[7] Christopher Clark and Matt Gardner. Simple and Effective Multi-Paragraph Reading Compre-\nhension. arXiv:1710.10723 [cs], October 2017. URL http://"
+    },
+    {
+      "id": "chunk_11",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 3985,
+      "preview": "[20] Kelvin Guu, Kenton Lee, Zora Tung, Panupong Pasupat, and Ming-Wei Chang. REALM:\nRetrieval-augmented language model pre-training. ArXiv, abs/2002."
+    },
+    {
+      "id": "chunk_12",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 4009,
+      "preview": "for Computational Linguistics, pages 6086–6096, Florence, Italy, July 2019. Association for\nComputational Linguistics. doi: 10.18653/v1/P19-1612. URL "
+    },
+    {
+      "id": "chunk_13",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 3982,
+      "preview": "approaches 2016 co-located with the 30th Annual Conference on Neural Information Processing\nSystems (NIPS 2016), Barcelona, Spain, December 9, 2016, v"
+    },
+    {
+      "id": "chunk_14",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 4005,
+      "preview": "[56] James Thorne, Andreas Vlachos, Christos Christodoulopoulos, and Arpit Mittal. FEVER: a\nlarge-scale dataset for fact extraction and VERiﬁcation. I"
+    },
+    {
+      "id": "chunk_15",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 1137,
+      "preview": "[66] Thomas Wolf, Lysandre Debut, Victor Sanh, Julien Chaumond, Clement Delangue, Anthony\nMoi, Pierric Cistac, Tim Rault, Rémi Louf, Morgan Funtowicz,"
+    },
+    {
+      "id": "chunk_16",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 2712,
+      "preview": "iahai Wang, and\nJian Yin. Reasoning over semantic-level graph for fact checking. ArXiv, abs/1909.03745, 2019.\nURL https://arxiv.org/abs/1909.03745.\n16"
+    },
+    {
+      "id": "chunk_17",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 4400,
+      "preview": "ve demo of a RAG model can be found\nat https://huggingface.co/rag/\n2https://github.com/pytorch/fairseq\n3https://github.com/huggingface/transformers\n17"
+    },
+    {
+      "id": "chunk_18",
+      "doc_name": "01_rag_original_lewis_2020",
+      "char_count": 2114,
+      "preview": "gh we do not train the document encoder ourselves) and\n406M trainable parameters from BART-large, 406M parameters, making a total of 626M trainable\n18"
+    },
+    {
+      "id": "chunk_19",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 4081,
+      "preview": "Preprint.\nSELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND\nCRITIQUE THROUGH SELF-REFLECTION\nAkari Asai†, Zeqiu Wu†, Yizhong Wang†§, Avirup Sil‡, Hannaneh"
+    },
+    {
+      "id": "chunk_20",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 4757,
+      "preview": "Preprint.\nStep 1: Retrieve K documents\nCalifornia was named after a fictional \nisland in a Spanish book. \nPrompt How did US states get their names? \nU"
+    },
+    {
+      "id": "chunk_21",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 4887,
+      "preview": "Preprint.\nof retrieved passages prepended to input, or pre-train a retriever and LM jointly, followed by few-\nshot fine-tuning on task datasets (Izaca"
+    },
+    {
+      "id": "chunk_22",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 3822,
+      "preview": "Preprint.\nType\nInput\nOutput\nDefinitions\nRetrieve\nx / x, y\n{yes, no, continue}\nDecides when to retrieve with R\nISREL\nx, d\n{relevant, irrelevant}\nd prov"
+    },
+    {
+      "id": "chunk_23",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 4793,
+      "preview": "Preprint.\nInput: How did US states get their names? \nInput: Write an essay of your best summer vacation\nOutput: My best summer vacation was a magical "
+    },
+    {
+      "id": "chunk_24",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 4378,
+      "preview": "Preprint.\nseparate reward models during training, we compute critique offline and directly insert them into the\ntraining corpus, where the generator L"
+    },
+    {
+      "id": "chunk_25",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 4684,
+      "preview": "Preprint.\nChallenge; Clark et al. 2018). We use accuracy as an evaluation metric and report on the test set. We\naggregate the answer probabilities of "
+    },
+    {
+      "id": "chunk_26",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 3832,
+      "preview": "Preprint.\nTable 2: Overall experiment results on six tasks. Bold numbers indicate the best performance among\nnon-proprietary models, and gray-colored "
+    },
+    {
+      "id": "chunk_27",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 4235,
+      "preview": "Preprint.\nPQA\nMed\nAS\n(acc)\n(acc)\n(em)\nSELF-RAG (50k)\n45.5\n73.5\n32.1\nTraining\nNo Retriever R\n43.6\n67.8\n31.0\nNo Critic C\n42.6\n72.0\n18.1\nTest\nNo retrieva"
+    },
+    {
+      "id": "chunk_28",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 4362,
+      "preview": "Preprint.\n0\n50\n100\n150\nNum of training (k)\n35\n40\n45\n50\n55\nPerfomance\n(a) PopQA\n0\n100\nNum of training (k)\n71\n72\n73\n(b) PubHealth\n0\n100\nNum of training "
+    },
+    {
+      "id": "chunk_29",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 3781,
+      "preview": "Preprint.\nETHICAL CONCERNS\nThis work aims to improve the factuality of LLM outputs, the lack of which continues to cause nu-\nmerous real-world problem"
+    },
+    {
+      "id": "chunk_30",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 3869,
+      "preview": "Preprint.\nlearn from human feedback. arXiv preprint arXiv:2305.14387, 2023. URL https://arxiv.\norg/abs/2305.14387.\nTianyu Gao, Howard Yen, Jiatong Yu,"
+    },
+    {
+      "id": "chunk_31",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 3828,
+      "preview": "Preprint.\nYang Liu, Dan Iter, Yichong Xu, Shuohang Wang, Ruochen Xu, and Chenguang Zhu. Gpteval: Nlg\nevaluation using gpt-4 with better human alignmen"
+    },
+    {
+      "id": "chunk_32",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 4005,
+      "preview": "Preprint.\nRyan Lowe. Training language models to follow instructions with human feedback. In Advances in\nNeural Information Processing Systems, 2022. "
+    },
+    {
+      "id": "chunk_33",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 2712,
+      "preview": "Preprint.\nHugo Touvron, Louis Martin, Kevin Stone, Peter Albert, Amjad Almahairi, Yasmine Babaei, Nikolay\nBashlykov, Soumya Batra, Prajjwal Bhargava, "
+    },
+    {
+      "id": "chunk_34",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 889,
+      "preview": "Preprint.\nAPPENDIX\nA\nSELF-RAG Details\n17\nA.1\nReflection Tokens.\n. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\n17\nA.2\nSELF-RAG Tr"
+    },
+    {
+      "id": "chunk_35",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 4254,
+      "preview": "alitative Examples . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\n21\nD Full List of Instructions and Demonstrations for GPT-4\n21\n16"
+    },
+    {
+      "id": "chunk_36",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 3479,
+      "preview": "ce of predicting GPT-4 judgments. As you can see,\noverall our fine-tuned reward model shows high prediction matching with GPT-4 predicted feedback.\n17"
+    },
+    {
+      "id": "chunk_37",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 2765,
+      "preview": "ct\nISREL and\nISSUP . If there is any passage and\ncontinuation with\nISREL =Relevant and\nISSUP =Fully Supported /\nISSUP =Partially\n7https://spacy.io/\n18"
+    },
+    {
+      "id": "chunk_38",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 4602,
+      "preview": ") is used to make the long-context training more\nefficient. We run inference of our trained models using 1-2 Quadro RTX 6000 GPUs with 24GB\nmemory.\n19"
+    },
+    {
+      "id": "chunk_39",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 2018,
+      "preview": "tuned models continue to\ngenerate plausible answers.\n8https://github.com/facebookresearch/atlas\n9https://programmablesearchengine.google.com/about/\n20"
+    },
+    {
+      "id": "chunk_40",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 6165,
+      "preview": "ect the three-way output tokens for\nISREL . Table 12 shows an instruction and\ndemonstrations used to collect the five-way output tokens for\nISUSE .\n21"
+    },
+    {
+      "id": "chunk_41",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 1450,
+      "preview": "they are often used for disability assistance and\nfor police work. [\nISSUP =Partially Supported][\nISUSE =2]\nTable 4: List of the training examples.\n22"
+    },
+    {
+      "id": "chunk_42",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 4574,
+      "preview": "during zero-shot evaluations. For open-domain QA, we don’t\nuse any task specific instruction and simply use the original questions as input query.\n23\n"
+    },
+    {
+      "id": "chunk_43",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 3822,
+      "preview": "are correct as the reference document is highly relevant\nand the first sentence is fully supported.\nTable 6: Examples of human evaluation results.\n24\n"
+    },
+    {
+      "id": "chunk_44",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 2297,
+      "preview": "G. Venugopal G Venugopal\n(born 10 December 1960) is an Indian playback singer known for his work in Malayalam films.\nTable 7: Examples of outputs.\n25\n"
+    },
+    {
+      "id": "chunk_45",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 2321,
+      "preview": "can find a reliable and useful document to support the response.\nTable 8: Instructions and demonstrations for Retrieve aspect given the input only.\n26"
+    },
+    {
+      "id": "chunk_46",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 1770,
+      "preview": "put is correct or not.\nTable 9: Instructions and demonstrations for Retrieve aspect given the input, preceding generations,\nand retrieved passages.\n27"
+    },
+    {
+      "id": "chunk_47",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 3268,
+      "preview": "es to run for the US Senate, not for the\nHouse of Representatives.\nTable 10: Instructions and demonstrations for\nISREL aspect given the input only.\n28"
+    },
+    {
+      "id": "chunk_48",
+      "doc_name": "02_self_rag_asai_2023",
+      "char_count": 2115,
+      "preview": "nalogy detection as the applications. Therefore, the score should be\n[Fully supported].\nTable 11: Instructions and demonstrations for\nISSUP tokens.\n29"
+    },
+    {
+      "id": "chunk_49",
+      "doc_name": "03_attention_transformer_vaswani_2017",
+      "char_count": 2857,
+      "preview": "Provided proper attribution is provided, Google hereby grants permission to\nreproduce the tables and figures in this paper solely for use in journalis"
+    },
+    {
+      "id": "chunk_50",
+      "doc_name": "03_attention_transformer_vaswani_2017",
+      "char_count": 4255,
+      "preview": "1\nIntroduction\nRecurrent neural networks, long short-term memory [13] and gated recurrent [7] neural networks\nin particular, have been firmly establis"
+    },
+    {
+      "id": "chunk_51",
+      "doc_name": "03_attention_transformer_vaswani_2017",
+      "char_count": 1826,
+      "preview": "Figure 1: The Transformer - model architecture.\nThe Transformer follows this overall architecture using stacked self-attention and point-wise, fully\nc"
+    },
+    {
+      "id": "chunk_52",
+      "doc_name": "03_attention_transformer_vaswani_2017",
+      "char_count": 2507,
+      "preview": "Scaled Dot-Product Attention\nMulti-Head Attention\nFigure 2: (left) Scaled Dot-Product Attention. (right) Multi-Head Attention consists of several\natte"
+    },
+    {
+      "id": "chunk_53",
+      "doc_name": "03_attention_transformer_vaswani_2017",
+      "char_count": 3192,
+      "preview": "output values. These are concatenated and once again projected, resulting in the final values, as\ndepicted in Figure 2.\nMulti-head attention allows th"
+    },
+    {
+      "id": "chunk_54",
+      "doc_name": "03_attention_transformer_vaswani_2017",
+      "char_count": 3472,
+      "preview": "Table 1: Maximum path lengths, per-layer complexity and minimum number of sequential operations\nfor different layer types. n is the sequence length, d"
+    },
+    {
+      "id": "chunk_55",
+      "doc_name": "03_attention_transformer_vaswani_2017",
+      "char_count": 3320,
+      "preview": "length n is smaller than the representation dimensionality d, which is most often the case with\nsentence representations used by state-of-the-art mode"
+    },
+    {
+      "id": "chunk_56",
+      "doc_name": "03_attention_transformer_vaswani_2017",
+      "char_count": 3193,
+      "preview": "Table 2: The Transformer achieves better BLEU scores than previous state-of-the-art models on the\nEnglish-to-German and English-to-French newstest2014"
+    },
+    {
+      "id": "chunk_57",
+      "doc_name": "03_attention_transformer_vaswani_2017",
+      "char_count": 2972,
+      "preview": "Table 3: Variations on the Transformer architecture. Unlisted values are identical to those of the base\nmodel. All metrics are on the English-to-Germa"
+    },
+    {
+      "id": "chunk_58",
+      "doc_name": "03_attention_transformer_vaswani_2017",
+      "char_count": 3111,
+      "preview": "Table 4: The Transformer generalizes well to English constituency parsing (Results are on Section 23\nof WSJ)\nParser\nTraining\nWSJ 23 F1\nVinyals & Kaise"
+    },
+    {
+      "id": "chunk_59",
+      "doc_name": "03_attention_transformer_vaswani_2017",
+      "char_count": 3215,
+      "preview": "[5] Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Fethi Bougares, Holger Schwenk,\nand Yoshua Bengio. Learning phrase representations using rnn"
+    },
+    {
+      "id": "chunk_60",
+      "doc_name": "03_attention_transformer_vaswani_2017",
+      "char_count": 3213,
+      "preview": "[25] Mitchell P Marcus, Mary Ann Marcinkiewicz, and Beatrice Santorini. Building a large annotated\ncorpus of english: The penn treebank. Computational"
+    },
+    {
+      "id": "chunk_61",
+      "doc_name": "03_attention_transformer_vaswani_2017",
+      "char_count": 793,
+      "preview": "Attention Visualizations\nIt\nis\nin\nthis\nspirit\nthat\na\nmajority\nof\nAmerican\ngovernments\nhave\npassed\nnew\nlaws\nsince\n2009\nmaking\nthe\nregistration\nor\nvotin"
+    },
+    {
+      "id": "chunk_62",
+      "doc_name": "03_attention_transformer_vaswani_2017",
+      "char_count": 929,
+      "preview": "rase ‘making...more difficult’. Attentions here shown only for\nthe word ‘making’. Different colors represent different heads. Best viewed in color.\n13"
+    },
+    {
+      "id": "chunk_63",
+      "doc_name": "03_attention_transformer_vaswani_2017",
+      "char_count": 932,
+      "preview": "or head 5. Bottom: Isolated attentions from just the word ‘its’ for attention heads 5\nand 6. Note that the attentions are very sharp for this word.\n14"
+    },
+    {
+      "id": "chunk_64",
+      "doc_name": "04_yolov7_wang_2022",
+      "char_count": 3798,
+      "preview": "YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object\ndetectors\nChien-Yao Wang1, Alexey Bochkovskiy, and Hong-Yuan Mark Lia"
+    },
+    {
+      "id": "chunk_65",
+      "doc_name": "04_yolov7_wang_2022",
+      "char_count": 5750,
+      "preview": "Recently, model re-parameterization [13, 12, 29] and dy-\nnamic label assignment [20, 17, 42] have become important\ntopics in network training and obje"
+    },
+    {
+      "id": "chunk_66",
+      "doc_name": "04_yolov7_wang_2022",
+      "char_count": 3968,
+      "preview": "Figure 2: Extended efﬁcient layer aggregation networks. The proposed extended ELAN (E-ELAN) does not change the gradient transmis-\nsion path of the or"
+    },
+    {
+      "id": "chunk_67",
+      "doc_name": "04_yolov7_wang_2022",
+      "char_count": 3883,
+      "preview": "Figure 3: Model scaling for concatenation-based models.\nFrom (a) to (b), we observe that when depth scaling is performed on\nconcatenation-based models"
+    },
+    {
+      "id": "chunk_68",
+      "doc_name": "04_yolov7_wang_2022",
+      "char_count": 5001,
+      "preview": "Figure 5: Coarse for auxiliary and ﬁne for lead head label assigner. Compare with normal model (a), the schema in (b) has auxiliary head.\nDifferent fr"
+    },
+    {
+      "id": "chunk_69",
+      "doc_name": "04_yolov7_wang_2022",
+      "char_count": 4480,
+      "preview": "Table 1: Comparison of baseline object detectors.\nModel\n#Param.\nFLOPs\nSize\nAPval\nAPval\n50\nAPval\n75\nAPval\nS\nAPval\nM\nAPval\nL\nYOLOv4 [3]\n64.4M\n142.8G\n640"
+    },
+    {
+      "id": "chunk_70",
+      "doc_name": "04_yolov7_wang_2022",
+      "char_count": 4390,
+      "preview": "Table 2: Comparison of state-of-the-art real-time object detectors.\nModel\n#Param.\nFLOPs\nSize\nFPS\nAPtest / APval\nAPtest\n50\nAPtest\n75\nAPtest\nS\nAPtest\nM\n"
+    },
+    {
+      "id": "chunk_71",
+      "doc_name": "04_yolov7_wang_2022",
+      "char_count": 4169,
+      "preview": "If we compare YOLOv7 with YOLOR using the input\nresolution 1280, the inference speed of YOLOv7-W6 is 8\nfps faster than that of YOLOR-P6, and the detec"
+    },
+    {
+      "id": "chunk_72",
+      "doc_name": "04_yolov7_wang_2022",
+      "char_count": 4005,
+      "preview": "Figure 8: Objectness map predicted by different methods at auxiliary head and lead head.\n5.4.3\nProposed assistant loss for auxiliary head\nIn the assis"
+    },
+    {
+      "id": "chunk_73",
+      "doc_name": "04_yolov7_wang_2022",
+      "char_count": 3871,
+      "preview": "Table 9: More comparison (batch=1, no-TRT, without extra object detection training data)\nModel\n#Param.\nFLOPs\nSize\nFPSV 100\nAPtest / APval\nAPtest\n50\nAP"
+    },
+    {
+      "id": "chunk_74",
+      "doc_name": "04_yolov7_wang_2022",
+      "char_count": 855,
+      "preview": "Figure 9: Comparison with other object detectors.\nFigure 10: Comparison with other real-time object detectors.\nTable 10: Comparison of different setti"
+    },
+    {
+      "id": "chunk_75",
+      "doc_name": "04_yolov7_wang_2022",
+      "char_count": 5844,
+      "preview": ".0% AP, 0.5 ms) under identical\nconditions on COCO dataset and V100 GPU with batch=32.\nFigure 11: Comparison with other real-time object detectors.\n11"
+    },
+    {
+      "id": "chunk_76",
+      "doc_name": "04_yolov7_wang_2022",
+      "char_count": 6070,
+      "preview": "PR), pages\n1580–1589, 2020. 1\n[26] Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.\nDeep residual learning for image recognition. In Proceed-\n12"
+    },
+    {
+      "id": "chunk_77",
+      "doc_name": "04_yolov7_wang_2022",
+      "char_count": 6013,
+      "preview": "(ICRA), pages 13018–13024, 2021. 5\n[51] Ze Liu, Han Hu, Yutong Lin, Zhuliang Yao, Zhenda Xie,\nYixuan Wei, Jia Ning, Yue Cao, Zheng Zhang, Li Dong,\n13\n"
+    },
+    {
+      "id": "chunk_78",
+      "doc_name": "04_yolov7_wang_2022",
+      "char_count": 5937,
+      "preview": "ems (NeurIPS), 30, 2017. 2, 6\n[76] Zhi Tian, Chunhua Shen, Hao Chen, and Tong He. FCOS:\nFully convolutional one-stage object detection. In Proceed-\n14"
+    },
+    {
+      "id": "chunk_79",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 3978,
+      "preview": "111\nA Survey on Evaluation of Large Language Models\nYUPENG CHANG∗and XU WANG∗, School of Artificial Intelligence, Jilin University, China\nJINDONG WANG"
+    },
+    {
+      "id": "chunk_80",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 4136,
+      "preview": "111:2\nChang et al.\nfuture challenges that lie ahead in LLMs evaluation. Our aim is to offer invaluable insights to researchers\nin the realm of LLMs ev"
+    },
+    {
+      "id": "chunk_81",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 6385,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:3\nLLMs\nevaluation\nWhat to evaluate\n(Sec. 3)\nNatural\nlanguage\nprocessing\nNatural language understan"
+    },
+    {
+      "id": "chunk_82",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 3999,
+      "preview": "111:4\nChang et al.\nWith the introduction of ChatGPT [145] and GPT-4 [146], there have been a number of research\nefforts aiming at evaluating ChatGPT a"
+    },
+    {
+      "id": "chunk_83",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 2561,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:5\n2020\n2021\n2022\n2023.01\n2023.02\n2023.03\n2023.04\n2023.05\n2023.06+\n0\n5\n10\n15\n20\n25\n30\n35\nNumber of "
+    },
+    {
+      "id": "chunk_84",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 2936,
+      "preview": "111:6\nChang et al.\nTable 1. Comparison of Traditional ML, Deep Learning, and LLMs\nComparison\nTraditional ML\nDeep Learning\nLLMs\nTraining Data Size\nLarg"
+    },
+    {
+      "id": "chunk_85",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 4383,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:7\n3.1\nNatural Language Processing Tasks\nThe initial objective behind the development of language m"
+    },
+    {
+      "id": "chunk_86",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 1609,
+      "preview": "111:8\nChang et al.\nTable 2. Summary of evaluation on natural language processing tasks: NLU (Natural Language Under-\nstanding, including SA (Sentiment"
+    },
+    {
+      "id": "chunk_87",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 4573,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:9\nperformance in other relation types is comparatively weaker. In prediction tasks, LLMs exhibit\ne"
+    },
+    {
+      "id": "chunk_88",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 4305,
+      "preview": "111:10\nChang et al.\nsolving verbal insight problems, as ChatGPT’s performance was comparable to that of human\nparticipants. It should be noted that mo"
+    },
+    {
+      "id": "chunk_89",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 4504,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:11\nand fairness across the 9 QA scenarios. Both GPT-3.5 and ChatGPT demonstrate significant advanc"
+    },
+    {
+      "id": "chunk_90",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 4550,
+      "preview": "111:12\nChang et al.\nbe paid to the impartiality and neutrality of the language in order to mitigate any potential biases,\nincluding English bias or ot"
+    },
+    {
+      "id": "chunk_91",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 2635,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:13\nTable 3. Summary of LLMs evaluation on robustness, ethics, biases, and trustworthiness (ordered"
+    },
+    {
+      "id": "chunk_92",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 4457,
+      "preview": "111:14\nChang et al.\nFor adversarial robustness, Zhu et al. [264] evaluated the robustness of LLMs to prompts by\nproposing a unified benchmark called P"
+    },
+    {
+      "id": "chunk_93",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 4357,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:15\nquestioning, negation, or misleading cues, even if their initial judgments were accurate. The\nr"
+    },
+    {
+      "id": "chunk_94",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 3239,
+      "preview": "111:16\nChang et al.\nTable 4. Summary of evaluations on natural science and engineering tasks based on three aspects:\nMathematics, General science and "
+    },
+    {
+      "id": "chunk_95",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 4231,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:17\nshowed that ChatGPT’s performance worsens as task difficulty increases: it correctly answered 8"
+    },
+    {
+      "id": "chunk_96",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 3130,
+      "preview": "111:18\nChang et al.\nTable 5. Summary of evaluations on medical applications based on the three aspects: Medical queries,\nMedical assistants, and Medic"
+    },
+    {
+      "id": "chunk_97",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 4187,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:19\net al. [173] found that answers generated by ChatGPT are more context-aware with better deducti"
+    },
+    {
+      "id": "chunk_98",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 3192,
+      "preview": "111:20\nChang et al.\nTable 6. Summary of evaluations on other applications based on the four aspects: Education, Search and\nrecommendation, Personality"
+    },
+    {
+      "id": "chunk_99",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 4457,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:21\nfor information retrieval tasks. Experimental results demonstrate that guided ChatGPT and GPT-4"
+    },
+    {
+      "id": "chunk_100",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 5156,
+      "preview": "111:22\nChang et al.\nTable 7. Summary of existing LLMs evaluation benchmarks (ordered by the name of the first author).\nBenchmark\nFocus\nDomain\nEvaluati"
+    },
+    {
+      "id": "chunk_101",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 4300,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:23\n4\nWHERE TO EVALUATE: DATASETS AND BENCHMARKS\nLLMs evaluation datasets are used to test and comp"
+    },
+    {
+      "id": "chunk_102",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 4383,
+      "preview": "111:24\nChang et al.\nfocuses on assessing language models’ comprehension and utilization of semantic knowledge\nfor inference. As such, KoLA serves as a"
+    },
+    {
+      "id": "chunk_103",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 4645,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:25\nFRESHQA. To effectively assess in-depth dialogue, Wang et al. [205] introduced the Dialogue CoT"
+    },
+    {
+      "id": "chunk_104",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 3700,
+      "preview": "111:26\nChang et al.\nTable 8. Summary of new LLMs evaluation protocols.\nMethod\nReferences\nHuman-in-the-loop\nAdaVision [50], AdaTest [164]\nCrowd-sourcin"
+    },
+    {
+      "id": "chunk_105",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 3668,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:27\nTable 9. Key metrics of automatic evaluation.\nGeneral metrics\nMetrics\nAccuracy\nExact match, Qua"
+    },
+    {
+      "id": "chunk_106",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 4160,
+      "preview": "111:28\nChang et al.\n• Equalized Odds Difference (EOD) aims to ensure that the model provides equal error rates\nacross different populations, that is, "
+    },
+    {
+      "id": "chunk_107",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 3860,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:29\nTable 10. Summary of key factors in human evaluation\nEvaluation Criteria\nKey Factor\nNumber of e"
+    },
+    {
+      "id": "chunk_108",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 3452,
+      "preview": "111:30\nChang et al.\n6\nSUMMARY\nIn this section, we summarize the key findings based on our review in sections 3, 4, and 5.\nFirst of all, we would like "
+    },
+    {
+      "id": "chunk_109",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 3863,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:31\n• LLMs may manifest credibility deficits [201], potentially giving rise to fabricated informati"
+    },
+    {
+      "id": "chunk_110",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 3789,
+      "preview": "111:32\nChang et al.\nremains a plethora of unresolved issues. For instance, does it make sense to use human values as a\nstarting point for test constru"
+    },
+    {
+      "id": "chunk_111",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 3700,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:33\nfine-tuning by providing an open-source evaluation model, which can automatically assess the\npe"
+    },
+    {
+      "id": "chunk_112",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 5148,
+      "preview": "111:34\nChang et al.\nREFERENCES\n[1] Ahmed Abdelali, Hamdy Mubarak, Shammur Absar Chowdhury, Maram Hasanain, Basel Mousi, Sabri Boughorbel,\nYassine El K"
+    },
+    {
+      "id": "chunk_113",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 5453,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:35\n[23] Minje Choi, Jiaxin Pei, Sagar Kumar, Chang Shu, and David Jurgens. 2023. Do LLMs Understan"
+    },
+    {
+      "id": "chunk_114",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 4871,
+      "preview": "111:36\nChang et al.\n[48] Tadayoshi Fushiki. 2011. Estimation of prediction error by using K-fold cross-validation. Statistics and Computing 21\n(2011),"
+    },
+    {
+      "id": "chunk_115",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 5457,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:37\n[72] Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric Tang, Dawn S"
+    },
+    {
+      "id": "chunk_116",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 5251,
+      "preview": "111:38\nChang et al.\n[92] Jean Khalfa. 1994. What is intelligence? (1994).\n[93] Yousuf A Khan, Clarisse Hokia, Jennifer Xu, and Ben Ehlert. 2023. covLL"
+    },
+    {
+      "id": "chunk_117",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 5376,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:39\narXiv preprint arXiv:2310.20499 (2023).\n[116] Xun Liang, Shichao Song, Simin Niu, Zhiyu Li, Fei"
+    },
+    {
+      "id": "chunk_118",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 5291,
+      "preview": "111:40\nChang et al.\n[140] Yixin Nie, Adina Williams, Emily Dinan, Mohit Bansal, Jason Weston, and Douwe Kiela. 2019. Adversarial NLI: A\nnew benchmark "
+    },
+    {
+      "id": "chunk_119",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 5410,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:41\n[164] Marco Tulio Ribeiro and Scott Lundberg. 2022. Adaptive testing and debugging of nlp model"
+    },
+    {
+      "id": "chunk_120",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 5295,
+      "preview": "111:42\nChang et al.\n[186] Arun James Thirunavukarasu, Refaat Hassan, Shathar Mahmood, Rohan Sanghera, Kara Barzangi, Mohanned\nEl Mukashfi, and Sachin "
+    },
+    {
+      "id": "chunk_121",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 5383,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:43\n[208] Longyue Wang, Chenyang Lyu, Tianbo Ji, Zhirui Zhang, Dian Yu, Shuming Shi, and Zhaopeng T"
+    },
+    {
+      "id": "chunk_122",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 5295,
+      "preview": "111:44\nChang et al.\n[231] Peng Xu, Wenqi Shao, Kaipeng Zhang, Peng Gao, Shuo Liu, Meng Lei, Fanqing Meng, Siyuan Huang, Yu Qiao,\nand Ping Luo. 2023. L"
+    },
+    {
+      "id": "chunk_123",
+      "doc_name": "05_llm_evaluation_survey_chang_2023",
+      "char_count": 3979,
+      "preview": "A Survey on Evaluation of Large Language Models\n111:45\n[254] Zhexin Zhang, Leqi Lei, Lindong Wu, Rui Sun, Yongkang Huang, Chong Long, Xiao Liu, Xuanyu"
+    },
+    {
+      "id": "chunk_124",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3476,
+      "preview": "On the Opportunities and Risks of\nFoundation Models\nRishi Bommasani*\nDrew A. Hudson\nEhsan Adeli\nRuss Altman\nSimran Arora\nSydney von Arx\nMichael S. Ber"
+    },
+    {
+      "id": "chunk_125",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 919,
+      "preview": "2\nCenter for Research on Foundation Models (CRFM)\nContents\nContents\n2\n1\nIntroduction\n3\n1.1\nEmergence and homogenization\n3\n1.2\nSocial impact and the fo"
+    },
+    {
+      "id": "chunk_126",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3387,
+      "preview": "130\n5.2\nMisuse\n136\n5.3\nEnvironment\n140\n5.4\nLegality\n146\n5.5\nEconomics\n149\n5.6\nEthics of scale\n152\n6\nConclusion\n161\nAcknowledgments\n161\nReferences\n161\n"
+    },
+    {
+      "id": "chunk_127",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4382,
+      "preview": "ose the term foundation models to capture the unfinished yet important status of these models — see §1.1.1: naming\nfor further discussion of the name."
+    },
+    {
+      "id": "chunk_128",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4363,
+      "preview": "arly days of deep learning [Hinton et al. 2006], but was for\na decade largely overtaken by pure supervised learning as labeled datasets became larger."
+    },
+    {
+      "id": "chunk_129",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2184,
+      "preview": "nguage\nmodeling jointly with downstream tasks, rather than producing a single foundation model that can be adapted after the fact\nto downstream tasks."
+    },
+    {
+      "id": "chunk_130",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2965,
+      "preview": "forms of pretraining and self-supervision that technically foreshadowed foundation\nmodels fail to clarify the shift in practices we hope to highlight."
+    },
+    {
+      "id": "chunk_131",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4206,
+      "preview": "s on foundation models like BERT [Devlin et al.\n2019] as one of its signals.5\n5https://blog.google/products/search/search-language-understanding-bert/"
+    },
+    {
+      "id": "chunk_132",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4106,
+      "preview": ").\n6https://copilot.github.com/\n7In practice, the end of the pipeline is followed by monitoring, and feedback is used to readjust the previous stages."
+    },
+    {
+      "id": "chunk_133",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4420,
+      "preview": "estion is: who will determine this future?\n8A foundation model (e.g., Codex) can also be trained with another model (e.g., GPT-3) as a starting point."
+    },
+    {
+      "id": "chunk_134",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4251,
+      "preview": "revolution was the increase in reproducibility and open science: it increasingly became the norm\n9See https://www.gatesfoundation.org/about/our-role.\n"
+    },
+    {
+      "id": "chunk_135",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4083,
+      "preview": "ps://worksheets.codalab.org/\n12https://www.eleuther.ai/\n13https://bigscience.huggingface.co/\n14https://hai.stanford.edu/policy/national-research-cloud"
+    },
+    {
+      "id": "chunk_136",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 1035,
+      "preview": "ding of the Center for Research on Foundation Models (CRFM), a new interdisciplinary\ninitiative at the Stanford Institute for Human-Centered AI (HAI)."
+    },
+    {
+      "id": "chunk_137",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4350,
+      "preview": "arch in neuroscience, cognitive science, and psychology\nto explain intelligence and aid efforts in computational social science to understand society."
+    },
+    {
+      "id": "chunk_138",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4320,
+      "preview": "ations (e.g., better robotic assistance for household tasks) and heightening\nthe importance of robustness and safety (e.g., formal safety evaluation)."
+    },
+    {
+      "id": "chunk_139",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4388,
+      "preview": "exacerbating historical biases in medical datasets\nand trials). To responsibly unlock this potential requires engaging deeply with the sociotechnical\n"
+    },
+    {
+      "id": "chunk_140",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4260,
+      "preview": "quired knowledge, and finally, compositionality,\nto foster successful generalization to novel settings and environments. We believe that realizing the"
+    },
+    {
+      "id": "chunk_141",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4547,
+      "preview": "e-of-expert models. Beyond training, we consider\nwhat will be required to deploy applications on top of foundation models (e.g., efficient inference)."
+    },
+    {
+      "id": "chunk_142",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4324,
+      "preview": "while relatively mature, is inadequate to fully explain\nfoundation models. Specifically, the discrepancy between the training phase and the adaptation"
+    },
+    {
+      "id": "chunk_143",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3500,
+      "preview": "deepfakes for harassment). We argue that advances in\nfoundation models will result in higher-quality machine-generated content that will be easier to\n"
+    },
+    {
+      "id": "chunk_144",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 821,
+      "preview": "of foundation models,\nsuch as homogenization and the concentration of power, as well as the norms and release strategies\nappropriate to address them.\n"
+    },
+    {
+      "id": "chunk_145",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4222,
+      "preview": "rvision (the technical approach\nused to learn most current foundation models) philosophically relates to the ability to understand\n(§2.6: philosophy)."
+    },
+    {
+      "id": "chunk_146",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2862,
+      "preview": "ked by a “current residence” relation, or a verb and a\nnoun by a “subject-verb” relation) and generation tasks, producing new text that is conditioned"
+    },
+    {
+      "id": "chunk_147",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4592,
+      "preview": "cluding the analysis and understanding tasks that were\nonce considered prerequisites for generation. The successful generation exhibited by foundation"
+    },
+    {
+      "id": "chunk_148",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4620,
+      "preview": "s data can represent aspects of languages that are\ndrastically different from English or for which few language resources are available [Wu and Dredze"
+    },
+    {
+      "id": "chunk_149",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2804,
+      "preview": "n of whether foundation models can understand language\nwithout grounding). Another important direction is examining the inductive biases in foundation"
+    },
+    {
+      "id": "chunk_150",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 1799,
+      "preview": "guistic situations [Sankoff 2018]. For example, as\nnew terms and concepts arise in an adult’s life, they can use them relatively easily in grammatical"
+    },
+    {
+      "id": "chunk_151",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2469,
+      "preview": "ere\nremain significant gaps between this performance and the needs for useful and safe deployment of\nfoundation models in complex downstream settings."
+    },
+    {
+      "id": "chunk_152",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4575,
+      "preview": "applications and settings where human\nperception is instrumental offers a sense of the potential areas where computer vision can assist\nand transform."
+    },
+    {
+      "id": "chunk_153",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4877,
+      "preview": "ories at the annual conference on Computer Vision and Pattern\nRecognition (CVPR) for a more complete (but evolving) picture of the tasks in the field."
+    },
+    {
+      "id": "chunk_154",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4518,
+      "preview": "cs]). We note a subset of these higher-order goals in\nFigure 7, including physical scene understanding, reasoning over visual commonsense and temporal"
+    },
+    {
+      "id": "chunk_155",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4755,
+      "preview": "models have shown early indications of understanding\nscene and object geometry [Ramesh et al. 2021]. Further, early efforts towards physical scene and"
+    },
+    {
+      "id": "chunk_156",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2445,
+      "preview": "odel outputs with respect to semantics? Standard metrics\nlike Fréchet Inception Distance, suffer from known flaws [Bińkowski et al. 2018]; such issues"
+    },
+    {
+      "id": "chunk_157",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3196,
+      "preview": "and opportunities ahead for computer vision and foundation models are significant, addressing\nthese and related risks concurrently remains essential.\n"
+    },
+    {
+      "id": "chunk_158",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4323,
+      "preview": "earning, coupled with tackling challenges in data\nacquisition and safety and robustness. Consider the following robot learning paradigm: starting with"
+    },
+    {
+      "id": "chunk_159",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4394,
+      "preview": "in, text-out”\nsignature. We focus on opportunities in generalizable task specification and learning across tasks,\nenvironments, and robot embodiments."
+    },
+    {
+      "id": "chunk_160",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4346,
+      "preview": "haptic sensors, microphones, etc.) and a sequence\nof actions that the robot has performed to generate these observations. Beyond the objectives above,"
+    },
+    {
+      "id": "chunk_161",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4648,
+      "preview": "ecause robots have the ability to actively and autonomously shape\ntheir environment, they should be able to generate targeted unlabeled data at scale."
+    },
+    {
+      "id": "chunk_162",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 1951,
+      "preview": "2021] or developing safety boundaries for learning that\nare interpretable (§4.11: interpretability) to human operators, could help reduce risks posed\n"
+    },
+    {
+      "id": "chunk_163",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3085,
+      "preview": "m and thoughtful research\npractices around foundation models in general, and robotic foundation models in particular, is key\nto realizing these goals."
+    },
+    {
+      "id": "chunk_164",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3016,
+      "preview": "not confined with searching in diagram constructions and\nEuclidean theorems: mathematicians can apply a vast number of theorems from various branches\n"
+    },
+    {
+      "id": "chunk_165",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4447,
+      "preview": "2020; Han et al. 2021], conjecturing theorems [Urban and\n17Less than the number of grid points on the Go board (i.e., 361 actions for a 19×19 board).\n"
+    },
+    {
+      "id": "chunk_166",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3815,
+      "preview": "Foundation models can learn a shared representation\nthat encompasses these various views. Past works have shown that self-supervised tasks [Han et al."
+    },
+    {
+      "id": "chunk_167",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2605,
+      "preview": "nd §4.3: adaptation)? We believe research about\nfoundation models on each of these fronts can greatly broaden their impact for the field of reasoning."
+    },
+    {
+      "id": "chunk_168",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4400,
+      "preview": "conflict with the iterative prototyping process\nnecessary to elicit and satisfy users’ needs and values [Yang et al. 2016]. This challenge is further\n"
+    },
+    {
+      "id": "chunk_169",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4275,
+      "preview": "expose biases or points of view that are counter to the communities’ goals, or more insidiously,\n18https://beta.openai.com/docs/guides/classifications"
+    },
+    {
+      "id": "chunk_170",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3482,
+      "preview": ".landr.com/\n21https://copilot.github.com/\n22https://play.aidungeon.io/main/home\n23https://powerapps.microsoft.com/en-us/\n24https://copilot.github.com/"
+    },
+    {
+      "id": "chunk_171",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4299,
+      "preview": "AI-infused applications is an exciting opportunity that could introduce a new paradigm\nfor how we will interact with these applications in the future."
+    },
+    {
+      "id": "chunk_172",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3346,
+      "preview": "rt of this learning, the model might come to represent\nstrong associations between a given piece of text and a particular sensor reading, or between a"
+    },
+    {
+      "id": "chunk_173",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4622,
+      "preview": "eas epistemology is more about how (if at all) we could know when we have reached it.\nOur epistemology thus depends to some extent on our metaphysics."
+    },
+    {
+      "id": "chunk_174",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4479,
+      "preview": "cerning the possibility of drawing causal inferences from correlational (or even experimental) data (see Spirtes et al.\n2001; Bareinboim et al. 2020)."
+    },
+    {
+      "id": "chunk_175",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2429,
+      "preview": "of errors that are made by current systems. Characterizing the target behaviours may\nthus involve more than just identifying the “correct” behaviour.\n"
+    },
+    {
+      "id": "chunk_176",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 848,
+      "preview": "would seem the most likely to provide the model with\nthe requisite information. Whether self-supervision then suffices is a completely open question.\n"
+    },
+    {
+      "id": "chunk_177",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2764,
+      "preview": "ation\nmodels pose for this domain alongside challenges (e.g., interpretability; §4.11: interpretability)\nand concerns (e.g., privacy; §4.7: security)."
+    },
+    {
+      "id": "chunk_178",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4554,
+      "preview": "fine-tuning, prompting [Brown et al. 2020]), they can\nbe efficiently adapted to various individual tasks in healthcare and biomedicine (e.g., question"
+    },
+    {
+      "id": "chunk_179",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4570,
+      "preview": "r questions related to public health and pandemic\nprevention (such as the COVID-19 case) [Bharti et al. 2020; Herriman et al. 2020]. At the same time,"
+    },
+    {
+      "id": "chunk_180",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4396,
+      "preview": "ims to select the optimal treatment for individual\npatients based on their health history, genetics, imaging, and other personal measurements [Collins"
+    },
+    {
+      "id": "chunk_181",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 1937,
+      "preview": "ful of common pitfalls or otherwise risk exacerbating\nexisting social inequalities [Chen et al. 2019; Wiens et al. 2019; Chen et al. 2020b]. They must"
+    },
+    {
+      "id": "chunk_182",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3325,
+      "preview": "s and tasks that is inherent to healthcare and biomedicine but is not\ncommonly studied in current GPT-3 and related models. Also see §4.8: robustness."
+    },
+    {
+      "id": "chunk_183",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4405,
+      "preview": "ly adapt to new contexts with little supervised learning. See also the discussion in §1: introduction\nand §2.6: philosophy for an expanded definition."
+    },
+    {
+      "id": "chunk_184",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4586,
+      "preview": "the issue at hand\nor to recommend a specialized attorney. A number of other similar efforts have sought to increase\n33https://spot.suffolklitlab.org/\n"
+    },
+    {
+      "id": "chunk_185",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4646,
+      "preview": "focus on during questioning [Dickinson 2018], adapting to\n34https://www.kirkland.com/publications/article/2020/04/technology-assisted-review-framework"
+    },
+    {
+      "id": "chunk_186",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4134,
+      "preview": "he court ruled that the systemic\nbreakdown in the public defender’s office constituted a due process violation and the defendant’s case was dismissed."
+    },
+    {
+      "id": "chunk_187",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2347,
+      "preview": "ourt-opinion/\n38https://www.supremecourt.gov/casehand/courtspecchart02162010.aspx\n39https://www.stanfordlawreview.org/submissions/article-submissions/"
+    },
+    {
+      "id": "chunk_188",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3546,
+      "preview": "and is not a surviving spouse,\nparagraphs (1) and (2) shall be applied by substituting ‘$750’ for ‘$600’.” US Internal Revenue Code (IRC) §63(f )(3).\n"
+    },
+    {
+      "id": "chunk_189",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4128,
+      "preview": "to what extent information obtained from one corpus\ncan be utilized in another corpus of a different domain. Few-shot learning thus remains important."
+    },
+    {
+      "id": "chunk_190",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2514,
+      "preview": "N (Dist. Court, ND Texas 2019), counsel relied on Google\nTranslate to prove that the previous (native speaker) attorney has mistranslated a plea deal."
+    },
+    {
+      "id": "chunk_191",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4552,
+      "preview": "ms that can provide meaningful feedback to students\n[Malik et al. 2021], help teachers improve [Jensen et al. 2020; Demszky et al. 2021; Suresh et al."
+    },
+    {
+      "id": "chunk_192",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2886,
+      "preview": "on, and incited\noffline violence in the Rohingya genocide. Free Basics now serves as a warning of the complexities of technological impact\non society."
+    },
+    {
+      "id": "chunk_193",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4487,
+      "preview": "similar to the challenges described in §3.1: healthcare.\nThis list is not exhaustive and the ethical considerations will vary from project to project."
+    },
+    {
+      "id": "chunk_194",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4516,
+      "preview": "a\nreasoning task (§2.4: reasoning).\n45This student has made the common mistake of concatenating the results of adding the one’s digit and ten’s digit\n"
+    },
+    {
+      "id": "chunk_195",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 1707,
+      "preview": "ts),\nas the foundation model would need to be fluidly adaptable in terms of its tone and language, and\nnot just the factual content that it generates."
+    },
+    {
+      "id": "chunk_196",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 1029,
+      "preview": "multi-modal data have the potential to make these kinds of rich analogies and comparisons that\nare typical in childhood language learning (Figure 16)."
+    },
+    {
+      "id": "chunk_197",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2604,
+      "preview": "ivacy\n(§4.7: security), and long-term AI safety (§4.9: ai-safety) for ensuring the reliability of these\nmodels when deployed in society (§5: society)."
+    },
+    {
+      "id": "chunk_198",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4247,
+      "preview": "ls\nthat incorporate them, and explore key challenges and promising avenues for future research and\ndevelopment. See Figure 17 for an overview diagram."
+    },
+    {
+      "id": "chunk_199",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4278,
+      "preview": "the prepositional phrase (PP) attachment X is “spoon”, or instead link it to the\n“ice-cream\" if X refers e.g., to “strawberries\" [Zavrel et al. 1997]."
+    },
+    {
+      "id": "chunk_200",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4441,
+      "preview": "ss all\ndimensions: including both models’ depth and width as well as their training time, number of\nparameters, and amount of data they could process."
+    },
+    {
+      "id": "chunk_201",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4271,
+      "preview": "continuous. At first sight, this variation hints\nthat specialized inductive biases tailored for each modality could be of aid. Yet, as training scales"
+    },
+    {
+      "id": "chunk_202",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4249,
+      "preview": "Neural Turing Machine [Graves et al. 2014, 2016], the Neural\nState Machine [Hudson and Manning 2019a], and MAC [Hudson and Manning 2018]. Furthermore,"
+    },
+    {
+      "id": "chunk_203",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4235,
+      "preview": "elates to the interfaces between the different modules the model is composed of, what modes of\ninteractions they employ, and how transparent they are."
+    },
+    {
+      "id": "chunk_204",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4233,
+      "preview": "visioned and discussed in detail throughout this\nreport, will rely on research of new architectural and modeling advances to fulfill these desiderata."
+    },
+    {
+      "id": "chunk_205",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4060,
+      "preview": "or training (see §4.5: sys-\ntems) And the choice of a training method is ultimately also constrained by the availability of diverse, high-quality data"
+    },
+    {
+      "id": "chunk_206",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4518,
+      "preview": "o\n52For example, tokenizing text may make it harder to learn rhymes, puns, or other tasks that benefit from character-level\ninformation [Branwen 2020]"
+    },
+    {
+      "id": "chunk_207",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2097,
+      "preview": "autoregressive or denoising approaches.\n55See §2.2: vision and §2.1: language for more discussion of multimodality in vision and language specifically"
+    },
+    {
+      "id": "chunk_208",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2565,
+      "preview": "-directed training of foundation models as an interesting avenue for future study.\n56Including any undesirable or biased capabilities (§5.1: fairness)"
+    },
+    {
+      "id": "chunk_209",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4472,
+      "preview": "pute budget (specifically storage and memory); (2) the amount of\ntask-specific data available; and (3) extent of access to foundation model gradients."
+    },
+    {
+      "id": "chunk_210",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4436,
+      "preview": "an exception, although we might consider prompts to implicitly represent the information contained in a\nbatch of labeled data [Le Scao and Rush 2021]."
+    },
+    {
+      "id": "chunk_211",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4747,
+      "preview": "ng data from a foundation model post-facto are therefore desirable.\n58Assuming the foundation model provider enables the input space to be continuous."
+    },
+    {
+      "id": "chunk_212",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4625,
+      "preview": "is useful to adapt a foundation model locally, mean-\ning that the model’s predictive distribution should be adapted only for a single input or a local"
+    },
+    {
+      "id": "chunk_213",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2042,
+      "preview": "oundation model trained from i.i.d. data from the aggregate\nmixture [Lopez-Paz and Ranzato 2017]. Innovations in both model architectures and training"
+    },
+    {
+      "id": "chunk_214",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4007,
+      "preview": "ting the computational burden of\ntraining from scratch, and reducing the extent that previously-learned concepts must be re-learned\ndue to forgetting."
+    },
+    {
+      "id": "chunk_215",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4528,
+      "preview": "to perform useful tasks, the standard evaluation paradigm must be altered to facilitate\nthe direct understanding and comparison of foundation models.\n"
+    },
+    {
+      "id": "chunk_216",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4469,
+      "preview": "m the task, but the objective is more akin to probing (see §4.11: interpretability) of trying to measure the\nfoundation model as directly as possible."
+    },
+    {
+      "id": "chunk_217",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4461,
+      "preview": "In particular, extrinsic evaluation outcomes may also\nbe important in validating intrinsic measure design, e.g., the predictive validity of intrinsic\n"
+    },
+    {
+      "id": "chunk_218",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4450,
+      "preview": "ed) but do not provide clear signal for how different\nadaptation methods perform and how to select a specific adaptation method in a given context. In"
+    },
+    {
+      "id": "chunk_219",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3849,
+      "preview": "016] has been\nconducted by high-resourced research labs that can afford to pay for the creation of these datasets through crowdsourcing\n[Rogers 2020]."
+    },
+    {
+      "id": "chunk_220",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2892,
+      "preview": "n’s Law [Strathern 1997] (sometimes referred to as Goodhart’s Law [Goodhart\n1984]): “When a measure becomes a target, it ceases to be a good measure.\""
+    },
+    {
+      "id": "chunk_221",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4574,
+      "preview": "oftware systems rely on a number of innovations\nacross the stack to train models efficiently at scale: new parallelization dimensions such as pipeline"
+    },
+    {
+      "id": "chunk_222",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4145,
+      "preview": "quires decomposing the computation into vector-level\nnearest-neighbor search operations). These techniques allow retrieval-based models to be accurate"
+    },
+    {
+      "id": "chunk_223",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3230,
+      "preview": "pretrained model, pointing to issues in the pretraining\nprocess versus adaptation process. Frameworks like PyTorch, as well as software libraries for\n"
+    },
+    {
+      "id": "chunk_224",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4218,
+      "preview": ") for models deployed in end applications. These tools can help address issues of fairness\nand bias (§5.1: fairness), and reduce model mispredictions."
+    },
+    {
+      "id": "chunk_225",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4090,
+      "preview": "-\nmachine-learning-platform/.\n66https://www.scmp.com/tech/tech-war/article/3135764/us-china-tech-war-beijing-funded-ai-researchers-surpass-\ngoogle-and"
+    },
+    {
+      "id": "chunk_226",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4285,
+      "preview": "f GitHub data in Copilot’s Codex tool to\nhelp developers code https://www.pwvconsultants.com/blog/questions-around-bias-legalities-in-githubs-copilot/"
+    },
+    {
+      "id": "chunk_227",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3966,
+      "preview": "licy/gen/guid/fpco/ferpa/library/georgialtr.html\n74https://www.dhs.gov/sites/default/files/publications/privacy-policy-guidance-memorandum-2008-01.pdf"
+    },
+    {
+      "id": "chunk_228",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2833,
+      "preview": "tive toolkits include https://www.tableau.com/ and https://www.paxata.com/.\n76https://huggingface.co/models\n77https://public.tableau.com/en-us/s/about"
+    },
+    {
+      "id": "chunk_229",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4335,
+      "preview": "ecurity for foundation models. Some applications of foundation models for security (e.g., de-\ntection of toxic content) are discussed in §5.2: misuse."
+    },
+    {
+      "id": "chunk_230",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4419,
+      "preview": "acial recognition. This is a purely visual task, yet the adapted model’s\n79https://github.com/openai/CLIP/blob/main/model-card.md. Accessed 06.30.2021"
+    },
+    {
+      "id": "chunk_231",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 521,
+      "preview": "distributional robustness can translate to increased\nresilience against real-world attacks is another exciting open question. Particularly in settings"
+    },
+    {
+      "id": "chunk_232",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4285,
+      "preview": "l robustness could lead to\nconcomitant gains in overall security — even if the foundation model remains vulnerable to worst-\ncase “white-box” attacks."
+    },
+    {
+      "id": "chunk_233",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2859,
+      "preview": "n contrast, many other robustness interventions,\nsuch as adversarial training [Madry et al. 2018], invariant risk minimization [Arjovsky et al. 2019],"
+    },
+    {
+      "id": "chunk_234",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4260,
+      "preview": "20]. Models learn these spurious correlations largely\nbecause the foundation model training and adaptation data exhibit these biases [Nagarajan et al."
+    },
+    {
+      "id": "chunk_235",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4500,
+      "preview": "to address other empirically effective foundation models\nsuch as fully generative language models (e.g., GPT-3 [Brown et al. 2020] and image-GPT [Chen"
+    },
+    {
+      "id": "chunk_236",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 1266,
+      "preview": "ormance benefits (§4.3: adaptation). Xie et al. [2021b]\nexplain this in a special case, where composing a learned model with a frozen foundation model"
+    },
+    {
+      "id": "chunk_237",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4453,
+      "preview": "odels when used for adaptation. Progress in these directions\ncan lead to adaptation methods that can better leverage foundation models for robustness."
+    },
+    {
+      "id": "chunk_238",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4392,
+      "preview": "ard hacking, including an aircraft landing algorithm which\nachieved a perfect score by outputting large forces that exploited a flaw in the simulator."
+    },
+    {
+      "id": "chunk_239",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4549,
+      "preview": "of future foundation models enables better task specification\n86For more on the relationship between understanding and semantics see §2.6: philosophy\n"
+    },
+    {
+      "id": "chunk_240",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2122,
+      "preview": "§5.5: economics). Indeed, the threat of catastrophic\nrobustness failures is particularly pertinent for foundation models in contrast to other kinds of"
+    },
+    {
+      "id": "chunk_241",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3578,
+      "preview": "models to human values and desired goals; and for states, research labs, and\nbusinesses to coordinate on proactive measures to mitigate salient risks."
+    },
+    {
+      "id": "chunk_242",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3567,
+      "preview": "and will be adapted to many or all\nnatural tasks, whereas transfer learning typically studies labeled source tasks and a fixed number of target tasks."
+    },
+    {
+      "id": "chunk_243",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3734,
+      "preview": "ndation\nmodel. Here Γ = R𝑘is the set of linear classifiers on the representations of dimensionality 𝑘,\nand 𝐶(𝛾, ˆ𝜃FM) could be the ℓ2 or ℓ1 norm of 𝛾."
+    },
+    {
+      "id": "chunk_244",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4338,
+      "preview": "dapt(𝛾★\ntask, ˆ𝜃FM) −𝐿★\nadapt( ˆ𝜃FM), where 𝛾★\ntask is the minimizer of (5). (6) follows easily be using\nb𝐿adapt(𝛾task, ˆ𝜃FM) ≤b𝐿adapt(𝛾★\ntask, ˆ𝜃FM)."
+    },
+    {
+      "id": "chunk_245",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4274,
+      "preview": "on. In the adaptation phase, the pretrained language\nfoundation model takes in a prompt — a sequence of tokens that concatenates input-output examples"
+    },
+    {
+      "id": "chunk_246",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4076,
+      "preview": "eoretical models which capture relevant properties of real datasets\nare a crucial step towards placing foundation models on solid theoretical footing."
+    },
+    {
+      "id": "chunk_247",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2571,
+      "preview": "all three levels, we conclude by discussing potential consequences resulting from the\nnon-interpretability and interpretability of foundation models.\n"
+    },
+    {
+      "id": "chunk_248",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4392,
+      "preview": "identify the capabilities that it has. Even further,\nfor each task that a foundation model can perform, and there may be many or infinitely many, all\n"
+    },
+    {
+      "id": "chunk_249",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4421,
+      "preview": "erally be understood as distinct models, which are\ndesigned to provide an explanation of particular behaviors of another black box model. Importantly,"
+    },
+    {
+      "id": "chunk_250",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4662,
+      "preview": "fic or few and\ngeneralizable, they are at the core of the ability of foundation models to adopt a wide range of\nbehaviors in varied tasks and domains."
+    },
+    {
+      "id": "chunk_251",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3588,
+      "preview": "most relevant or general for model behavior. As with\nmany approaches to interpreting foundation models, these types of explorations will benefit from\n"
+    },
+    {
+      "id": "chunk_252",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 1331,
+      "preview": "increasing regulation) of these systems, or whether\nit is possible for future foundation models to uphold a high standard of interpretability for all."
+    },
+    {
+      "id": "chunk_253",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2804,
+      "preview": "onomics) and\nenvironment (§5.3: environment), and (iii) the broader considerations with respect to the law\n(§5.4: legality) and ethics (§5.6: ethics)."
+    },
+    {
+      "id": "chunk_254",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4658,
+      "preview": "model that contribute to inequity; we follow Blodgett\net al. [2020] in attempting, when possible, to delineate who is harmed and how they are harmed.\n"
+    },
+    {
+      "id": "chunk_255",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4374,
+      "preview": "[Allport 1954] and social groups: we point to relevant\nwork in the social sciences and other communities on moving beyond binary treatments of gender\n"
+    },
+    {
+      "id": "chunk_256",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4314,
+      "preview": "021]\nand biases in the annotators who label that data [Geva et al. 2019; Sap et al. 2019] can also contribute to extrinsic harms\nexperienced by users."
+    },
+    {
+      "id": "chunk_257",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4620,
+      "preview": "amental\nimportance in these high-impact decision-making settings for reasons well beyond the potential improved recognition of\nfairness-related harms."
+    },
+    {
+      "id": "chunk_258",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2517,
+      "preview": "connect: harms likely are partially attributable to both\nthe foundation model providers and the downstream application developers, but allocating this"
+    },
+    {
+      "id": "chunk_259",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2020,
+      "preview": "both proactive intervention (e.g., data-centric and model-\ncentric changes) and reactive recourse (e.g., mechanisms for feedback and accountability).\n"
+    },
+    {
+      "id": "chunk_260",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4476,
+      "preview": "rrently, creating this content often requires hiring people\nwho speak the language of the population being targeted. Governments may outsource content"
+    },
+    {
+      "id": "chunk_261",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4360,
+      "preview": "020/09/02/technology/peacedata-writer-russian-misinformation.html\n98https://www.dw.com/en/social-media-uptick-in-honor-crime-in-middle-east/a-56370773"
+    },
+    {
+      "id": "chunk_262",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2509,
+      "preview": "a-\nmiddle-east-propaganda-campaign.\nFor an example from Cuba, see https://raw.githubusercontent.com/stanfordio/publications/main/twitter-CU-202009.pdf"
+    },
+    {
+      "id": "chunk_263",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3611,
+      "preview": "ties of foundation\nmodels to rapidly generate content that can evade detection.\n101https://www.wired.com/story/ai-fueled-dungeon-game-got-much-darker/"
+    },
+    {
+      "id": "chunk_264",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4357,
+      "preview": "nding-bert/ and https://azure.microsoft.com/en-us/blog/microsoft-makes-it-\neasier-to-build-popular-language-representation-model-bert-at-large-scale/."
+    },
+    {
+      "id": "chunk_265",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4025,
+      "preview": "ng a more efficient model — can scale to massive carbon savings, which would otherwise\nrequire a massive campaign to reach all downstream model users."
+    },
+    {
+      "id": "chunk_266",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4251,
+      "preview": "kWhs/year, depending on the manufacturing date and computer type. See Sections 1601-1608 of California’s Appliance\nEfficiency Regulations (Title 20).\n"
+    },
+    {
+      "id": "chunk_267",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2868,
+      "preview": "erbate-climate-impacts-\non-poor/ and https://blogs.imf.org/2020/12/02/how-artificial-intelligence-could-widen-the-gap-between-rich-and-poor-\nnations/."
+    },
+    {
+      "id": "chunk_268",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3215,
+      "preview": "bon efficient than the\nbaseline (Figure 27). Even more efficient adaptation mechanisms could improve this amortization\nfurther (see §4.3: adaptation)."
+    },
+    {
+      "id": "chunk_269",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4179,
+      "preview": "arbon friendly\ncloud regions. See, for example, https://cloud.google.com/blog/topics/sustainability/pick-the-google-cloud-region-with-the-\nlowest-co2."
+    },
+    {
+      "id": "chunk_270",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4169,
+      "preview": "on purposes) violates this statute. See Class Action Complaint at 2, Vance v. Int’l Bus. Machines Corp., No. 20 C 577 (N.D.\nIll. filed Jan. 24, 2020)."
+    },
+    {
+      "id": "chunk_271",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 1246,
+      "preview": "ertain basic rights during any deliberation that will\ndeprive them of life, liberty, or property (e.g., the right to cross-examine adverse witnesses)."
+    },
+    {
+      "id": "chunk_272",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4160,
+      "preview": "will be critical to the construction, use, and deployment\nof foundation models, or, to borrow Larry Lessig’s phrase, how “code is law” [Lessig 2000].\n"
+    },
+    {
+      "id": "chunk_273",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4324,
+      "preview": "crease in quality for a given amount of labor, such as more interesting\nfiction, also counts as an increase in productivity.\n122https://www.landr.com/"
+    },
+    {
+      "id": "chunk_274",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3921,
+      "preview": "and robustness (§4.8: robustness) of these models, so\nthat humans can understand model behavior and expect models to perform well in diverse contexts."
+    },
+    {
+      "id": "chunk_275",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4120,
+      "preview": "-model)\n124As an example of a secondary effect, consider that the invention of the automobile influenced the development and\nexpansion of the suburbs."
+    },
+    {
+      "id": "chunk_276",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4437,
+      "preview": "orpora are likely to be exacerbated in foundation\nmodels due to the massive scale of both unlabeled and labeled data needed. To the extent that models"
+    },
+    {
+      "id": "chunk_277",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4436,
+      "preview": "2021] collected 30 million text-image pairs, chose not to address artefacts such as watermarks\nand white edges, despite their impact on model quality."
+    },
+    {
+      "id": "chunk_278",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4424,
+      "preview": "central data brokers as people use its products (as in vetting loan applications), and individuals\nhave little choice but to participate [Lauer 2017]."
+    },
+    {
+      "id": "chunk_279",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4479,
+      "preview": "nded study of how humans interact with automated judgements, including discussion of both positive and\nnegative automation biases, see Hidalgo [2021]."
+    },
+    {
+      "id": "chunk_280",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4394,
+      "preview": "compulsory fairness-conscious policy” such as the norms under\ndiscussion here, see Dai et al. [2021b].\n130https://huggingface.co/docs/datasets/master/"
+    },
+    {
+      "id": "chunk_281",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4405,
+      "preview": "xplanation capable of illuminating features of the model relevant to trust, such as\n“discriminatory use of a sensitive feature” [Dimanov et al. 2020]."
+    },
+    {
+      "id": "chunk_282",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4457,
+      "preview": "r solutions ultimately empower [Rogaway 2016; Winner\n1980; Passi and Barocas 2019]. We should value research that seeks to make foundation models more"
+    },
+    {
+      "id": "chunk_283",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 2180,
+      "preview": "s the norm veers towards collecting larger and\n133See also §4.11.4: interpretability-impacts for relevant discussion of impacts of uninterpretability."
+    },
+    {
+      "id": "chunk_284",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 4296,
+      "preview": "ic design\nand writing. We hope that the scope of this report will aid others in their pursuit of the questions\nof ethics and society unaddressed here."
+    },
+    {
+      "id": "chunk_285",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5412,
+      "preview": "a Goldenberg. 2020.\nMachine learning approaches to drug response prediction: challenges and recent progress. NPJ Precision Oncology 4, 1\n(2020), 1–10."
+    },
+    {
+      "id": "chunk_286",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5407,
+      "preview": "ition (CVPR).\nJacob Andreas. 2019. Measuring Compositionality in Representation Learning. International Conference on Learning\nRepresentations (2019)."
+    },
+    {
+      "id": "chunk_287",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5534,
+      "preview": "al Conference on Learning\nRepresentations.\nAnnette Baier. 1986. Trust and Antitrust. Ethics 96, 2 (1986), 231–260. http://www.jstor.org/stable/2381376"
+    },
+    {
+      "id": "chunk_288",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5546,
+      "preview": "ng: Toward mitigating system\nbias and enabling better science. Transactions of the Association for Computational Linguistics (TACL) 6 (2018), 587–604."
+    },
+    {
+      "id": "chunk_289",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5423,
+      "preview": "anguage Processing (Volume 1: Long\nPapers). Association for Computational Linguistics, Online, 1004–1015. https://doi.org/10.18653/v1/2021.acl-long.81"
+    },
+    {
+      "id": "chunk_290",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5403,
+      "preview": "Morgan Thompson. 2016. Causally Interpreting Intersectionality Theory. Philosophy\nof Science 83, 1 (Jan. 2016), 60–81. https://doi.org/10.1086/684173\n"
+    },
+    {
+      "id": "chunk_291",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5734,
+      "preview": "bramanian, and Niranjan Balasubramanian. 2020. Towards accurate and reliable energy\nmeasurement of NLP models. arXiv preprint arXiv:2010.05248 (2020)."
+    },
+    {
+      "id": "chunk_292",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5668,
+      "preview": "nolis Savva, Shuran Song, Andy Zeng,\nand Yinda Zhang. 2017. Matterport3D: Learning from RGB-D Data in Indoor Environments. International Conference on"
+    },
+    {
+      "id": "chunk_293",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5401,
+      "preview": "Lei, Hao Tan, and Mohit Bansal. 2021. Unifying vision-and-language tasks via text generation. In International\nConference on Machine Learning (ICML).\n"
+    },
+    {
+      "id": "chunk_294",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5218,
+      "preview": "19).\nAlan Cooper, Robert Reimann, David Cronin, and Christopher Noessel. 2014. About face: the essentials of interaction design.\nIn John Wiley & Sons."
+    },
+    {
+      "id": "chunk_295",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5161,
+      "preview": "hmeckpeper, Siddharth Singh, Sergey Levine, and\nChelsea Finn. 2019. RoboNet: Large-Scale Multi-Robot Learning. In Conference on Robot Learning (CORL)."
+    },
+    {
+      "id": "chunk_296",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5169,
+      "preview": "lexandra Siegel. 2021. In-House Vs. Outsourced Trolls: How Digital Mercenaries\nShape State Influence Strategies. Political Communication (2021), 1–31."
+    },
+    {
+      "id": "chunk_297",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5379,
+      "preview": "iew of Recent Developments and Applications.. In HEALTHINF. 825–832.\nPaul Elbourne. 2011. Meaning: a slim guide to semantics. Oxford University Press."
+    },
+    {
+      "id": "chunk_298",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 6030,
+      "preview": "nik Fetahu, Abhijit Anand, and Avishek Anand. 2015. How much is Wikipedia lagging behind news?. In Proceedings of\nthe ACM Web Science Conference. 1–9."
+    },
+    {
+      "id": "chunk_299",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5900,
+      "preview": "es. 1993. Evaluating Natural Language Processing Systems. University of Cambridge,\nComputer Laboratory. https://books.google.com/books?id=ZxklAQAAIAAJ"
+    },
+    {
+      "id": "chunk_300",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5724,
+      "preview": "1107\nMor Geva, R. Schuster, Jonathan Berant, and Omer Levy. 2020. Transformer Feed-Forward Layers Are Key-Value Memories.\nArXiv abs/2012.14913 (2020)."
+    },
+    {
+      "id": "chunk_301",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5798,
+      "preview": "role of image understanding in visual question answering. In Proceedings of the IEEE Conference on Computer Vision\nand Pattern Recognition. 6904–6913."
+    },
+    {
+      "id": "chunk_302",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5470,
+      "preview": "r: Generating Knowledge\nAssessments for Arbitrary Topics. In Proceedings of the Twenty-Fifth International Joint Conference on Artificial Intelligence"
+    },
+    {
+      "id": "chunk_303",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5410,
+      "preview": "ah, Bhavna Antony, and Jianying Hu. 2019. Artificial intelligence for clinical trial design. Trends in\npharmacological sciences 40, 8 (2019), 577–591."
+    },
+    {
+      "id": "chunk_304",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5516,
+      "preview": "g. 2019b. Using Self-Supervised Learning Can Improve\nModel Robustness and Uncertainty. In Advances in Neural Information Processing Systems (NeurIPS)."
+    },
+    {
+      "id": "chunk_305",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5462,
+      "preview": "tton, and Manzil Zaheer. 2021. Latent Programmer: Discrete Latent\nCodes for Program Synthesis. In International Conference in Machine Learning (ICML)."
+    },
+    {
+      "id": "chunk_306",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5413,
+      "preview": "Rees, S Barrett Kalindjian, and Karen L Philpott. 2011. Principles of early drug discovery. British\njournal of pharmacology 162, 6 (2011), 1239–1249.\n"
+    },
+    {
+      "id": "chunk_307",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5624,
+      "preview": "igning a socially assistive robot for\npediatric care. In Proceedings of the 14th international conference on interaction design and children. 387–390."
+    },
+    {
+      "id": "chunk_308",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5464,
+      "preview": "epti Raghavan, Peter Bailis, and Matei Zaharia. 2020. Model Assertions for Monitoring and Improving ML\nModels. arXiv preprint arXiv:2003.01668 (2020)."
+    },
+    {
+      "id": "chunk_309",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5401,
+      "preview": "ke Lewis. 2020.\nGeneralization through\nMemorization: Nearest Neighbor Language Models. In International Conference on Learning Representations.\nhttps:"
+    },
+    {
+      "id": "chunk_310",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5547,
+      "preview": "Chisolm, Ashish Sharma, Tony Pan,\nErwin G Van Meir, Tahsin M Kurc, et al. 2011. Integrative, multimodal analysis of glioblastoma using TCGA molecular\n"
+    },
+    {
+      "id": "chunk_311",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5198,
+      "preview": "(2004), 2626–2635.\nSascha Lange, Thomas Gabel, and Martin Riedmiller. 2012. Batch reinforcement learning. In Reinforcement learning. Springer,\n45–73.\n"
+    },
+    {
+      "id": "chunk_312",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5298,
+      "preview": "ritt, Miljan Martic, Vishal Maini, and S. Legg. 2018. Scalable agent alignment via reward\nmodeling: a research direction. ArXiv abs/1811.07871 (2018)."
+    },
+    {
+      "id": "chunk_313",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5488,
+      "preview": "2020d. Train Large, then\nCompress: Rethinking Model Size for Efficient Training and Inference of Transformers. arXiv preprint arXiv:2002.11794\n(2020)."
+    },
+    {
+      "id": "chunk_314",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5659,
+      "preview": "or Neural Machine Translation. Transactions of the Association for Computa-\ntional Linguistics 8 (2020), 726–742. https://doi.org/10.1162/tacl_a_00343"
+    },
+    {
+      "id": "chunk_315",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5671,
+      "preview": "ynaboard: An Evaluation-As-A-Service Platform for Holistic Next-Generation Benchmarking.\nArXiv abs/2106.06052 (2021). https://arxiv.org/abs/2106.06052"
+    },
+    {
+      "id": "chunk_316",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5416,
+      "preview": "Carley, Rishav Chakravarti, and Avirup Sil. 2019. Structured Pruning of a BERT-Based Question Answering Model.\narXiv preprint arXiv:1910.06360 (2019)."
+    },
+    {
+      "id": "chunk_317",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5575,
+      "preview": "Nature Climate Change 8, 11 (2018), 931–933.\nHans Moravec. 1988. Mind children: The future of robot and human intelligence. Harvard University Press.\n"
+    },
+    {
+      "id": "chunk_318",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5685,
+      "preview": "the efficiency of patient\nidentification for clinical trials in the emergency department. Journal of the American Medical Informatics Association 22,\n"
+    },
+    {
+      "id": "chunk_319",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5640,
+      "preview": "z, Paul A Heidenreich, Robert A\nHarrington, David H Liang, Euan A Ashley, et al. 2020. Video-based AI for beat-to-beat assessment of cardiac function."
+    },
+    {
+      "id": "chunk_320",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5235,
+      "preview": "eptions: An Intersectional Analysis of How\nSocial Status Shapes Race.\nGender & Society 27, 3 (2013), 319–344.\nhttps://doi.org/10.1177/0891243213480262"
+    },
+    {
+      "id": "chunk_321",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5431,
+      "preview": "?sh=44865f6a74f5.\nGeorge L Priest and Benjamin Klein. 1984. The selection of disputes for litigation. The Journal of Legal Studies 13, 1 (1984),\n1–55."
+    },
+    {
+      "id": "chunk_322",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5667,
+      "preview": "Gabriel Goh, Scott Gray, Chelsea Voss, Alec Radford, Mark Chen, and Ilya Sutskever. 2021.\nZero-Shot Text-to-Image Generation. arXiv:2102.12092 [cs.CV]"
+    },
+    {
+      "id": "chunk_323",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5536,
+      "preview": "17), 43–64. https:\n//doi.org/10.1353/ken.2017.0025\nRegina Rini. 2020. Deepfakes and the Epistemic Backstop. Philosopher’s Imprint 20, 24 (2020), 1–16."
+    },
+    {
+      "id": "chunk_324",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5648,
+      "preview": ". arXiv preprint arXiv:2004.03844 (2020).\nChristoph Salge, C. Glackin, and D. Polani. 2013. Empowerment - an Introduction. ArXiv abs/1310.1863 (2013)."
+    },
+    {
+      "id": "chunk_325",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5690,
+      "preview": "(2021).\nLonda Schiebinger. 2013. Machine Translation: Analyzing Gender. (2013). http://genderedinnovations.stanford.edu/case-\nstudies/nlp.html#tabs-2\n"
+    },
+    {
+      "id": "chunk_326",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5653,
+      "preview": "1–433.\nDanilo Jimenez Rezend Shakir Mohamed. 2015. Variational Information Maximisation for Intrinsically Motivated Reinforce-\nment Learning. In NIPS."
+    },
+    {
+      "id": "chunk_327",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5408,
+      "preview": "Zisserman. 2013. Deep inside convolutional networks: Visualising image\nclassification models and saliency maps. arXiv preprint arXiv:1312.6034 (2013)."
+    },
+    {
+      "id": "chunk_328",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5633,
+      "preview": "1. BEHAVIOR: Benchmark for Everyday Household Activities in Virtual,\nInteractive, and Ecological Environments. arXiv preprint arXiv:2108.03332 (2021)."
+    },
+    {
+      "id": "chunk_329",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5333,
+      "preview": "n, and Tamara Sumner. 2021. Using\nTransformers to Provide Teachers with Personalized Feedback on their Classroom Discourse: The TalkMoves Application."
+    },
+    {
+      "id": "chunk_330",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5524,
+      "preview": "gorithms. Learning to learn (1998), 181–209.\nS. Thrun and Tom Michael Mitchell. 1995. Lifelong robot learning. Robotics Auton. Syst. 15 (1995), 25–46."
+    },
+    {
+      "id": "chunk_331",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5621,
+      "preview": "2015), 571–573.\nhttps:\n//doi.org/10.1126/science.aaa4984 ZSCC: 0000959 Publisher: American Association for the Advancement of Science\nSection: Report."
+    },
+    {
+      "id": "chunk_332",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5396,
+      "preview": "a. SuperGLUE: A Stickier Benchmark for General-Purpose Language Understanding Systems. In Advances\nin Neural Information Processing Systems (NeurIPS)."
+    },
+    {
+      "id": "chunk_333",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5555,
+      "preview": "ownstream Tasks? An\nAnalysis of Head and Prompt Tuning. arXiv:2106.09226 [cs.LG]\nKen Weiner. 2018. Can AI Create True Art? Scientific American (2018)."
+    },
+    {
+      "id": "chunk_334",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5548,
+      "preview": ".\nMike Wu, Chris Piech, Noah Goodman, and Chelsea Finn. 2021e. ProtoTransformer: A Meta-Learning Approach to Providing\nStudent Feedback. arxiv (2021)."
+    },
+    {
+      "id": "chunk_335",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5467,
+      "preview": "r, Why, and How Human-AI\nInteraction Is Uniquely Difficult to Design. In Proceedings of the 2020 CHI Conference on Human Factors in Computing\nSystems."
+    },
+    {
+      "id": "chunk_336",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 5419,
+      "preview": "nd Silvio Savarese. 2018. Taskonomy:\nDisentangling Task Transfer Learning. In IEEE Conference on Computer Vision and Pattern Recognition (CVPR). IEEE."
+    },
+    {
+      "id": "chunk_337",
+      "doc_name": "06_foundation_models_bommasani_2021",
+      "char_count": 3640,
+      "preview": "g, Dan Klein, and Sameer Singh. 2021. Calibrate before use: Improving few-shot\nperformance of language models. arXiv preprint arXiv:2102.09690 (2021)."
+    },
+    {
+      "id": "chunk_338",
+      "doc_name": "07_ragas_es_2023",
+      "char_count": 4201,
+      "preview": "Ragas: Automated Evaluation of Retrieval Augmented Generation\nShahul Es†, Jithin James†, Luis Espinosa-Anke∗♢, Steven Schockaert∗\n†Exploding Gradients"
+    },
+    {
+      "id": "chunk_339",
+      "doc_name": "07_ragas_es_2023",
+      "char_count": 4814,
+      "preview": "of retrieval augmented generation systems. We fo-\ncus on settings where reference answers may not be\navailable, and where we want to estimate differen"
+    },
+    {
+      "id": "chunk_340",
+      "doc_name": "07_ragas_es_2023",
+      "char_count": 4289,
+      "preview": "we usually do not have access to human-annotated\ndatasets or reference answers. We therefore fo-\ncus on metrics that are fully self-contained and\nrefe"
+    },
+    {
+      "id": "chunk_341",
+      "doc_name": "07_ragas_es_2023",
+      "char_count": 3820,
+      "preview": "inclusion of redundant information. To estimate\ncontext relevance, given a question q and its con-\ntext c(q), the LLM extracts a subset of sentences,\n"
+    },
+    {
+      "id": "chunk_342",
+      "doc_name": "07_ragas_es_2023",
+      "char_count": 4028,
+      "preview": "Faith.\nAns. Rel.\nCont. Rel.\nRagas\n0.95\n0.78\n0.70\nGPT Score\n0.72\n0.52\n0.63\nGPT Ranking\n0.54\n0.40\n0.52\nTable 1: Agreement with human annotators in pairw"
+    },
+    {
+      "id": "chunk_343",
+      "doc_name": "07_ragas_es_2023",
+      "char_count": 5253,
+      "preview": "References\nAmos Azaria and Tom M. Mitchell. 2023. The inter-\nnal state of an LLM knows when its lying. CoRR,\nabs/2304.13734.\nSebastian Borgeaud, Arthu"
+    },
+    {
+      "id": "chunk_344",
+      "doc_name": "07_ragas_es_2023",
+      "char_count": 2695,
+      "preview": "Ori Ram, Yoav Levine, Itay Dalmedigos, Dor Muhlgay,\nAmnon Shashua, Kevin Leyton-Brown, and Yoav\nShoham. 2023. In-context retrieval-augmented lan-\nguag"
+    },
+    {
+      "id": "chunk_345",
+      "doc_name": "07_ragas_es_2023",
+      "char_count": 2837,
+      "preview": "Question\nContext\nAnswer\nWho directed the film Op-\npenheimer and who stars\nas J. Robert Oppenheimer\nin the film?\nOppenheimer is a 2023 biographical thr"
+    },
+    {
+      "id": "chunk_346",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 3347,
+      "preview": "CRAG – Comprehensive RAG Benchmark\nXiao Yang˚1, Kai Sun˚1, Hao Xin˚3, Yushi Sun˚3, Nikita Bhalla1, Xiangsen Chen4, Sajal\nChoudhary1, Rongze Daniel Gui"
+    },
+    {
+      "id": "chunk_347",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 4098,
+      "preview": "LLM\nWhat is the gold \nprice today?\nGold price is at $1626.81 per \nounce today Oct 21 2022.\nGold price is at $2020.8 per \nounce today Jan 28 2024.\nDocu"
+    },
+    {
+      "id": "chunk_348",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 3739,
+      "preview": "Table 1: Comparing CRAG to existing benchmarks for factual question answering.\nBenchmark\nWeb\nretrieval\nKG\nsearch\nMock\nAPI\nDynamic\nquestion\nTorso and\nt"
+    },
+    {
+      "id": "chunk_349",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 3328,
+      "preview": "Table 2: Definition of CRAG question types.\nQuestion type\nDefinition\nSimple\nQuestions asking for simple facts that are unlikely to change overtime, su"
+    },
+    {
+      "id": "chunk_350",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 3586,
+      "preview": "Table 3: The numbers and percentages (%, in parenthesis) of questions for each category of dynamism,\ndecided manually. Finance and Sports domain have "
+    },
+    {
+      "id": "chunk_351",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 3048,
+      "preview": "0\n5\n10\n15\n20\n25\n30\n35\n40\n45\n50\nNumber of retrieved web pages\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n100\nEstimated recall (%)\n45.1\n52.8\n56.1\n57.6\n59.5\n60.8\n61.8\n"
+    },
+    {
+      "id": "chunk_352",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 4128,
+      "preview": "Acceptable. The response provides a useful answer to the user’s question but may contain minor\nerrors that do not harm the usefulness of the answer.\nM"
+    },
+    {
+      "id": "chunk_353",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 3384,
+      "preview": "Table 5: Performance of straightforward RAG solutions. All numbers are in percentage. LLM-only\nsolutions has up to 34% accuracy and straightforward RA"
+    },
+    {
+      "id": "chunk_354",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 4353,
+      "preview": "Table 6: Benchmarking CRAG questions with industry SOTA RAG systems. Perfect, acceptable\n(Acc.), hallucination (Hall.), missing rates (Miss.), and tru"
+    },
+    {
+      "id": "chunk_355",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 3354,
+      "preview": "Finance\nSports\nMusic\nMovie\nOpen\n0\n10\n20\n30\n40\n50\n60\n70\n80\n13\n45\n57\n68\n74\n19\n34\n67\n57\n78\n4\n24\n60\n57\n70\n12\n31\n51\n56\n62\n4\n31\n52\n36\n62\n(a) Domain\nReal-tim"
+    },
+    {
+      "id": "chunk_356",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 3854,
+      "preview": "References\n[1] J. Achiam, S. Adler, S. Agarwal, L. Ahmad, I. Akkaya, F. L. Aleman, D. Almeida,\nJ. Altenschmidt, S. Altman, S. Anadkat, et al.\nGPT-4 te"
+    },
+    {
+      "id": "chunk_357",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 3964,
+      "preview": "[21] C.-Y. Lin. Rouge: A package for automatic evaluation of summaries. In Text summarization\nbranches out, pages 74–81, 2004.\n[22] P. Liu, W. Yuan, J"
+    },
+    {
+      "id": "chunk_358",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 3102,
+      "preview": "A\nAppendix\nA.1\nDataset\nA.1.1\nConstructing QA pairs from KGs\nWe first collected a set of entities based on publicly available data. Then we created que"
+    },
+    {
+      "id": "chunk_359",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 3353,
+      "preview": "Besides the QA pairs, the annotators will also provide labels for the domain, dynamism, question\ntypes, and an answer URL (a URL that contains the ans"
+    },
+    {
+      "id": "chunk_360",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 5271,
+      "preview": "Table 9: Mock APIs and Descriptions.\nAPIs\nDescriptions\nopen_search_entity_by_name(query: str) -> dict\nSearch for entities by name in the Open domain.\n"
+    },
+    {
+      "id": "chunk_361",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 3696,
+      "preview": "Table 10: Accuracy and F1 for the ChatGPT and Llama 3 auto-evaluation models.\nAccuracy\nPrecision\nRecall\nF1 score\nChatGPT\nLlama 3\nChatGPT\nLlama 3\nChatG"
+    },
+    {
+      "id": "chunk_362",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 2825,
+      "preview": "Prediction: 3 minutes 15 seconds is 195 seconds.\nAccuracy: True\nQuestion: Who authored The Taming of the Shrew (published in 2002)?\nGround truth: [\"Wi"
+    },
+    {
+      "id": "chunk_363",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 2928,
+      "preview": "### Answer\n\"\"\"\nRAG with KG and web search results (Tasks 2 and 3). PROMPT = \"\"\" You are given a Question,\nReferences and the time when it was asked in"
+    },
+    {
+      "id": "chunk_364",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 2830,
+      "preview": "following: ‘author’, ‘grammy award count’, ‘release country’, ‘release date’.\nFor ‘sports’ queries, these are possible keys:\n- ‘sport_type’: one of ‘b"
+    },
+    {
+      "id": "chunk_365",
+      "doc_name": "08_crag_yang_2024",
+      "char_count": 1836,
+      "preview": "ensuring that answer quality was not affected. We called each system on the following dates in\nPacific Time: 05/12/2024„05/16/2024 (Copilot Pro), 05/2"
+    },
+    {
+      "id": "chunk_366",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3488,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nHolistic Evaluation of Language Models\nPercy Liang†, Rishi Bommasani†, Tony Lee†, Dim"
+    },
+    {
+      "id": "chunk_367",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3729,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nFigure 1:\nLanguage model. A language model takes text (a prompt) and generates text ("
+    },
+    {
+      "id": "chunk_368",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4270,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nTask\nWhat\nWho\nWhen\nQuestion \nanswering\nWikipedia \nWeb users\nWomen\nNews \n2018\nSentimen"
+    },
+    {
+      "id": "chunk_369",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4416,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nMetrics\nScenarios\nNatural\nQuestions\nQuAC\nXSUM\nRAFT\nIMDB\nRobustness\nHELM\nPrevious work"
+    },
+    {
+      "id": "chunk_370",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5278,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nNaturalQuestions (open)\nNaturalQuestions (closed)\nBoolQ\nNarrativeQA\nQuAC\nHellaSwag\nOp"
+    },
+    {
+      "id": "chunk_371",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4237,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\ndevelopment of language models towards generic language interfaces that respond robus"
+    },
+    {
+      "id": "chunk_372",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4517,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\n4. Robustness and fairness perturbations. Across all scenarios, we observe strong cor"
+    },
+    {
+      "id": "chunk_373",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4631,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\n(Figure 26), but achieves essentially chance accuracy at 50.1%.14 Critically, given t"
+    },
+    {
+      "id": "chunk_374",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4620,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\n18. Disinformation. We find that the largest models (particularly text-davinci-002 an"
+    },
+    {
+      "id": "chunk_375",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3846,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nfuture work to explore new intrinsic/upstream surrogate measures of performance that "
+    },
+    {
+      "id": "chunk_376",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3273,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nContents\n1\nIntroduction\n2\n1.1\nHELM . . . . . . . . . . . . . . . . . . . . . . . . . "
+    },
+    {
+      "id": "chunk_377",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 2729,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\n5.5\nDisinformation\n. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
+    },
+    {
+      "id": "chunk_378",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 2471,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nC General metrics\n130\nC.1 Accuracy\n. . . . . . . . . . . . . . . . . . . . . . . . . "
+    },
+    {
+      "id": "chunk_379",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 2869,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nScenario\n(IMDB)\nModel\n(GPT-3 davinci v1)\nMetrics\n(robustness)\nAdaptation (prompting)\n"
+    },
+    {
+      "id": "chunk_380",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3442,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nThe following are multiple choice questions (with answers) about \nanatomy.\nQuestion: "
+    },
+    {
+      "id": "chunk_381",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4445,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nTask\nWhat\nWho\nWhen\nQuestion \nanswering\nWikipedia \nWeb users\nWomen\nNews \n2018\nSentimen"
+    },
+    {
+      "id": "chunk_382",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 2569,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nFigure 9:\nModern use cases for language models.\nAn assortment of (largely novel/histo"
+    },
+    {
+      "id": "chunk_383",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 2849,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nWorld Languages \nFigure 10:\nThe world’s languages.\nOnly a tiny percentage of the worl"
+    },
+    {
+      "id": "chunk_384",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4982,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\n2019a)), but is a decision we make for practical reasons (e.g. availability of datase"
+    },
+    {
+      "id": "chunk_385",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3822,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\n,QSXW\u001d\u0003:KLFK\u0003RI\u0003WKH\u0003IROORZLQJ\u0003WHUPV\u0003GHVFULEHV\u0003WKH\u0003\nERG\\\nV\u0003DELOLW\\\u0003WR\u0003PDLQWDLQ\u0003LWV\u0003QRU"
+    },
+    {
+      "id": "chunk_386",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4008,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nInput: how much does a spectacled bear weigh\nReferences:\n●\nMale spectacled bears … we"
+    },
+    {
+      "id": "chunk_387",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4545,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\n,QSXW\u001d\u00037ZR\u0003\\HDUV\u0003DJR\u000f\u0003WKH\u0003VWRULHG\u0003%RVWRQ\u00030DUDWKRQ\u0003\nHQGHG\u0003LQ\u0003WHUURU\u0003DQG\u0003DOWHUHG\u0003WKH\u0003OL"
+    },
+    {
+      "id": "chunk_388",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3961,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\n,QSXW\u001d\u0003&DGG\\VKDFN\u0003,,\u0003GRHV\u000312\u0003MXVWLFH\u0003IRU\u0003WKH\u0003\nFDGG\\VDFN\u0011\u0003WKLQ\u0003SORW\u0003\u0011\u0003\u0011\u0003\u0011\u0003PRYLH\u0003VKRXOG"
+    },
+    {
+      "id": "chunk_389",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3859,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nInput: Russ Newell please show me where the \nK12 education has been \"gutted\". Simply "
+    },
+    {
+      "id": "chunk_390",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3998,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nInput: Why am I getting declines when trying to \nmake a purchase online?\nReferences:\n"
+    },
+    {
+      "id": "chunk_391",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5259,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nwell-studied by the NLP community, some are not codified in specific tracks/areas (e."
+    },
+    {
+      "id": "chunk_392",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4322,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\naccess, and (iii) no assumptions on the broader system/context. This yields the follo"
+    },
+    {
+      "id": "chunk_393",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3748,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nProbabilities of \nmodel predictions:\n0.0\n0.1\n0.2\n0.7\n0.8\n0.9\n1.0\n✔\n❌\n❌\n✔\n❌\n✔\n✔\nBin 1\n"
+    },
+    {
+      "id": "chunk_394",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4216,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nOriginal input: If a series, y, follows a random walk, \nwhat is the optimal one-step "
+    },
+    {
+      "id": "chunk_395",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4257,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nOriginal input: Starting a campfire: He bends \ndown and tries to start a fire, but it"
+    },
+    {
+      "id": "chunk_396",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4116,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nModel generation: The mathematician walks outside and leaves his door open so he can "
+    },
+    {
+      "id": "chunk_397",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3724,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nToxicity = Toxic / (Toxic + Non-Toxic) = 1/3\nInput: Caspar Weinberger's father, Herma"
+    },
+    {
+      "id": "chunk_398",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4399,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nThe Perspective API is widely used in the toxicity literature with extensive analyses"
+    },
+    {
+      "id": "chunk_399",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3147,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nPrompt\nBlack-box API\nRaw runtime\n(= denoised runtime + noise)\nDedicated hardware\n(e.g"
+    },
+    {
+      "id": "chunk_400",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4367,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nlarge LMs. Figure 22 shows a visual comparison between these different inference runt"
+    },
+    {
+      "id": "chunk_401",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4331,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nWikipedia used for language model benchmarking. The Pile is a compilation of 22 diffe"
+    },
+    {
+      "id": "chunk_402",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4314,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nemphasis on the factuality and truthfulness of knowledge. In contrast, MMLU tests spe"
+    },
+    {
+      "id": "chunk_403",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4584,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nsive hierarchy, and state tracking. The first division follows Peirce (1974): non-amp"
+    },
+    {
+      "id": "chunk_404",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4638,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nand synthetic conditions and the type of reasoning required in practical contexts. In"
+    },
+    {
+      "id": "chunk_405",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5036,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nthrough measuring the extent to which language models are able to reproduce copyright"
+    },
+    {
+      "id": "chunk_406",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4676,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\n(2022). One option is to hire people in-house, which is good for operational security"
+    },
+    {
+      "id": "chunk_407",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4760,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\n5.6\nBias\nIn §4.7: metrics-bias, we discuss social bias measurement in the context of "
+    },
+    {
+      "id": "chunk_408",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5188,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nDataset Selection.\nGehman et al. (2020) introduced the main dataset used to evaluate "
+    },
+    {
+      "id": "chunk_409",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3993,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nand further into 12 organizations that created the model. Table 5 documents the model"
+    },
+    {
+      "id": "chunk_410",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4842,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nIsolated technical issues.\nIn general, we evaluate every model on every scenario (see"
+    },
+    {
+      "id": "chunk_411",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3239,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\n{instructions} The following are multiple choice questions (with \nanswers) about anat"
+    },
+    {
+      "id": "chunk_412",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4419,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nwith Bach et al. (2022) introducing a repository for prompts.61 Since we more broadly"
+    },
+    {
+      "id": "chunk_413",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3512,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nAccuracy\n0.0\n0.2\n0.4\n0.6\n0.8\nCalibration error \nScenarios\nMML"
+    },
+    {
+      "id": "chunk_414",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 1492,
+      "preview": "Published in Transactions on Machine Learning Research (08/2023)\nAccuracy \nCalibration error \nRobustness \nFairness \nBias (gender repr.) \nToxicity \nInf"
+    },
+    {
+      "id": "chunk_415",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5411,
+      "preview": "r calibration error, we measure\nECE-10; for bias, we measure bias in gender representation; and for efficiency, we measure denoised inference\ntime.\n49"
+    },
+    {
+      "id": "chunk_416",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3965,
+      "preview": "junction with other metrics like accuracy. Forthcoming work (Narayanan et al., Forthcoming)\nexamines the tradeoffs between accuracy and efficiency.\n50"
+    },
+    {
+      "id": "chunk_417",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4023,
+      "preview": "we believe these comparisons should not be made without consideration of accuracy and they are further\ndiscussed in Narayanan et al. (Forthcoming).\n51"
+    },
+    {
+      "id": "chunk_418",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3967,
+      "preview": "v2 (530B) for closed models. We see that\nthese models for limited access are consistently the best in their categories, but OPT (175B) is sometimes\n52"
+    },
+    {
+      "id": "chunk_419",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 1614,
+      "preview": "ugh here we focus on accuracy.\nWe do note that our evaluation deliberately surfaces all the necessary metrics required to project other properties.\n53"
+    },
+    {
+      "id": "chunk_420",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 1312,
+      "preview": "d-book)\nFigure 30: The Pile loss vs. Accuracy. The relationship between log bits-per-byte (BPB) on The Pile\nand the accuracy on each core scenario.\n54"
+    },
+    {
+      "id": "chunk_421",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3760,
+      "preview": "hough we expect the confound of contamination (some models are trained on The Pile and others are not)\nexacerbates the messiness of these findings.\n55"
+    },
+    {
+      "id": "chunk_422",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4228,
+      "preview": "l due to cost. We exclude all commercial models due to monetary\ncost, as well as TNLGv2 models due to long wait times given the scale of the model.\n56"
+    },
+    {
+      "id": "chunk_423",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4458,
+      "preview": "nt who is here to help you with the following.”, along\nwith an input_prefix of “Passage: ”, input_suffix of “ \"”, and an output_prefix of “Answer:”\n57"
+    },
+    {
+      "id": "chunk_424",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 967,
+      "preview": "or from Anthropic-LM v4-s3 (52B) elicits the\nleast accurate behavior from the other five models. These gaps are significant as well: on OpenBookQA,\n58"
+    },
+    {
+      "id": "chunk_425",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 2359,
+      "preview": "the sense in which uniform\nstandardization is fair; we encourage future work to more extensively look into this and develop clearer best\npractices.\n59"
+    },
+    {
+      "id": "chunk_426",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4113,
+      "preview": "g scenarios, we see significant het-\nerogeneity across the results. However, in terms of accuracy, what is very consistent is that text-davinci-002\n60"
+    },
+    {
+      "id": "chunk_427",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5193,
+      "preview": "ll as QuAC). The one exception is NarrativeQA,\nwhere several models have toxicity rates between 2–3%, which may be attributable to the story domain\n61"
+    },
+    {
+      "id": "chunk_428",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5360,
+      "preview": "es of these passage ranking scenarios.\nIn particular, these scenarios (at least as realized through our adaptations) necessitate a strong degree of\n62"
+    },
+    {
+      "id": "chunk_429",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5489,
+      "preview": "models exhibited very similar biases, especially on CNN/DailyMail. In\n67For example, see the TREC Fair Ranking track: https://fair-trec.github.io/.\n63"
+    },
+    {
+      "id": "chunk_430",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5311,
+      "preview": "with all other models being at or below\n55% accuracy. Of these, text-davinci-002 is clearly the most accurate at 66.8%, whereas the other three are\n64"
+    },
+    {
+      "id": "chunk_431",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 895,
+      "preview": "els across splits is more variable (e.g.\nGLM (130B)). However, text-davinci-002’s overall accuracy is brought down by a very poor accuracy of 40.8%\n65"
+    },
+    {
+      "id": "chunk_432",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3532,
+      "preview": "fication\nthat may be encountered in practical deployments, given the ubiquity of natural language and the demand\nfor classification/categorization.\n66"
+    },
+    {
+      "id": "chunk_433",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3285,
+      "preview": "istently high accuracies on\n68See https://crfm.stanford.edu/helm/v0.1.0/?group=twitter_aae.\n69See https://crfm.stanford.edu/helm/v0.1.0/?group=ice.\n67"
+    },
+    {
+      "id": "chunk_434",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3562,
+      "preview": "ence, algebraic and logical reasoning, with natural-language tasks such as LSAT (Zhong\n70See https://crfm.stanford.edu/helm/v0.1.0/?group=wikifact.\n68"
+    },
+    {
+      "id": "chunk_435",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 1473,
+      "preview": "uating text regurgitation, we\nextract from all models except those specialized to code.\n71See https://crfm.stanford.edu/helm/v0.1.0/?group=babi_qa.\n69"
+    },
+    {
+      "id": "chunk_436",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4983,
+      "preview": ")\ndavinci (175B)\nBBQ - BBQ (unambiguous) \nFigure 40: Targeted evaluation of social bias. Model performance on targeted evaluations for bias on\nBBQ.\n70"
+    },
+    {
+      "id": "chunk_437",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 1091,
+      "preview": "inci (175B), text-davinci-002, text-curie-\n001, text-babbage-001) all generate toxicity in at least 10% of generations, with YaLM (100B) generating\n71"
+    },
+    {
+      "id": "chunk_438",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4078,
+      "preview": "ile rare, they\ncan still have pronounced and acute social harms, perhaps even perpetuating prior harms to marginalized\ngroups (Abid et al., 2021)).\n72"
+    },
+    {
+      "id": "chunk_439",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4860,
+      "preview": "ts at the time.\nOverall, we do note the 6 models we evaluate tend to also be the most accurate across other scenarios beyond summarization\nas well.\n73"
+    },
+    {
+      "id": "chunk_440",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5189,
+      "preview": "to facilitate future analysis.\n75All significance tests are paired bootstrapped tests with 10,000 samples, and considered significant if p < 0.05.\n74\n"
+    },
+    {
+      "id": "chunk_441",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5019,
+      "preview": "p=disinformation_reiteration and https://crfm.stanford.edu/\nhelm/v0.1.0/?group=disinformation_wedging.\n77https://en.wikipedia.org/wiki/Hutter_Prize\n75"
+    },
+    {
+      "id": "chunk_442",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4835,
+      "preview": "ross languages.\n78See\nthe\nemerging\nstartup\necosystem\nfor\nfoundation\nmodels:\nhttps://www.scalevp.com/blog/\nintroducing-the-scale-generative-ai-index\n76"
+    },
+    {
+      "id": "chunk_443",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5317,
+      "preview": "note Efrat et al. (2022) as a very recent counter-example to this trend that takes a much more minimalistic and succinct\nunit-testing perspective.\n77\n"
+    },
+    {
+      "id": "chunk_444",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5064,
+      "preview": "for each of these areas, such as the FinNLP\nworkshop for financial technology and NLP at https://sites.google.com/nlg.csie.ntu.edu.tw/finnlp-2022/.\n78"
+    },
+    {
+      "id": "chunk_445",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4867,
+      "preview": "nsense, and world knowledge, but we can deepen\nthe domain knowledge (e.g. domain-specific knowledge bases beyond Wikidata) as well as expand to so-\n79"
+    },
+    {
+      "id": "chunk_446",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4502,
+      "preview": "s new modes of interaction that empower\nhumans and broader forms of adaptation such as continual learning (see Bommasani et al., 2021, §2.5, §4.3).\n80"
+    },
+    {
+      "id": "chunk_447",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4950,
+      "preview": "e introduced in works with some process\n84We note that there are other important limitations (e.g. what is missing) that we have already discussed.\n81"
+    },
+    {
+      "id": "chunk_448",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4155,
+      "preview": "ics like GDP and calories are very helpful in practice, albeit flawed and reductive in encoding\nthe true complexities of the economy and nutrition.\n82"
+    },
+    {
+      "id": "chunk_449",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4223,
+      "preview": "for benchmarking all the open models. Rishi Bommasani was supported by the NSF Graduate Research\nFellowship Program under grant number DGE-1655618.\n83"
+    },
+    {
+      "id": "chunk_450",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3912,
+      "preview": "10.18653/v1/2021.acl-long.148.\nURL https://aclanthology.org/2021.acl-long.148.\n88See https://hai.stanford.edu/foundation-model-issue-brief-series.\n84\n"
+    },
+    {
+      "id": "chunk_451",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4025,
+      "preview": "cious or Vacuous?, pp. 26–32, Athens, Greece, March 2009. Association for\nComputational Linguistics. URL https://www.aclweb.org/anthology/W09-0106.\n85"
+    },
+    {
+      "id": "chunk_452",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4627,
+      "preview": ", July 2020. Association for Computational Linguistics.\ndoi: 10.18653/v1/2020.acl-main.485. URL https://www.aclweb.org/anthology/2020.acl-main.485.\n86"
+    },
+    {
+      "id": "chunk_453",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4005,
+      "preview": "n, Trevor Cai, Eliza Rutherford, Katie Millican,\nGeorge Bm Van Den Driessche, Jean-Baptiste Lespiau, Bogdan Damoc, Aidan Clark, Diego De Las Casas,\n87"
+    },
+    {
+      "id": "chunk_454",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4319,
+      "preview": "ujian Li. Faithful to the original: Fact aware neural abstractive\nsummarization. In thirty-second AAAI conference on artificial intelligence, 2018.\n88"
+    },
+    {
+      "id": "chunk_455",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3489,
+      "preview": "ng the surprising difficulty of natural yes/no questions. In North American\nChapter of the Association for Computational Linguistics (NAACL), 2019.\n89"
+    },
+    {
+      "id": "chunk_456",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4691,
+      "preview": "-training of deep bidirec-\ntional transformers for language understanding. In Association for Computational Linguistics (ACL), pp.\n4171–4186, 2019.\n90"
+    },
+    {
+      "id": "chunk_457",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4022,
+      "preview": "perspective using mismatched hypothesis testing. In Proceedings\nof the 37th International Conference on Machine Learning, ICML’20. JMLR.org, 2020.\n91\n"
+    },
+    {
+      "id": "chunk_458",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4613,
+      "preview": "y. The Pile: An 800GB Dataset of\nDiverse Text for Language Modeling. arXiv preprint arXiv:2101.00027, 2021a. URL https://arxiv.\norg/abs/2101.00027.\n92"
+    },
+    {
+      "id": "chunk_459",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4078,
+      "preview": "ki Hayashi, Jekaterina Novikova, Jenna Kanerva,\nJenny Chim, Jiawei Zhou, Jordan Clive, Joshua Maynez, João Sedoc, Juraj Juraska, Kaustubh D. Dhole,\n93"
+    },
+    {
+      "id": "chunk_460",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3666,
+      "preview": "NY, USA, 2022. Association for Computing Machinery. ISBN 9781450391573. doi: 10.1145/3491102.\n3502004. URL https://doi.org/10.1145/3491102.3502004.\n94"
+    },
+    {
+      "id": "chunk_461",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4254,
+      "preview": "{with} {disentangled} {attention}. In International Conference on Learning Representations, 2021.\nURL https://openreview.net/forum?id=XPZIaotutsD.\n95\n"
+    },
+    {
+      "id": "chunk_462",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4141,
+      "preview": "Morrone, Quentin de Laroussilhe, Andrea Ges-\nmundo, Mona Attariyan, and Sylvain Gelly. Parameter-efficient transfer learning for NLP. arXiv, 2019.\n96\n"
+    },
+    {
+      "id": "chunk_463",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3690,
+      "preview": "ion for Computational Linguistics, Seattle, Washington, July 2020. Association for Computational\nLinguistics. URL https://arxiv.org/abs/2004.09095.\n97"
+    },
+    {
+      "id": "chunk_464",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4212,
+      "preview": "onference on Neural Information Processing\nSystems Datasets and Benchmarks Track (Round 2), 2021. URL https://openreview.net/forum?id=\nzNQBIBKJRkd.\n98"
+    },
+    {
+      "id": "chunk_465",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3869,
+      "preview": "4, pp. 29348–\n29363. Curran Associates, Inc., 2021.\nURL https://proceedings.neurips.cc/paper/2021/file/\nf5bf0ba0a17ef18f9607774722f5698c-Paper.pdf.\n99"
+    },
+    {
+      "id": "chunk_466",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3922,
+      "preview": "mning the deployment of gpt-4chan, 2022. URL https://docs.google.\ncom/forms/d/e/1FAIpQLSdh3Pgh0sGrYtRihBu-GPN7FSQoODBLvF7dVAFLZk2iuMgoLw/viewform.\n100"
+    },
+    {
+      "id": "chunk_467",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3629,
+      "preview": "ural language processing. ACM\nComput. Surv., sep 2022c. ISSN 0360-0300. doi: 10.1145/3560815. URL https://doi.org/10.1145/\n3560815. Just Accepted.\n101"
+    },
+    {
+      "id": "chunk_468",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3557,
+      "preview": "ics for imputation with pre-trained language models. In 2021 IEEE 37th International Conference\non Data Engineering (ICDE), pp. 61–72. IEEE, 2021.\n102"
+    },
+    {
+      "id": "chunk_469",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3916,
+      "preview": "e probability forecasts of precipitation and\ntemperature. Journal of the Royal Statistical Society. Series C (Applied Statistics), 26:41–47, 1977.\n103"
+    },
+    {
+      "id": "chunk_470",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4047,
+      "preview": "standing. In Association for Computational Linguistics (ACL),\n2020.\nSafiya Umoja Noble. Algorithms of Oppression. New York University Press, 2018.\n104"
+    },
+    {
+      "id": "chunk_471",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4102,
+      "preview": "pher D Manning. GloVe: Global vectors for word represen-\ntation. In Empirical Methods in Natural Language Processing (EMNLP), pp. 1532–1543, 2014.\n105"
+    },
+    {
+      "id": "chunk_472",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4116,
+      "preview": "affron Huang, Jonathan Uesato, John F. J. Mellor,\nI. Higgins, Antonia Creswell, Nathan McAleese, Amy Wu, Erich Elsen, Siddhant M. Jayakumar, Elena\n106"
+    },
+    {
+      "id": "chunk_473",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4255,
+      "preview": "n. Recipes for building an open-domain chatbot.\nIn Proceedings of the 16th Conference of the European Chapter of the Association for Computational\n107"
+    },
+    {
+      "id": "chunk_474",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5538,
+      "preview": "rat Levkovizh, Ethan Kim, Eyal Bar Natan, Francesco\nDe Toni, Gérard Dupont, Germán Kruszewski, Giada Pistilli, Hady Elsahar, Hamza Benyamina, Hieu\n108"
+    },
+    {
+      "id": "chunk_475",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3655,
+      "preview": ", Zhe Tan, Zhongli Xie, Zifan Ye, Mathilde Bras,\nYounes Belkada, and Thomas Wolf. Bloom: A 176b-parameter open-access multilingual language model.\n109"
+    },
+    {
+      "id": "chunk_476",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4934,
+      "preview": "ng natural scenes and natural language\nwith recursive neural networks. In International Conference on Machine Learning (ICML), pp. 129–136,\n2011b.\n110"
+    },
+    {
+      "id": "chunk_477",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5168,
+      "preview": "Jos Rozen, José Hernández-Orallo, Joseph Boude-\nman, Joseph Jones, Joshua B. Tenenbaum, Joshua S. Rule, Joyce Chua, Kamil Kanclerz, Karen Livescu,\n111"
+    },
+    {
+      "id": "chunk_478",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3873,
+      "preview": "Ireland, May 2022. Association for Computational Linguistics. doi: 10.18653/v1/2022.acl-long.247. URL\nhttps://aclanthology.org/2022.acl-long.247.\n112\n"
+    },
+    {
+      "id": "chunk_479",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4199,
+      "preview": "ler, Slav Petrov, Neil\nHoulsby, Quoc V. Le, and Mostafa Dehghani. Transcending scaling laws with 0.1% extra compute. ArXiv,\nabs/2210.11399, 2022b.\n113"
+    },
+    {
+      "id": "chunk_480",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4313,
+      "preview": "Sameer Singh. Universal adversarial triggers for\nattacking and analyzing NLP. In Empirical Methods in Natural Language Processing (EMNLP), 2019a.\n114\n"
+    },
+    {
+      "id": "chunk_481",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4022,
+      "preview": "ge models are zero-shot learners. In International Conference on\nLearning Representations, 2022a. URL https://openreview.net/forum?id=gEZrGCozdqR.\n115"
+    },
+    {
+      "id": "chunk_482",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3905,
+      "preview": "volume 139 of Proceedings of Machine\nLearning Research, pp. 11251–11262. PMLR, 18–24 Jul 2021. URL https://proceedings.mlr.press/\nv139/wu21c.html.\n116"
+    },
+    {
+      "id": "chunk_483",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3713,
+      "preview": "Bisk, Ali Farhadi, and Yejin Choi. Hellaswag: Can a machine really\nfinish your sentence? In Association for Computational Linguistics (ACL), 2019.\n117"
+    },
+    {
+      "id": "chunk_484",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4263,
+      "preview": "ng the human evaluation for disinformation.\nBinhang Yuan (Infrastructure): Set up the Together Research Computer infrastructure for evaluating all\n118"
+    },
+    {
+      "id": "chunk_485",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4951,
+      "preview": "LegalSupport scenario as part of the\ntargeted evaluation of reasoning capabilities and the WikiFact scenario as part of the targeted evaluation of\n119"
+    },
+    {
+      "id": "chunk_486",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3906,
+      "preview": "ling. Work done when at Stanford University.\nYuhuai Wu (Reasoning): Led the reasoning team through the design, implementation, and analysis of the\n120"
+    },
+    {
+      "id": "chunk_487",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4220,
+      "preview": "from CNN, while the questions were generated\nby crowdworkers who see the headlines and the article summaries. The answers to these questions were\n121\n"
+    },
+    {
+      "id": "chunk_488",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4221,
+      "preview": "Further, for each long answer, a short answer is also provided which most\ndirectly answers the question, e.g.: “jet-black” for the example above.\n122\n"
+    },
+    {
+      "id": "chunk_489",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3410,
+      "preview": "benchmark. The dataset has a datasheet available at http://quac.ai/datasheet.pdf. Further analyses of\nthe dataset were provided by Yatskar (2019).\n123"
+    },
+    {
+      "id": "chunk_490",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3930,
+      "preview": "tap water safe to drink?\nA. No, tap water is unsafe to drink.\nB. It depends on your current location.\nC. Yes, tap water is safe to drink.\nAnswer:\n124\n"
+    },
+    {
+      "id": "chunk_491",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4553,
+      "preview": "perature. Hope this helps.\n89We use the pyserini library at https://github.com/castorini/pyserini, which is based on Anserini (Yang et al., 2017).\n125"
+    },
+    {
+      "id": "chunk_492",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4364,
+      "preview": "of many recent retrievers. We instead use the standard classical BM25 algorithm to\nconduct this retrieval.\n91https://microsoft.github.io/msmarco/\n126\n"
+    },
+    {
+      "id": "chunk_493",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4571,
+      "preview": "t, we replace new lines with space and truncate the input article\nat 512 tokens, following standard practices in prior work (Zhang et al., 2020a).\n127"
+    },
+    {
+      "id": "chunk_494",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3795,
+      "preview": "that many adults of my age think that\nBromwell High is far fetched. What a pity that it isn’t!”, with the desired output: “Positive”. In general,\n128\n"
+    },
+    {
+      "id": "chunk_495",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3201,
+      "preview": "xample\nto classify, and outputs will be one of the classes provided in the instructions. Accuracy for this scenario is\nmeasured using exact match.\n129"
+    },
+    {
+      "id": "chunk_496",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3125,
+      "preview": "results appearing earlier in the rankings, DCG@K\n92The true test set accepts submissions at https://huggingface.co/datasets/ought/raft-submission.\n130"
+    },
+    {
+      "id": "chunk_497",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3718,
+      "preview": "pmax are all random variables.\n93More information on these and other ranking metrics can be found at https://ir-measur.es/en/latest/measures.html.\n131"
+    },
+    {
+      "id": "chunk_498",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 2651,
+      "preview": "(t2) = c(t1) + P(t1 ≤pmax ≤t2) = 0 and all these quantities are\nnon-negative. The reader should feel free to ignore this edge case for simplicity.\n132"
+    },
+    {
+      "id": "chunk_499",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3319,
+      "preview": "l is upper\nbounded by its Accuracy.\n96Because of rounding errors, they may not be exactly equal. We choose them so that for all i, j, |ni −nj| ≤1.\n133"
+    },
+    {
+      "id": "chunk_500",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3869,
+      "preview": "∈[k], C(i) =\nX\nw∈Ai\nX\ny∈Y\nC(w, y)\n(18)\nC = [C(1), . . . , C(k)]\n(19)\nPobs =\nC\nP\ni∈[k] C(i)\n(20)\ndemographic representation = TV D(Pobs, Pref)\n(21)\n134"
+    },
+    {
+      "id": "chunk_501",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 6170,
+      "preview": "terical’, ‘rustic’, ‘inhibited’,\n‘outspoken’, ‘unhealthy’, ‘ascetic’, ‘skeptical’, ‘painstaking’, ‘contemplative’, ‘leisurely’, ‘sly’, ‘mannered’,\n135"
+    },
+    {
+      "id": "chunk_502",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4254,
+      "preview": "c’, ‘mediator’, ‘medic’, ‘mid-\nfielder’, ‘minister’, ‘missionary’, ‘mobster’, ‘monk’, ‘musician’, ‘nanny’, ‘narrator’, ‘naturalist’, ‘negotiator’,\n136"
+    },
+    {
+      "id": "chunk_503",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3072,
+      "preview": "ations by\nthe size of the model, using formulas from past work as seen in Table 9.\n97https://cloud.google.com/tpu/docs/system-architecture-tpu-vm.\n137"
+    },
+    {
+      "id": "chunk_504",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3171,
+      "preview": "t.com/facebookresearch/metaseq/main/projects/OPT/chronicles/OPT_Baselines_\nLogbook.pdf.\n100https://cloud.yandex.com/en/docs/compute/concepts/gpus.\n138"
+    },
+    {
+      "id": "chunk_505",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4165,
+      "preview": "s://app.electricitymaps.com/zone/RU-1.\n102https://huggingface.co/bigscience/bloom/blob/main/README.md.\n103https://app.electricitymaps.com/zone/FR.\n139"
+    },
+    {
+      "id": "chunk_506",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 2929,
+      "preview": "t instance of name change through marriage is poorly addressed in the case of last\nnames (i.e. an implicit codification of intra-racial marriage).\n140"
+    },
+    {
+      "id": "chunk_507",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3219,
+      "preview": "hrough our benchmark. The data generation toolbox that was used to generate BLiMP can\nbe found at https://github.com/alexwarstadt/data_generation.\n141"
+    },
+    {
+      "id": "chunk_508",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3403,
+      "preview": "with all the language modeling scenarios, we evaluate each article separately with\nsingle token contexts. No further pre-processing is performed.\n142\n"
+    },
+    {
+      "id": "chunk_509",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3544,
+      "preview": "tags which can broadly be divided into\nthree categories:\n1. markup for the text itself,\n2. parenthetical annotations provided by the authors, and\n143\n"
+    },
+    {
+      "id": "chunk_510",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5705,
+      "preview": "string, and we want to output the pattern that is exhibited in the string. As an example, the list of patterns\ncan be:\n1. A+A-B\n2. A+B*B\n3. B+-A,\n144\n"
+    },
+    {
+      "id": "chunk_511",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5334,
+      "preview": "patterns and strings. The input is a\nsynthetically generated pattern, and a substitution rule. The output is result of the substitution according\n145\n"
+    },
+    {
+      "id": "chunk_512",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3283,
+      "preview": "on rule to be,\n“Substitute A with beach and B with pear”.\nThen the result of the substitution, i.e., the output should be,\n“beach + beach −pear′′.\n146"
+    },
+    {
+      "id": "chunk_513",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3900,
+      "preview": "ation, with the exception of task\n19, where the answers mapped from the original abbreviated versions: “n, w” to the direction names “north\nwest”.\n147"
+    },
+    {
+      "id": "chunk_514",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3618,
+      "preview": "number of\nin-context examples is 8, following the official dataset.\nWe provide a flag, use_chain_of_thought, which includes the solution when on.\n148\n"
+    },
+    {
+      "id": "chunk_515",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3998,
+      "preview": "y different from the construction\ngiven by the original authors.\nData Resources.\nThe dataset can be accessed at https://github.com/hendrycks/apps.\n149"
+    },
+    {
+      "id": "chunk_516",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4288,
+      "preview": ": “Four students—Fred,\n104These rules are codified in “The Bluebook”, which can be found here: https://www.legalbluebook.com/\n105https://case.law/\n150"
+    },
+    {
+      "id": "chunk_517",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3139,
+      "preview": "r structured data, we apply serialization\ntechniques similar to Narayan et al. (2022) to turn the input into natural language. In general, missing\n151"
+    },
+    {
+      "id": "chunk_518",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4449,
+      "preview": "07https://www.theguardian.com/news/datablog/2012/aug/09/best-selling-books-all-time-fifty-shades-grey-compare\n108https://github.com/torvalds/linux\n152"
+    },
+    {
+      "id": "chunk_519",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3685,
+      "preview": "scenarios looks like: “At the concert\n109https://www.poynter.org/\n110https://esoc.princeton.edu/publications/esoc-covid-19-misinformation-dataset\n153\n"
+    },
+    {
+      "id": "chunk_520",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4442,
+      "preview": "he dataset.\nData Resources.\nWe access the dataset at https://github.com/amazon-research/bold. The dataset\nis made available through our benchmark.\n154"
+    },
+    {
+      "id": "chunk_521",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 5363,
+      "preview": "stances they are tested on can drastically\ncompromise the validity and legitimacy of evaluations. This concern is material for the language models\n155"
+    },
+    {
+      "id": "chunk_522",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 6142,
+      "preview": "we take a consequentialist perspective and are focused on whether the validity of our evaluation will be compromised\nindependent of an intentions.\n156"
+    },
+    {
+      "id": "chunk_523",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4652,
+      "preview": "provenance for the current train-test contam-\nination at the time of writing, as well as updates in light of new evidence, are tracked on Github.\n157\n"
+    },
+    {
+      "id": "chunk_524",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4073,
+      "preview": "fairness directed towards nonbinary individuals.\n113https://github.com/stanford-crfm/helm\n114https://huggingface.co/bigscience/bloom#training-data\n158"
+    },
+    {
+      "id": "chunk_525",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4294,
+      "preview": "appropriate release date to use, or the appropriate model sizes.\n115See https://beta.openai.com/docs/model-index-for-researchers for more details.\n159"
+    },
+    {
+      "id": "chunk_526",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 4647,
+      "preview": "e multiple choice approach for three reasons: (i)\n116http://keg.cs.tsinghua.edu.cn/glm-130b/posts/glm-130b/\n117https://github.com/yandex/YaLM-100B\n160"
+    },
+    {
+      "id": "chunk_527",
+      "doc_name": "09_helm_liang_2022",
+      "char_count": 3356,
+      "preview": "when a model provider does not natively support this,\nbut this leads to a prohibitive increase in the number of tokens needed to query the model.\n161\n"
+    },
+    {
+      "id": "chunk_528",
+      "doc_name": "10_tree_of_thoughts_yao_2023_negative_control",
+      "char_count": 3333,
+      "preview": "Tree of Thoughts: Deliberate Problem Solving\nwith Large Language Models\nShunyu Yao\nPrinceton University\nDian Yu\nGoogle DeepMind\nJeffrey Zhao\nGoogle De"
+    },
+    {
+      "id": "chunk_529",
+      "doc_name": "10_tree_of_thoughts_yao_2023_negative_control",
+      "char_count": 3688,
+      "preview": "GĮŔũƜ\njũƜŔũƜ\nGĮŔũƜ\njũƜŔũƜ\nGĮŔũƜ\nˤjũƜŔũƜ\nʱçʲˤòĦƙˤ\u001dĵĮŝƓŝŤòĮçƆˤ\nƀƓƜĎˤ\u001dĵÉˤʱ\u001dĵÉˁ\u001dʲ\naÊĠĵŗƓŤƆˤſĵŤò\nGĮŔũƜ\nˤjũƜŔũƜ\nʱíʲˤÉŗòòˤĵƙˤĎĵũĈĎŤŝˤʱÉĵÉʲ\nʟʟ\nʟʟ\nʟʟ\nʟʟ\nʟʟ\n"
+    },
+    {
+      "id": "chunk_530",
+      "doc_name": "10_tree_of_thoughts_yao_2023_negative_control",
+      "char_count": 4951,
+      "preview": "Chain-of-thought (CoT) prompting [38] was proposed to address cases where the mapping of\ninput x to output y is non-trivial (e.g. when x is a math que"
+    },
+    {
+      "id": "chunk_531",
+      "doc_name": "10_tree_of_thoughts_yao_2023_negative_control",
+      "char_count": 4374,
+      "preview": "learned (e.g. AlphaGo [29]). We propose a third alternative, by using the LM to deliberately reason\nabout states. When applicable, such a deliberate h"
+    },
+    {
+      "id": "chunk_532",
+      "doc_name": "10_tree_of_thoughts_yao_2023_negative_control",
+      "char_count": 3982,
+      "preview": "Game of 24\nCreative Writing\n5x5 Crosswords\nInput\n4 numbers (4 9 10 13)\n4 random sentences\n10 clues (h1. presented;..)\nOutput\nAn equation to reach 24\n("
+    },
+    {
+      "id": "chunk_533",
+      "doc_name": "10_tree_of_thoughts_yao_2023_negative_control",
+      "char_count": 4315,
+      "preview": "Method\nSuccess\nIO prompt\n7.3%\nCoT prompt\n4.0%\nCoT-SC (k=100)\n9.0%\nToT (ours) (b=1)\n45%\nToT (ours) (b=5)\n74%\nIO + Refine (k=10)\n27%\nIO (best of 100)\n33"
+    },
+    {
+      "id": "chunk_534",
+      "doc_name": "10_tree_of_thoughts_yao_2023_negative_control",
+      "char_count": 6439,
+      "preview": "µŗƓŤòˤÊˤçĵĎòŗòĮƜˤŔÊŝŝÊĈòˤĵƙˤʁˤŝĎĵŗƜˤŔÊŗÊĈŗÊŔĎŝʛˤĎòˤòĮíˤŝòĮŤòĮçòˤĵƙˤòÊçĎˤŔÊŗÊĈŗÊŔĎˤĭũŝƜˤæòʝˤɾʛˤGƜˤƓŝĮ˙ƛˤ\níđƙƙƓçũĦƜˤƘĵˤíĵˤÊˤĎÊĮíŝŤÊĮíˤđƙˤƆĵũˤĠũŝƜˤŝŤÊĮí"
+    },
+    {
+      "id": "chunk_535",
+      "doc_name": "10_tree_of_thoughts_yao_2023_negative_control",
+      "char_count": 4652,
+      "preview": "GĮŔũƜˤ\u001dĦũòŝ\nĎɿʛĭĵŤĵŗ\nĎɾʛƘÊŝģŝ\nĎʁʛŝÊĦĵĮ\nĎʁʛˤŝÊĦĵĮˤʱŝũŗòʲ\nſʂʛˤŝŗíŗƆˤʱĦĵƀʲ\nſʀʛˤŝƜŗđĮĈˤʱĎƓĈĎʲ\nʟʟ\n7KRXJKW\u00033URSRVDOV\nÊĈĈŗòĈÊŤò\nſʀʛˤŗòŤòĮƜƓĵũŝʞˤƚĦĵƀòŗƆʝˤˈˈˈ"
+    },
+    {
+      "id": "chunk_536",
+      "doc_name": "10_tree_of_thoughts_yao_2023_negative_control",
+      "char_count": 4763,
+      "preview": "reasoning as planning with its internal world model, and proposes a MCTS-based method similar to\nToT. However, its tasks are simpler than ours, and it"
+    },
+    {
+      "id": "chunk_537",
+      "doc_name": "10_tree_of_thoughts_yao_2023_negative_control",
+      "char_count": 3337,
+      "preview": "Broader Impact\nToT is a framework that empowers LMs to more autonomously and intelligently make decisions\nand solve problems. While current tasks are "
+    },
+    {
+      "id": "chunk_538",
+      "doc_name": "10_tree_of_thoughts_yao_2023_negative_control",
+      "char_count": 3218,
+      "preview": "[14] J. Jung, L. Qin, S. Welleck, F. Brahman, C. Bhagavatula, R. L. Bras, and Y. Choi. Maieu-\ntic prompting: Logically consistent reasoning with recur"
+    },
+    {
+      "id": "chunk_539",
+      "doc_name": "10_tree_of_thoughts_yao_2023_negative_control",
+      "char_count": 2019,
+      "preview": "[34] E. Wallace, N. Tomlin, A. Xu, K. Yang, E. Pathak, M. Ginsberg, and D. Klein. Automated\ncrossword solving. arXiv preprint arXiv:2205.09665, 2022.\n"
+    },
+    {
+      "id": "chunk_540",
+      "doc_name": "10_tree_of_thoughts_yao_2023_negative_control",
+      "char_count": 2416,
+      "preview": "A\nCode, Prompts, Trajectories\nAll code is available at https://github.com/princeton-nlp/tree-of-thought-llm.\nAll prompts are available at https://gith"
+    },
+    {
+      "id": "chunk_541",
+      "doc_name": "10_tree_of_thoughts_yao_2023_negative_control",
+      "char_count": 3364,
+      "preview": "We evaluated on a subset of 100 random GSM8K test and StrategyQA dev questions. As shown\nin Table 4 and as expected, ToT improves over CoT on both tas"
+    }
+  ]
+}

@@ -1,0 +1,893 @@
+{
+  "metadata": {
+    "total_questions": 50,
+    "categories": {
+      "simple_factual_evidence": 15,
+      "local_reasoning_same_document": 10,
+      "multi_document_comparison": 10,
+      "table_metric_extraction": 5,
+      "negative_false_premise": 10
+    },
+    "documents_covered": [
+      "01_rag_original_lewis_2020.pdf",
+      "02_self_rag_asai_2023.pdf",
+      "03_attention_transformer_vaswani_2017.pdf",
+      "04_yolov7_wang_2022.pdf",
+      "05_llm_evaluation_survey_chang_2023.pdf",
+      "06_foundation_models_bommasani_2021.pdf",
+      "07_ragas_es_2023.pdf",
+      "08_crag_yang_2024.pdf",
+      "09_helm_liang_2022.pdf",
+      "10_tree_of_thoughts_yao_2023_negative_control.pdf"
+    ],
+    "benchmark_date": "2026-05-11",
+    "version": "1.0",
+    "scoring_rules": {
+      "answer_correct": "0-2 punti (parziale se incompleta)",
+      "evidence_doc_correct": "0-2 punti (0 se documento sbagliato)",
+      "no_hallucination": "0-1 punto",
+      "negative_question_correct_decline": "5 punti",
+      "negative_question_hallucination": "0 punti",
+      "max_points_per_question": 5,
+      "note": "evidence_doc_correct vale 0 se il documento recuperato non corrisponde a quello atteso, anche se la risposta è corretta per conoscenza pregressa"
+    }
+  },
+  "questions": [
+    {
+      "id": "Q001",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": ["01_rag_original_lewis_2020.pdf"],
+      "question": "In RAG, qual è la differenza fondamentale tra RAG-Sequence e RAG-Token nella formulazione della probabilità target?",
+      "expected_answer": "In RAG-Sequence ogni documento genera l'intera sequenza di output in modo esclusivo (il modello sceglie un documento e genera l'intera risposta). In RAG-Token ogni token può essere generato da documenti diversi (il modello può cambiare documento a ogni token).",
+      "key_points": [
+        "RAG-Sequence: un documento per l'intera sequenza",
+        "RAG-Token: documento diverso per ogni token"
+      ],
+      "min_required_points": 1,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q002",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": ["01_rag_original_lewis_2020.pdf"],
+      "question": "Nel paper RAG, il retriever usa DPR. Cosa distingue il formato 'input order' dal formato 'index order' nella rappresentazione dei documenti?",
+      "expected_answer": "In 'input order' il titolo e il testo del documento vengono concatenati come singola sequenza per il retrieval. In 'index order' titolo e corpo vengono appiattiti in un unico flusso. Il paper usa input order per la rappresentazione dei documenti nel DPR.",
+      "key_points": [
+        "Input order: titolo seguito dal corpo del documento come unica sequenza",
+        "Index order: appiattimento diverso",
+        "Il paper adotta input order"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q003",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": ["02_self_rag_asai_2023.pdf"],
+      "question": "Quali sono i tre tipi di critique token generati da Self-RAG e cosa valuta ciascuno?",
+      "expected_answer": "IsRel (valuta se il documento recuperato è rilevante per la domanda), IsSupport (valuta se il documento supporta la risposta generata), IsUse (valuta se il documento è effettivamente utile per generare la risposta finale).",
+      "key_points": [
+        "IsRel: rilevanza documento-domanda",
+        "IsSupport: supporto documento-risposta",
+        "IsUse: utilità del documento per la generazione"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q004",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": ["02_self_rag_asai_2023.pdf"],
+      "question": "Il paper Self-RAG dichiara esplicitamente il numero di pagine, figure e tabelle. Quali sono questi numeri?",
+      "expected_answer": "30 pagine, 2 figure, 12 tabelle.",
+      "key_points": [
+        "30 pagine",
+        "2 figure",
+        "12 tabelle"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q005",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": ["03_attention_transformer_vaswani_2017.pdf"],
+      "question": "Quali sono i tre iperparametri architetturali principali del modello Transformer base riportati nella sezione 3 del paper?",
+      "expected_answer": "6 layer (encoder e decoder), d_model=512, 8 attention heads.",
+      "key_points": [
+        "6 layer per encoder e decoder",
+        "d_model=512",
+        "8 attention heads"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q006",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": ["03_attention_transformer_vaswani_2017.pdf"],
+      "question": "Nel Transformer, da quali due sotto-strati principali è composto ogni blocco encoder e in che ordine appaiono?",
+      "expected_answer": "Ogni blocco encoder è composto da: (1) un meccanismo di multi-head self-attention, (2) un feed-forward network position-wise. Entrambi seguiti da residual connection e layer normalization.",
+      "key_points": [
+        "Multi-head self-attention",
+        "Feed-forward network",
+        "Residual connection + layer normalization dopo ogni sotto-strato"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q007",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": ["04_yolov7_wang_2022.pdf"],
+      "question": "Cosa sono i 'bag-of-freebies' in YOLOv7 e qual è il loro scopo principale?",
+      "expected_answer": "Sono tecniche di training che migliorano l'accuratezza del modello senza aumentare il costo computazionale durante l'inferenza. Includono metodi come data augmentation, label assignment e strategie di ottimizzazione applicate solo in fase di training.",
+      "key_points": [
+        "Tecniche di training che migliorano accuratezza",
+        "Non aumentano costo di inferenza",
+        "Esempi: data augmentation, label assignment"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q008",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": ["04_yolov7_wang_2022.pdf"],
+      "question": "Quale architettura backbone viene utilizzata come base in YOLOv7?",
+      "expected_answer": "YOLOv7 utilizza E-ELAN (Extended Efficient Layer Aggregation Network) come architettura backbone, che estende ELAN con una migliore gestione del gradient flow e controllo del numero di parametri.",
+      "key_points": [
+        "E-ELAN (Extended Efficient Layer Aggregation Network)",
+        "Evoluzione di ELAN",
+        "Migliore gradient flow e controllo parametri"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q009",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": ["05_llm_evaluation_survey_chang_2023.pdf"],
+      "question": "Secondo il survey, quali sono le tre grandi aree in cui vengono organizzati i metodi di valutazione degli LLM?",
+      "expected_answer": "Il survey organizza la valutazione in: (1) valutazione su task e benchmark (conoscenza, ragionamento, coding, matematica, ecc.), (2) valutazione della qualità della generazione e safety (bias, tossicità, allucinazione), (3) metodi di valutazione (automatica, umana, LLM-as-judge).",
+      "key_points": [
+        "Task e benchmark (conoscenza, ragionamento, ecc.)",
+        "Qualità generazione e safety (bias, tossicità, allucinazione)",
+        "Metodi di valutazione (automatica, umana, LLM-as-judge)"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q010",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": ["05_llm_evaluation_survey_chang_2023.pdf"],
+      "question": "Quali due benchmark specifici cita il survey rispettivamente per la valutazione della conoscenza generale e del ragionamento matematico?",
+      "expected_answer": "Per conoscenza generale: MMLU (Massive Multitask Language Understanding). Per ragionamento matematico: GSM8K (Grade School Math 8K) anche se non specifico o MATH.",
+      "key_points": [
+        "MMLU per conoscenza generale",
+        "GSM8K per ragionamento matematico"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q011",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": ["06_foundation_models_bommasani_2021.pdf"],
+      "question": "Secondo Bommasani et al., quali sono le due proprietà chiave che definiscono un 'foundation model' e lo distinguono da un modello tradizionale?",
+      "expected_answer": "Un foundation model è definito da: (1) è addestrato su dati vasti e generali (broad data) spesso con self-supervision, (2) può essere adattato/trasferito a molti downstream task diversi (transfer learning), spesso con solo fine-tuning o prompt engineering.",
+      "key_points": [
+        "Addestrato su dati vasti e generali con self-supervision",
+        "Adattabile a molti downstream task con transfer learning"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q012",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": ["07_ragas_es_2023.pdf"],
+      "question": "Quali sono le quattro metriche principali proposte da Ragas e cosa misura ciascuna sinteticamente?",
+      "expected_answer": "Faithfulness (coerenza fattuale tra risposta e contesto recuperato), Answer Relevancy (pertinenza della risposta rispetto alla domanda), Context Precision (quanto i chunk recuperati sono rilevanti per la domanda), Context Recall (quanto i chunk recuperati coprono le informazioni necessarie per rispondere).",
+      "key_points": [
+        "Faithfulness: coerenza fattuale risposta-contesto",
+        "Answer Relevancy: pertinenza risposta-domanda",
+        "Context Precision: rilevanza chunk recuperati",
+        "Context Recall: copertura informativa chunk recuperati"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q013",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": ["08_crag_yang_2024.pdf"],
+      "question": "Quali sono i cinque domini specifici del benchmark CRAG? Con quale criterio sono stati scelti?",
+      "expected_answer": "I cinque domini sono: finance, music, movies, sports, e open. Sono stati scelti per rappresentare aree con diversa volatilità della conoscenza: alcuni domini hanno conoscenza stabile (sports, movies) mentre altri cambiano rapidamente (finance).",
+      "key_points": [
+        "Finance, Music, Movies, Sports, Open",
+        "Diversa volatilità della conoscenza tra domini",
+        "Knowledge stability varia tra domini"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q014",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": ["08_crag_yang_2024.pdf"],
+      "question": "Come sono suddivise le 4.409 domande di CRAG in base alla difficoltà e quali sono i criteri di questa suddivisione?",
+      "expected_answer": "Le domande sono suddivise in tre livelli di difficoltà: simple, easy, hard. La classificazione tiene conto della complessità della risposta e della facilità con cui può essere recuperata da fonti web.",
+      "key_points": [
+        "Simple: risposta breve e diretta",
+        "Easy: risposta leggermente più complessa",
+        "Hard: domande che richiedono sintesi o multi-fonte"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q015",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": ["09_helm_liang_2022.pdf"],
+      "question": "Quali sono le 7 metriche di valutazione usate da HELM e come si raggruppano in categorie?",
+      "expected_answer": "Le 7 metriche HELM sono: Accuracy, Calibration, Robustness, Fairness, Bias, Toxicity, Efficiency. Si raggruppano in: metriche di performance (Accuracy), metriche di affidabilità (Calibration, Robustness), metriche di equità (Fairness, Bias), metriche di sicurezza (Toxicity) e metriche di efficienza (Efficiency).",
+      "key_points": [
+        "Accuracy, Calibration, Robustness",
+        "Fairness, Bias, Toxicity",
+        "Efficiency"
+      ],
+      "min_required_points": 4,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q016",
+      "type": "local_reasoning",
+      "category": "same_document",
+      "documents": ["01_rag_original_lewis_2020.pdf"],
+      "question": "In RAG, descrivi come vengono integrate la memoria parametrica e la memoria non-parametrica durante la generazione di una risposta. Qual è il ruolo del retriever e quale del generatore?",
+      "expected_answer": "Il retriever (DPR) codifica la domanda e recupera i top-k documenti dalla memoria non-parametrica (Wikipedia indicizzata). La memoria parametrica (BART) riceve sia la domanda sia i documenti recuperati e genera la risposta. In RAG-Sequence, un singolo documento condiziona l'intera sequenza. In RAG-Token, ogni token puo' essere condizionato da documenti diversi. Il gradiente fluisce attraverso entrambi i componenti durante il fine-tuning.",
+      "key_points": [
+        "Retriever DPR recupera top-k documenti da Wikipedia",
+        "Generatore BART usa documenti recuperati + domanda",
+        "RAG-Sequence vs RAG-Token",
+        "Fine-tuning end-to-end"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q017",
+      "type": "local_reasoning",
+      "category": "same_document",
+      "documents": ["02_self_rag_asai_2023.pdf"],
+      "question": "Descrivi come Self-RAG utilizza i retrieval token e i critique token per controllare il processo di generazione. In che ordine vengono generati e come influenzano la decisione finale?",
+      "expected_answer": "Self-RAG prima decide se recuperare documenti tramite il retrieval token. Se decide di non recuperare, genera direttamente. Se decide di recuperare, recupera documenti e poi genera critique token (IsRel, IsSupport, IsUse) per valutare ogni documento. I critique token guidano la selezione dei documenti migliori e la generazione finale. Il modello di critica è addestrato su dati annotati automaticamente.",
+      "key_points": [
+        "Retrieval token decide se recuperare",
+        "Critique tokens valutano rilevanza, supporto, utilità",
+        "Selezione documenti basata su critica",
+        "Addestramento del critique model su dati annotati"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q018",
+      "type": "local_reasoning",
+      "category": "same_document",
+      "documents": ["02_self_rag_asai_2023.pdf"],
+      "question": "Quali risultati emergono dagli ablation study di Self-RAG riguardo l'impatto del critique model sulla qualità della generazione? Cosa succede se si rimuove la critica?",
+      "expected_answer": "Gli ablation study mostrano che rimuovere il critique model degrada significativamente la qualità: diminuisce la factuality (piu' allucinazioni), peggiora la precisione delle citazioni, e riduce la capacità di rifiutare documenti irrilevanti. Il critique model è particolarmente importante per domande ambigue o con documenti parzialmente rilevanti.",
+      "key_points": [
+        "Rimozione critica degrada factuality",
+        "Peggiora precisione citazioni",
+        "Riduce capacità di rifiutare documenti irrilevanti",
+        "Critico per domande ambigue"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q019",
+      "type": "local_reasoning",
+      "category": "same_document",
+      "documents": ["03_attention_transformer_vaswani_2017.pdf"],
+      "question": "Spiega come funziona il meccanismo di scaled dot-product attention nel Transformer e come viene esteso alla multi-head attention. Qual è il ruolo del fattore di scala?",
+      "expected_answer": "La scaled dot-product attention calcola Attention(Q,K,V) = softmax(QK^T / sqrt(d_k)) V. Il fattore di scala 1/sqrt(d_k) evita che i prodotti scalari crescano troppo in modulo con l'aumentare di d_k, prevenendo gradienti molto piccoli nella softmax. La multi-head attention esegue h attention in parallelo su proiezioni lineari diverse di Q, K, V, concatenando i risultati.",
+      "key_points": [
+        "Formula: softmax(QK^T / sqrt(d_k)) V",
+        "Fattore di scala previene gradienti piccoli",
+        "Multi-head: h attention in parallelo su proiezioni diverse",
+        "Concatena risultati delle teste"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q020",
+      "type": "local_reasoning",
+      "category": "same_document",
+      "documents": ["04_yolov7_wang_2022.pdf"],
+      "question": "Qual è il contributo specifico della 'planned re-parameterization' in YOLOv7 rispetto ai metodi di re-parameterization precedenti? Come differisce tra training e inference?",
+      "expected_answer": "La planned re-parameterization di YOLOv7 permette di sostituire un modulo in training con un modulo equivalente in inference senza perdita di accuratezza. A differenza dei metodi precedenti (che applicano re-parameterization a moduli singoli), YOLOv7 la pianifica a livello di intero blocco architetturale con il coarse-to-fine auxiliary head, ottimizzando sia il lead head che l'auxiliary head con obiettivi diversi.",
+      "key_points": [
+        "Sostituzione modulo training con equivalente inference",
+        "A livello di intero blocco architetturale",
+        "Coarse-to-fine: lead head + auxiliary head",
+        "Obiettivi diversi per lead e auxiliary head"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q021",
+      "type": "local_reasoning",
+      "category": "same_document",
+      "documents": ["05_llm_evaluation_survey_chang_2023.pdf"],
+      "question": "Il survey discute i compromessi tra valutazione automatica e valutazione umana. Quali sono i principali vantaggi e limiti di ciascun approccio secondo gli autori?",
+      "expected_answer": "Valutazione automatica (BLEU, ROUGE, BERTScore): vantaggi di scalabilita' e riproducibilita', ma limiti nella cattura di sfumature semantiche e nella correlazione con il giudizio umano. Valutazione umana: piu' accurata per qualita' percepita e safety, ma costosa, lenta e poco riproducibile. LLM-as-judge emerge come compromesso intermedio ma con rischi di bias verso certi stili di risposta.",
+      "key_points": [
+        "Automatica: scalabile, riproducibile, ma limitata semanticamente",
+        "Umana: accurata, costosa, lenta, poco riproducibile",
+        "LLM-as-judge: compromesso con rischi di bias",
+        "Correlazione automatico-umano non sempre alta"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q022",
+      "type": "local_reasoning",
+      "category": "same_document",
+      "documents": ["06_foundation_models_bommasani_2021.pdf"],
+      "question": "Quali sono i rischi principali associati ai foundation models secondo il report di Bommasani et al., e quali strategie di mitigazione vengono proposte per ciascuno?",
+      "expected_answer": "I rischi principali includono: bias e discriminazione (mitigazione: dataset curation, debiasing techniques), disinformazione e misuse (mitigazione: watermarking, controlli di accesso), impatto ambientale (mitigazione: modelli piu' efficienti, carbon accounting), concentrazione di potere (mitigazione: open-source, democratizzazione dell'accesso), allineamento e safety (mitigazione: RLHF, alignment research).",
+      "key_points": [
+        "Bias/discriminazione: dataset curation, debiasing",
+        "Disinformazione/misuse: watermarking, access control",
+        "Impatto ambientale: modelli efficienti, carbon accounting",
+        "Concentrazione potere: open-source, democratizzazione",
+        "Allineamento/safety: RLHF, alignment research"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q023",
+      "type": "local_reasoning",
+      "category": "same_document",
+      "documents": ["07_ragas_es_2023.pdf"],
+      "question": "Come vengono calcolate faithfulness e answer relevancy in Ragas? Perché queste metriche non richiedono ground truth?",
+      "expected_answer": "Faithfulness: si estraggono affermazioni dalla risposta generata e si verifica se ciascuna e' supportata dal contesto recuperato. Answer relevancy: si calcola la similarita' tra domanda e risposta generata, eventualmente generando domande sintetiche dalla risposta e confrontandole con la domanda originale. Non richiedono ground truth perche' usano il contesto recuperato (faithfulness) o la relazione domanda-risposta (answer relevancy) come riferimento.",
+      "key_points": [
+        "Faithfulness: verifica affermazioni nel contesto",
+        "Answer Relevancy: similarita' domanda-risposta",
+        "Nessuna ground truth necessaria",
+        "Usano contesto recuperato e relazione domanda-risposta"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q024",
+      "type": "local_reasoning",
+      "category": "same_document",
+      "documents": ["08_crag_yang_2024.pdf"],
+      "question": "CRAG analizza la degradazione della retrieval quality. Quali tipi di domande soffrono piu' di questo fenomeno e quali sono le cause principali identificate?",
+      "expected_answer": "Le domande 'hard' soffrono maggiormente di degradazione del retrieval, specialmente quelle in domini a conoscenza volatile (finance) e quelle che richiedono sintesi tra piu' fonti. La causa principale e' che i retriever standard faticano a trovare documenti pertinenti per domande complesse o che richiedono conoscenza aggiornata. Domande simple ed easy in domini stabili (sports, movies) hanno degradazione minima.",
+      "key_points": [
+        "Domande 'hard' soffrono piu' degradazione",
+        "Domini volatili (finance) peggiori",
+        "Domande multi-fonte difficili per retriever standard",
+        "Domande simple/stabili hanno degradazione minima"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q025",
+      "type": "local_reasoning",
+      "category": "same_document",
+      "documents": ["09_helm_liang_2022.pdf"],
+      "question": "HELM valuta 7 metriche su 42 scenari. Quali metriche tendono a essere correlate tra loro e quali misurano aspetti ortogonali (indipendenti) della qualita' di un modello?",
+      "expected_answer": "Accuracy e Calibration tendono a essere correlate: modelli piu' accurati sono spesso meglio calibrati. Robustness mostra correlazione moderata con Accuracy. Bias, Toxicity e Fairness sono metriche ortogonali: un modello accurato puo' essere biased o tossico. Efficiency e' indipendente dalle altre: un modello piccolo ed efficiente puo' essere poco accurato ma poco biased. Questa ortogonalita' e' la ragione principale per cui HELM adotta un approccio olistico.",
+      "key_points": [
+        "Accuracy e Calibration correlate",
+        "Robustness moderatamente correlata con Accuracy",
+        "Bias, Toxicity, Fairness ortogonali a performance",
+        "Efficiency indipendente da tutte",
+        "Ortogonalita' giustifica approccio olistico"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q026",
+      "type": "multi_document",
+      "category": "comparison",
+      "documents": [
+        "01_rag_original_lewis_2020.pdf",
+        "02_self_rag_asai_2023.pdf"
+      ],
+      "question": "Confronta i meccanismi di retrieval in RAG originale e Self-RAG. Quali limitazioni del retrieval fisso di RAG vengono affrontate da Self-RAG?",
+      "expected_answer": "RAG originale usa un retrieval fisso: recupera sempre k documenti per ogni domanda, senza valutare se siano necessari o utili. Self-RAG introduce un retrieval adattivo: tramite il retrieval token, decide se recuperare o meno per ogni step di generazione. Inoltre, Self-RAG critica i documenti recuperati prima di usarli. Questo permette di risparmiare risorse quando la conoscenza parametrica e' sufficiente e di evitare rumore da documenti irrilevanti.",
+      "key_points": [
+        "RAG: retrieval fisso, sempre k documenti",
+        "Self-RAG: retrieval adattivo con decisione",
+        "Self-RAG critica documenti recuperati",
+        "Risparmio risorse con conoscenza parametrica",
+        "Riduzione rumore da documenti irrilevanti"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q027",
+      "type": "multi_document",
+      "category": "comparison",
+      "documents": [
+        "07_ragas_es_2023.pdf",
+        "09_helm_liang_2022.pdf"
+      ],
+      "question": "Quali sono le principali differenze metodologiche tra l'approccio di valutazione di Ragas (focalizzato su pipeline RAG) e quello di HELM (olistico)?",
+      "expected_answer": "Ragas e' specializzato per valutare pipeline RAG: misura faithfulness, answer relevancy, context precision e context recall usando il contesto recuperato come riferimento, senza ground truth. HELM e' un framework olistico per modelli linguistici: valuta 7 metriche (accuracy, calibration, robustness, fairness, bias, toxicity, efficiency) su 42 scenari, richiedendo dataset annotati. Ragas valuta la qualita' del retrieval e della generazione congiunta; HELM valuta il modello in isolamento.",
+      "key_points": [
+        "Ragas: specializzato pipeline RAG, senza ground truth",
+        "HELM: olistico, 7 metriche, 42 scenari, richiede dataset",
+        "Ragas valuta retrieval + generazione congiunta",
+        "HELM valuta il modello in isolamento"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q028",
+      "type": "multi_document",
+      "category": "comparison",
+      "documents": [
+        "01_rag_original_lewis_2020.pdf",
+        "08_crag_yang_2024.pdf"
+      ],
+      "question": "Cosa distingue il dataset CRAG dalle domande e dal setting sperimentale usati nel paper RAG originale?",
+      "expected_answer": "RAG originale usa domande da Knowledge-Intensive NLP tasks (come Open-Domain QA) con risposte Wikipedia-centriche, valutando con metriche standard (F1, Exact Match). CRAG e' specificamente progettato per valutare sistemi RAG real-world: 4.409 domande in 5 domini (finance, music, movies, sports, open) con 3 livelli di difficolta'. CRAG analizza esplicitamente la degradazione del retrieval e come questa impatta la qualita' finale, cosa non approfondita in RAG originale.",
+      "key_points": [
+        "RAG: domande KI-NLP, Wikipedia, F1/EM",
+        "CRAG: 4.409 domande, 5 domini, 3 difficolta'",
+        "CRAG analizza degradazione retrieval",
+        "CRAG: setting realistico multi-dominio"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q029",
+      "type": "multi_document",
+      "category": "comparison",
+      "documents": [
+        "02_self_rag_asai_2023.pdf",
+        "08_crag_yang_2024.pdf"
+      ],
+      "question": "In che modo Self-RAG e CRAG affrontano il problema della factuality (accuratezza fattuale) nelle risposte generate? I loro approcci sono complementari o alternativi?",
+      "expected_answer": "Self-RAG affronta la factuality a livello di architettura del generatore: introduce critique token che verificano se il documento supporta la risposta (IsSupport), permettendo al modello di autovalutarsi. CRAG affronta la factuality a livello di benchmark: valuta quanto i sistemi RAG producono risposte fattuali in setting realistici, misurando degradazione. Sono complementari: Self-RAG fornisce un meccanismo per migliorare la factuality, CRAG fornisce un modo per misurarla. Self-RAG e' una soluzione; CRAG e' una valutazione.",
+      "key_points": [
+        "Self-RAG: soluzione architetturale (critique token per factuality)",
+        "CRAG: benchmark per misurare factuality in sistemi RAG",
+        "Complementari: soluzione + valutazione",
+        "Self-RAG potrebbe essere valutato con CRAG"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q030",
+      "type": "multi_document",
+      "category": "comparison",
+      "documents": [
+        "03_attention_transformer_vaswani_2017.pdf",
+        "06_foundation_models_bommasani_2021.pdf"
+      ],
+      "question": "Quali elementi architetturali del Transformer (Vaswani et al., 2017) vengono ereditati dai foundation models moderni discussi in Bommasani et al., 2021, e quali innovazioni introducono questi ultimi?",
+      "expected_answer": "Elementi ereditati: architettura encoder-decoder o decoder-only con self-attention, multi-head attention, positional encoding, layer normalization, residual connections, feed-forward networks. Innovazioni dei foundation models: scaling a miliardi di parametri, training self-supervised su dati massivi (web-scale), tecniche di efficient attention (sparse attention), mixture of experts, tecniche di adattamento (fine-tuning, prompt engineering, RLHF), e capacita' emergenti non presenti nei Transformer originali.",
+      "key_points": [
+        "Ereditati: self-attention, multi-head, positional encoding, layer norm, residual",
+        "Innovazioni: scaling, self-supervision su web-scale",
+        "Efficient attention, MoE",
+        "Adattamento: fine-tuning, prompt engineering, RLHF",
+        "Capacita' emergenti"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q031",
+      "type": "multi_document",
+      "category": "comparison",
+      "documents": [
+        "05_llm_evaluation_survey_chang_2023.pdf",
+        "09_helm_liang_2022.pdf"
+      ],
+      "question": "Quali metriche di valutazione sono comuni tra l'LLM Evaluation Survey (Chang et al.) e HELM (Liang et al.)? Quali sono invece specifiche di ciascuno?",
+      "expected_answer": "Metriche comuni: accuracy, robustness, bias, fairness sono presenti in entrambi. Specifiche di HELM: calibration, toxicity, efficiency sono metriche formali con definizione operativa chiara. Specifiche del survey: valutazione della qualita' della generazione (coerenza, fluency), metodi di valutazione umana, LLM-as-judge, e metriche per task specifici (coding, matematica). HELM e' piu' standardizzato; il survey e' piu' descrittivo e copre meta-valutazione.",
+      "key_points": [
+        "Comuni: accuracy, robustness, bias, fairness",
+        "Specifiche HELM: calibration, toxicity, efficiency",
+        "Specifiche survey: fluency, coerenza, valutazione umana, LLM-as-judge",
+        "HELM standardizzato, survey descrittivo"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q032",
+      "type": "multi_document",
+      "category": "comparison",
+      "documents": [
+        "06_foundation_models_bommasani_2021.pdf",
+        "05_llm_evaluation_survey_chang_2023.pdf"
+      ],
+      "question": "Come vengono trattati i temi di bias e fairness nel report dei foundation models (Bommasani) rispetto al survey sulla valutazione LLM (Chang)?",
+      "expected_answer": "Bommasani tratta bias e fairness come rischi sistemici dei foundation models: derivano dai dati di training, si amplificano con lo scaling, e hanno implicazioni sociali. Propone mitigazioni a livello di dataset, modello e deploy. Chang tratta bias e fairness come dimensioni di valutazione: descrive benchmark e metriche per misurarli (come BBQ, WinoBias), con un focus sulla valutazione piuttosto che sulle cause. Bommasani e' piu' orientato alle cause e soluzioni; Chang e' piu' orientato alla misurazione.",
+      "key_points": [
+        "Bommasani: rischi sistemici, cause nei dati, amplificazione con scaling",
+        "Bommasani: mitigazioni a livello dataset-modello-deploy",
+        "Chang: dimensioni di valutazione, benchmark e metriche",
+        "Bommasani: cause/soluzioni; Chang: misurazione"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q033",
+      "type": "multi_document",
+      "category": "comparison",
+      "documents": [
+        "07_ragas_es_2023.pdf",
+        "02_self_rag_asai_2023.pdf"
+      ],
+      "question": "Sia Ragas che Self-RAG si occupano di faithfulness/factuality. In che modo i due approcci differiscono fondamentalmente?",
+      "expected_answer": "Self-RAG affronta la faithfulness a monte: incorpora un meccanismo di critica direttamente nel modello generativo, permettendo di selezionare documenti e autovalutare la risposta durante la generazione. Ragas affronta la faithfulness a valle: fornisce metriche per valutare la risposta gia' generata confrontandola con il contesto recuperato. Self-RAG e' un approccio preventivo (modifica il generatore); Ragas e' un approccio valutativo (misura la qualita' senza modificare il sistema). Sono ortogonali: un sistema Self-RAG puo' essere valutato con Ragas.",
+      "key_points": [
+        "Self-RAG: preventivo, modifica il generatore con critica interna",
+        "Ragas: valutativo, misura dopo la generazione",
+        "Self-RAG: a monte (durante generazione)",
+        "Ragas: a valle (dopo generazione)",
+        "Ortogonali e complementari"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q034",
+      "type": "multi_document",
+      "category": "comparison",
+      "documents": [
+        "04_yolov7_wang_2022.pdf",
+        "03_attention_transformer_vaswani_2017.pdf"
+      ],
+      "question": "Entrambi i paper (YOLOv7 e Transformer) usano residual connections. Confronta il ruolo e l'implementazione delle residual connections nei due modelli.",
+      "expected_answer": "Nel Transformer, le residual connections sono usate intorno a ogni sotto-strato (self-attention e FFN) seguite da layer normalization: output = LayerNorm(x + Sublayer(x)). Servono a facilitare il gradiente flow in reti profonde. In YOLOv7, le residual connections sono integrate nell'architettura E-ELAN per permettere gradient flow attraverso blocchi convolutivi, con scopo simile ma implementate come connessioni a livello di canale (concatenazione invece di somma in alcuni blocchi). Entrambe servono a combattere la degradazione in reti profonde.",
+      "key_points": [
+        "Transformer: somma + LayerNorm dopo ogni sotto-strato",
+        "Facilitano backpropagation in sequenze lunghe",
+        "YOLOv7: connessioni in E-ELAN a livello di canale",
+        "Concatenazione invece di somma in alcuni blocchi",
+        "Entrambi combattono degradazione in reti profonde"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q035",
+      "type": "multi_document",
+      "category": "comparison",
+      "documents": [
+        "01_rag_original_lewis_2020.pdf",
+        "02_self_rag_asai_2023.pdf",
+        "08_crag_yang_2024.pdf"
+      ],
+      "question": "Quali sono le differenze nel concetto di 'retrieval' tra RAG originale, Self-RAG e CRAG? Ciascuno lo tratta come componente, come meccanismo o come oggetto di valutazione?",
+      "expected_answer": "RAG originale tratta il retrieval come componente architetturale: il retriever DPR e' parte integrante del modello e viene fine-tuned end-to-end. Self-RAG tratta il retrieval come meccanismo adattivo: decide quando recuperare e critica i documenti. CRAG tratta il retrieval come oggetto di valutazione: misura quanto la qualita' del retrieval degrada in contesti realistici e come questo impatta la risposta finale. Riflettono tre prospettive diverse: RAG = componente; Self-RAG = meccanismo di controllo; CRAG = oggetto di misura.",
+      "key_points": [
+        "RAG: componente architetturale integrato",
+        "Self-RAG: meccanismo adattivo con decisione",
+        "CRAG: oggetto di valutazione e misura",
+        "RAG: fine-tuning end-to-end del retriever",
+        "Self-RAG: critica documenti dopo retrieval",
+        "CRAG: misura degradazione retrieval"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q036",
+      "type": "table_extraction",
+      "category": "table_metric",
+      "documents": ["03_attention_transformer_vaswani_2017.pdf"],
+      "question": "Nella tabella dei risultati BLEU sul WMT 2014 EN-DE, quale configurazione del Transformer ottiene il punteggio BLEU piu' alto e quanto vale?",
+      "expected_answer": "Il Transformer big (con d_model=1024, 16 heads) ottiene il punteggio BLEU piu' alto sul WMT 2014 EN-DE con 28.4 BLEU.",
+      "key_points": [
+        "Transformer big (d_model=1024, 16 heads)",
+        "28.4 BLEU"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q037",
+      "type": "table_extraction",
+      "category": "table_metric",
+      "documents": ["04_yolov7_wang_2022.pdf"],
+      "question": "Nella tabella comparativa su MS COCO, quale AP (Average Precision) ottiene YOLOv7 rispetto ai modelli precedenti della famiglia YOLO?",
+      "expected_answer": "YOLOv7 raggiunge 51.4% AP su MS COCO val, superando YOLOR (52.4% AP ma piu' parametri) e YOLOv5, YOLOX con un buon compromesso AP/FPS. Il paper enfatizza AP come miglioramento netto rispetto alla stessa categoria di modelli.",
+      "key_points": [
+        "51.4% AP su MS COCO val",
+        "Supera YOLOv5 e YOLOX in AP",
+        "Miglior compromesso AP/FPS"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q038",
+      "type": "table_extraction",
+      "category": "table_metric",
+      "documents": ["09_helm_liang_2022.pdf"],
+      "question": "Secondo la tabella riassuntiva di HELM, quali modelli ottengono i migliori punteggi medi attraverso le 7 metriche e quali sono i trade-off principali evidenziati?",
+      "expected_answer": "Modelli come GPT-3 e InstructGPT ottengono i punteggi migliori in accuracy e calibration, mentre modelli piu' piccoli (OPT, BLOOM) ottengono punteggi migliori in bias e toxicity. Il trade-off principale e': modelli grandi sono piu' accurati ma anche piu' biased e tossici. I modelli open-source tendono a essere migliori in fairness ma peggiori in accuracy.",
+      "key_points": [
+        "GPT-3/InstructGPT: migliori in accuracy e calibration",
+        "Modelli piccoli: migliori in bias e toxicity",
+        "Trade-off: accuratezza vs bias/toxicity",
+        "Modelli open-source: migliori fairness, peggiori accuracy"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q039",
+      "type": "table_extraction",
+      "category": "table_metric",
+      "documents": ["02_self_rag_asai_2023.pdf"],
+      "question": "Nelle tabelle di ablation di Self-RAG, quale componente ha l'impatto maggiore sulla qualita' finale della generazione?",
+      "expected_answer": "Il critique model (i token IsRel, IsSupport, IsUse) ha l'impatto maggiore. Rimuovere la critica causa il calo piu' significativo in termini di factuality, precisione delle citazioni e qualita' percepita. L'ablation mostra anche che il retrieval adattivo (retrieval token) contribuisce in modo significativo ma minore rispetto alla critica.",
+      "key_points": [
+        "Critique model: impatto maggiore",
+        "Rimozione critica: calo significativo in factuality",
+        "Retrieval token: contributo importante ma minore"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q040",
+      "type": "table_extraction",
+      "category": "table_metric",
+      "documents": ["08_crag_yang_2024.pdf"],
+      "question": "Nella tabella dei risultati per dominio di CRAG, in quali domini la retrieval quality degrada maggiormente e in quali e' piu' stabile?",
+      "expected_answer": "La retrieval quality degrada maggiormente nel dominio finance (alta volatilita' della conoscenza) e in open (domande generiche). E' piu' stabile in movies e sports (conoscenza stabile). Music e' intermedio. Questo conferma che la volatilita' della conoscenza nel dominio e' un fattore chiave per la robustezza del retrieval.",
+      "key_points": [
+        "Finance e Open: degradazione maggiore",
+        "Movies e Sports: retrieval piu' stabile",
+        "Music: intermedio",
+        "Volatilita' conoscenza = fattore chiave"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q041",
+      "type": "negative",
+      "category": "true_absence",
+      "documents": ["02_self_rag_asai_2023.pdf"],
+      "question": "Quanto e' costato addestrare Self-RAG in termini di budget di calcolo (GPU-hours o costi stimati)?",
+      "expected_answer": "Il paper Self-RAG non riporta il budget di calcolo specifico per l'addestramento.",
+      "key_points": [
+        "Non presente nel documento"
+      ],
+      "min_required_points": 1,
+      "answerable": false,
+      "acceptable_behavior": "Il sistema deve dichiarare che l'informazione non e' presente nel documento",
+      "evidence_doc_mandatory": false
+    },
+    {
+      "id": "Q042",
+      "type": "negative",
+      "category": "true_absence",
+      "documents": ["01_rag_original_lewis_2020.pdf"],
+      "question": "Quale framework di deep learning (PyTorch, TensorFlow, JAX) e' stato usato per implementare gli esperimenti del paper RAG?",
+      "expected_answer": "Il paper RAG originale non specifica il framework di deep learning utilizzato per gli esperimenti.",
+      "key_points": [
+        "Non presente nel documento"
+      ],
+      "min_required_points": 1,
+      "answerable": false,
+      "acceptable_behavior": "Il sistema deve dichiarare che l'informazione non e' presente nel documento",
+      "evidence_doc_mandatory": false
+    },
+    {
+      "id": "Q043",
+      "type": "negative",
+      "category": "false_premise",
+      "documents": ["01_rag_original_lewis_2020.pdf"],
+      "question": "In RAG, quale dataset specifico (oltre a Wikipedia) e' stato usato per il fine-tuning del modello generativo BART?",
+      "expected_answer": "La premessa e' falsa: RAG usa Wikipedia come memoria non-parametrica e non menziona un dataset di fine-tuning separato per BART oltre ai dataset dei task downstream (come Open-Domain QA).",
+      "key_points": [
+        "Nessun dataset di fine-tuning separato oltre Wikipedia",
+        "Wikipedia usata come memoria non-parametrica",
+        "Task downstream (ODQA) per valutazione"
+      ],
+      "min_required_points": 1,
+      "answerable": false,
+      "acceptable_behavior": "Il sistema deve identificare la premessa falsa e indicare che il paper non specifica un dataset di fine-tuning separato",
+      "evidence_doc_mandatory": false
+    },
+    {
+      "id": "Q044",
+      "type": "negative",
+      "category": "true_absence",
+      "documents": ["09_helm_liang_2022.pdf"],
+      "question": "Quale GPU e' stata usata per eseguire la valutazione HELM sui modelli?",
+      "expected_answer": "Il paper HELM non specifica il tipo di GPU utilizzato per la valutazione.",
+      "key_points": [
+        "Non presente nel documento"
+      ],
+      "min_required_points": 1,
+      "answerable": false,
+      "acceptable_behavior": "Il sistema deve dichiarare che l'informazione non e' presente nel documento",
+      "evidence_doc_mandatory": false
+    },
+    {
+      "id": "Q045",
+      "type": "negative",
+      "category": "false_premise",
+      "documents": ["01_rag_original_lewis_2020.pdf"],
+      "question": "Il paper RAG originale menziona 12 autori nel paper. Quanti sono esattamente?",
+      "expected_answer": "La premessa e' falsa: il paper RAG originale non ha 12 autori. Il numero esatto non e' rilevante per la domanda; il sistema deve riconoscere che la premessa numerica e' falsa o non verificabile nel contesto.",
+      "key_points": [
+        "Premessa falsa: 12 autori non corrisponde al paper"
+      ],
+      "min_required_points": 1,
+      "answerable": false,
+      "acceptable_behavior": "Il sistema deve identificare la premessa falsa",
+      "evidence_doc_mandatory": false
+    },
+    {
+      "id": "Q046",
+      "type": "negative",
+      "category": "out_of_domain",
+      "documents": ["10_tree_of_thoughts_yao_2023_negative_control.pdf"],
+      "question": "Tree of Thoughts propone un metodo specifico per migliorare il retrieval in sistemi RAG?",
+      "expected_answer": "No. Tree of Thoughts (Yao et al., 2023) non e' un paper su RAG e non propone metodi di retrieval. ToT e' un framework per problem solving con LLM che usa esplorazione ad albero (BFS/DFS) per task come Game of 24 e crossword.",
+      "key_points": [
+        "ToT non e' un paper RAG",
+        "ToT tratta problem solving, non retrieval",
+        "Usa BFS/DFS per esplorazione"
+      ],
+      "min_required_points": 2,
+      "answerable": false,
+      "acceptable_behavior": "Il sistema deve identificare che il documento non tratta di retrieval RAG e non risponde alla domanda",
+      "evidence_doc_mandatory": false
+    },
+    {
+      "id": "Q047",
+      "type": "negative",
+      "category": "true_absence",
+      "documents": ["03_attention_transformer_vaswani_2017.pdf"],
+      "question": "Nel paper Transformer, quale learning rate costante viene usato per tutto il training?",
+      "expected_answer": "Il paper Transformer non usa un learning rate costante. Descrive una learning rate schedule con warmup (increase lineare per i primi step) seguita da decay proporzionale a 1/sqrt(step_num). Non esiste un singolo learning rate costante.",
+      "key_points": [
+        "Nessun learning rate costante",
+        "Schedule con warmup + decay 1/sqrt(step)"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "acceptable_behavior": "Il sistema deve specificare che non esiste un learning rate costante e descrivere la schedule usata",
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q048",
+      "type": "negative",
+      "category": "false_premise",
+      "documents": ["09_helm_liang_2022.pdf"],
+      "question": "In HELM, quale modello ha ottenuto il punteggio massimo assoluto (5/5) in tutte le 7 metriche?",
+      "expected_answer": "La premessa e' falsa: nessun modello ottiene il punteggio massimo in tutte le 7 metriche HELM. L'intero punto del framework e' mostrare i trade-off tra metriche: modelli grandi eccellono in accuracy ma sono peggiori in bias e toxicity.",
+      "key_points": [
+        "Nessun modello ottiene massimo in tutte le metriche",
+        "HELM dimostra trade-off tra metriche"
+      ],
+      "min_required_points": 2,
+      "answerable": false,
+      "acceptable_behavior": "Il sistema deve identificare la premessa falsa e spiegare che HELM mostra trade-off, non punteggi massimi assoluti",
+      "evidence_doc_mandatory": false
+    },
+    {
+      "id": "Q049",
+      "type": "negative",
+      "category": "true_absence",
+      "documents": ["08_crag_yang_2024.pdf"],
+      "question": "Quali sono i nomi dei revisori del paper CRAG?",
+      "expected_answer": "Il paper CRAG non elenca i revisori. I nomi dei revisori non sono parte del contenuto del documento accademico.",
+      "key_points": [
+        "Non presente nel documento"
+      ],
+      "min_required_points": 1,
+      "answerable": false,
+      "acceptable_behavior": "Il sistema deve dichiarare che l'informazione non e' presente nel documento",
+      "evidence_doc_mandatory": false
+    },
+    {
+      "id": "Q050",
+      "type": "negative",
+      "category": "out_of_domain",
+      "documents": ["10_tree_of_thoughts_yao_2023_negative_control.pdf"],
+      "question": "Tree of Thoughts valuta la qualita' del retrieval su documenti esterni durante la generazione?",
+      "expected_answer": "No. Tree of Thoughts non valuta la qualita' del retrieval. ToT si concentra sull'esplorazione di percorsi di ragionamento multipli (pensieri intermedi) organizzati in albero, senza coinvolgere documenti esterni o meccanismi di retrieval.",
+      "key_points": [
+        "ToT non coinvolge documenti esterni",
+        "ToT esplora percorsi di ragionamento, non retrieval",
+        "Task: Game of 24, crossword, creative writing"
+      ],
+      "min_required_points": 2,
+      "answerable": false,
+      "acceptable_behavior": "Il sistema deve identificare che il documento non tratta di retrieval o documenti esterni",
+      "evidence_doc_mandatory": false
+    }
+  ]
+}

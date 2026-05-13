@@ -1,0 +1,32 @@
+[
+  {
+    "question": "Cosa sono i 'bag-of-freebies' in YOLOv7 e qual è il loro scopo principale?"
+  },
+  {
+    "question": "Quali due benchmark specifici cita il survey rispettivamente per la valutazione della conoscenza generale e del ragionamento matematico?"
+  },
+  {
+    "question": "Quali sono i cinque domini specifici del benchmark CRAG? Con quale criterio sono stati scelti?"
+  },
+  {
+    "question": "Quali risultati emergono dagli ablation study di Self-RAG riguardo l'impatto del critique model sulla qualità della generazione? Cosa succede se si rimuove la critica?"
+  },
+  {
+    "question": "In che modo Self-RAG e CRAG affrontano il problema della factuality (accuratezza fattuale) nelle risposte generate? I loro approcci sono complementari o alternativi?"
+  },
+  {
+    "question": "Quali metriche di valutazione sono comuni tra l'LLM Evaluation Survey (Chang et al.) e HELM (Liang et al.)? Quali sono invece specifiche di ciascuno?"
+  },
+  {
+    "question": "Nella tabella dei risultati per dominio di CRAG, in quali domini la retrieval quality degrada maggiormente e in quali e' piu' stabile?"
+  },
+  {
+    "question": "Quanto e' costato addestrare Self-RAG in termini di budget di calcolo (GPU-hours o costi stimati)?"
+  },
+  {
+    "question": "In RAG, quale dataset specifico (oltre a Wikipedia) e' stato usato per il fine-tuning del modello generativo BART?"
+  },
+  {
+    "question": "In HELM, quale modello ha ottenuto il punteggio massimo assoluto (5/5) in tutte le 7 metriche?"
+  }
+]
