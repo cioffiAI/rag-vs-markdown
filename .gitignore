@@ -7,6 +7,11 @@ data/extracted/
 data/processed/
 data/logs/
 data/raw/
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
 reports/*.json
 .DS_Store
 stderr.txt

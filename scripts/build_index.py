@@ -18,9 +18,16 @@ CHUNK_OVERLAP = 150
 COLLECTIONS = {
     "a": {"name": "rag_papers_raw", "desc": "testo grezzo da PDF"},
     "b": {"name": "rag_papers", "desc": "Markdown compilato"},
+    "c": {"name": "rag_papers_md_filtered", "desc": "Markdown filtrato (shallow chunks rimossi)"},
 }
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
+
+
+def informative_text_len(text: str) -> int:
+    stripped = re.sub(r"[#*`|\[\]>\-=\n\r\t ]+", " ", text)
+    stripped = re.sub(r"\s{2,}", " ", stripped)
+    return len(stripped.strip())
 
 
 def smart_chunk_text(text: str, doc_name: str) -> list[dict]:
@@ -104,12 +111,17 @@ def load_pipeline_b() -> list[dict]:
 def main():
     parser = argparse.ArgumentParser(description="Build ChromaDB index")
     parser.add_argument(
-        "--pipeline", choices=["a", "b"], default="b",
-        help="Pipeline A: raw PDF text, Pipeline B: Markdown compilato (default: b)"
+        "--pipeline", choices=["a", "b", "c"], default="b",
+        help="Pipeline A: raw PDF text, Pipeline B: Markdown compilato, Pipeline C: Markdown filtrato (default: b)"
+    )
+    parser.add_argument(
+        "--shallow-threshold", type=int, default=200,
+        help="Pipeline C only: max informative chars for a shallow chunk (default: 200)"
     )
     args = parser.parse_args()
 
     pipeline = args.pipeline
+    shallow_threshold = args.shallow_threshold
     col_info = COLLECTIONS[pipeline]
     print(f"Pipeline {pipeline.upper()} — {col_info['desc']}")
 
@@ -117,6 +129,24 @@ def main():
         all_chunks = load_pipeline_a()
     else:
         all_chunks = load_pipeline_b()
+
+    total_before = len(all_chunks)
+
+    if pipeline == "c":
+        kept = []
+        filtered = 0
+        for c in all_chunks:
+            ilen = informative_text_len(c["text"])
+            c["informative_len"] = ilen
+            if ilen > shallow_threshold:
+                kept.append(c)
+            else:
+                filtered += 1
+        print(f"Pipeline C filter (threshold >{shallow_threshold} informative chars):")
+        print(f"  Total chunks: {total_before}")
+        print(f"  Kept: {len(kept)}")
+        print(f"  Filtered (shallow): {filtered} ({filtered/max(1,total_before)*100:.1f}%)")
+        all_chunks = kept
 
     print(f"\nTotali chunks: {len(all_chunks)}")
     print("Generazione embedding con all-MiniLM-L6-v2...")
@@ -158,17 +188,26 @@ def main():
             documents=documents,
         )
 
+    if pipeline == "c":
+        suffix = f"_t{shallow_threshold}"
+    else:
+        suffix = ""
+    col_suffix = f"{pipeline}{suffix}"
+
     print(f"\nIndice creato: '{collection_name}' con {len(all_chunks)} chunks")
-    metadata_path = CHROMADB_DIR / f"chunks_metadata_{pipeline}.json"
+    metadata_path = CHROMADB_DIR / f"chunks_metadata_{col_suffix}.json"
     with open(metadata_path, "w", encoding="utf-8") as f:
         json.dump({
             "pipeline": pipeline,
+            "shallow_threshold": shallow_threshold if pipeline == "c" else None,
+            "total_before_filter": total_before if pipeline == "c" else None,
             "total_chunks": len(all_chunks),
             "collection": collection_name,
             "chunks": [{
                 "id": f"chunk_{i}",
                 "doc_name": c["doc_name"],
                 "char_count": c["char_count"],
+                "informative_len": c.get("informative_len", c["char_count"]),
                 "preview": c["text"][:150],
             } for i, c in enumerate(all_chunks)]
         }, f, ensure_ascii=False, indent=2)

@@ -32,13 +32,13 @@ llm:
 
 # --- Models ---
 models:
-  - id: qwen3.5-0.8b
-    provider: LM Studio
-    api_url: http://localhost:1234/v1
+  - id: gemma3:4b-cloud
+    provider: Ollama Cloud
+    api_url: http://localhost:11434/v1
     api_type: openai-compatible
     api_key: not-needed
-    size_params: 800M
-    note: Fase 1 baseline
+    size_params: 4B
+    note: Sostituisce Qwen 0.8B — Fase 2 multi-model
 
   - id: nemotron-3-super-free
     provider: OpenCode API
@@ -81,6 +81,15 @@ pipelines:
     file_type: md
     avg_chunk_length: ~3500
 
+  c:
+    name: rag_papers_md_filtered
+    description: Markdown con shallow chunk filter (threshold=200)
+    source_dir: data/processed/
+    file_type: md
+    avg_chunk_length: ~3500
+    filter: informative_len > 200
+    kept_chunks: 544 (from 553)
+
 # --- Benchmark ---
 benchmark:
   documents: 10
@@ -107,7 +116,7 @@ scoring:
 
 # --- Experimental Status ---
 status:
-  pipeline_c: NOT IMPLEMENTED
+  pipeline_c: COMPLETED
   bootstrap: NOT RUN
   permutation_test: NOT RUN
   second_embedder: NOT TESTED

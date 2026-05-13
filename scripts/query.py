@@ -26,6 +26,7 @@ EMBED_MODEL = "all-MiniLM-L6-v2"
 COLLECTIONS = {
     "a": "rag_papers_raw",
     "b": "rag_papers",
+    "c": "rag_papers_md_filtered",
 }
 
 embedder = SentenceTransformer(EMBED_MODEL)
@@ -234,7 +235,7 @@ def answer(question: str, collection, log: bool = True, model: str = "", max_tok
 def main():
     parser = argparse.ArgumentParser(description="Query ChromDB RAG index")
     parser.add_argument("question", nargs="*", help="Domanda da porre")
-    parser.add_argument("--pipeline", choices=["a", "b"], default="b",
+    parser.add_argument("--pipeline", choices=["a", "b", "c"], default="b",
                         help="Pipeline da usare (default: b)")
     parser.add_argument("--file", type=str, help="File JSON con domande multiple")
     parser.add_argument("--tag", type=str, default="", help="Suffisso per il file di log batch")
