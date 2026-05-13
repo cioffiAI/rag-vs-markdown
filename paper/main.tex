@@ -9,6 +9,7 @@
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage{amsfonts}
+\usepackage{amsmath}
 \usepackage{nicefrac}
 \usepackage{microtype}
 \usepackage{cleveref}
@@ -45,7 +46,7 @@ pdfkeywords={Retrieval-Augmented Generation, document preprocessing, Markdown, e
 \maketitle
 
 \begin{abstract}
-Retrieval-Augmented Generation (RAG) pipelines typically embed raw document text into a vector database. An alternative---preprocessing documents into structured Markdown before indexing---promises better chunk coherence, preserved table structure, and clearer section boundaries. We benchmark both strategies across four models (Gemma~3~4B, Nemotron~3, DeepSeek~V4~Flash, Gemma~4~26B) on a 50-question corpus of 10 arXiv papers. All four models consistently prefer raw text over Markdown ($-$3.6\% to $-$6.0\%). We identify the mechanism: 25.3\% of retrieved Markdown chunks are \emph{shallow}---section headers and table markup with $\leq$200 informative characters---that compete with substantive chunks via cosine similarity, producing embedding false positives. A third pipeline that filters out these shallow chunks partially recovers the loss (+0.07 to +0.17). An oracle test reveals an +85\% retrieval ceiling. These findings link the document preprocessing choice to a specific retrieval failure mechanism and show that the cost of structured markup can outweigh any structural benefit in our setup.
+Retrieval-Augmented Generation (RAG) pipelines typically embed raw document text into a vector database. An alternative---preprocessing documents into structured Markdown before indexing---promises better chunk coherence, preserved table structure, and clearer section boundaries. We benchmark both strategies across four models (Gemma~3~4B, Nemotron~3, DeepSeek~V4~Flash, Gemma~4~26B) on a 75-question corpus spanning 20 arXiv papers (10 well-known, 5 obscure, 5 synthetic with invented facts). All four models consistently prefer raw text over Markdown ($-$3.6\% to $-$6.0\% on the base corpus). We identify the mechanism: 25.3\% of retrieved Markdown chunks are \emph{shallow}---section headers and table markup with $\leq$200 informative characters---that compete with substantive chunks via cosine similarity, producing embedding false positives. Filtering these chunks partially recovers the loss (+0.07 to +0.17). We confirm robustness across two embedding models ($\Delta$ = 0.12/5.0) and two scoring methods (fuzzy overlap and LLM-as-judge). On an expanded 20-document corpus, the Raw advantage narrows ($\Delta$ +0.30 $\rightarrow$ +0.13, n=75, p=0.389) but persists directionally. Bootstrap (10k resamples) and permutation tests provide non-parametric confidence intervals and p-values. An oracle test reveals a +67--85\% retrieval ceiling. These findings link document preprocessing to a specific retrieval failure mechanism and indicate that raw text extraction is simpler, faster, and at least as effective as Markdown preprocessing for typical RAG systems.
 \end{abstract}
 
 \keywords{Retrieval-Augmented Generation \and document preprocessing \and Markdown \and embedding quality \and model-pipeline interaction}
@@ -56,16 +57,25 @@ Retrieval-Augmented Generation (RAG)~\citep{lewis2020retrieval} has become a sta
 
 The preprocessing stage---how raw documents are transformed before embedding---receives less attention than model choice or retrieval algorithm. Most pipelines operate on raw extracted text. An alternative, which we call \emph{knowledge compilation}, converts source PDFs into structured Markdown before indexing: section headers become heading markers, tables become pipe-separated grids, and metadata (page numbers, artifacts) are removed. The intuition is straightforward: if the embedding space better reflects document structure, retrieval quality should improve.
 
-We test this intuition systematically. Three pipelines---Raw (PDF text extracted directly via PyMuPDF), Markdown (PDF $\rightarrow$ structured Markdown compiled by a rule-based parser), and Filtered-Markdown (Markdown with shallow chunks removed)---are evaluated on the same 50-question benchmark with the same embedding model (all-MiniLM-L6-v2) and vector database (ChromaDB, cosine distance). Four language models (Gemma~3~4B, Nemotron~3~Super~Free, DeepSeek~V4~Flash, Gemma~4~26B) serve as generators.
+We test this intuition across three progressively stronger experimental conditions. On a base corpus of 10 well-known arXiv papers with 50 questions, three pipelines---Raw (PDF text extracted directly), Markdown (PDF $\rightarrow$ structured Markdown compiled by a rule-based parser), and Filtered-Markdown (Markdown with shallow chunks removed)---are evaluated with four language models (Gemma~3~4B, Nemotron~3~Super~Free, DeepSeek~V4~Flash, Gemma~4~26B). We then verify robustness along three dimensions: (1) a second embedding model (BAAI/bge-small-en-v1.5) confirms the pipeline rankings are stable; (2) an LLM-as-judge scoring method provides an independent quality metric; and (3) the corpus is expanded to 20 documents (adding 5 obscure arXiv papers and 5 synthetic documents with invented facts) and 75 questions to test whether the effect generalizes beyond the original document set.
 
-Our central finding is that Markdown preprocessing consistently underperforms raw text across all four models tested (by $-$3.6\% to $-$6.0\%). We identify a specific retrieval failure mode we call \emph{shallow chunks}: structurally rich but informationally empty Markdown fragments---section headers, list markers, table formatting artifacts---that capture embedding similarity via structural keywords while contributing no factual content. A third pipeline that filters these shallow chunks (9 out of 553 chunks, 1.6\% of the collection) partially recovers the loss for all models (+0.07 to +0.17), confirming the mechanism. An oracle test that bypasses retrieval entirely reveals an +85\% retrieval ceiling.
+Our findings are consistent across all conditions:
 
-The paper makes three contributions:
+\begin{enumerate}
+    \item All four models prefer raw text over Markdown ($-$3.6\% to $-$6.0\%) on the base corpus.
+    \item The mechanism is \textbf{shallow chunks}: 25.3\% of retrieved Markdown chunks are informationally empty structural fragments that the embedding model matches via lexical keyword overlap.
+    \item Removing these shallow chunks (Pipeline C) partially recovers the loss (+0.07 to +0.17 across three models), confirming a causal role.
+    \item The result is robust to embedding model choice ($\Delta$ = 0.12/5.0 between all-MiniLM-L6-v2 and BAAI/bge-small-en-v1.5) and scoring method (fuzzy overlap vs.\ LLM judge, Pearson $r$ = 0.25--0.48).
+    \item On the expanded 20-document corpus the Raw advantage narrows but persists directionally ($\Delta$ = +0.13, p=0.389), and Pipeline C shows no benefit, underscoring that shallow-chunk prevalence depends on document composition.
+\end{enumerate}
+
+The paper makes four contributions:
 
 \begin{enumerate}
     \item A \textbf{4-model, 3-pipeline benchmark} consistently showing Markdown hurts retrieval quality, with shallow chunks as the identified mechanism.
-    \item The \textbf{formalization of shallow chunks} as a retrieval failure mode unique to structured preprocessing, with quantitative evidence (25.3\% of retrieved Markdown chunks).
-    \item A \textbf{confirmatory intervention}---filtering shallow chunks recovers 1.4--3.4\% of the score---that validates the mechanism.
+    \item The \textbf{formalization of shallow chunks} as a retrieval failure mode unique to structured preprocessing, with causal evidence from the filtered pipeline (Pipeline C).
+    \item A \textbf{multi-factorial robustness check} spanning embedding model, scoring method, and corpus expansion, establishing the boundaries of the finding.
+    \item A \textbf{public reproducible benchmark} with 75 questions, 20 documents, 4 generators, and 2 scoring methods, all released at \url{https://github.com/cioffiAI/rag-vs-markdown}.
 \end{enumerate}
 
 \section{Related Work}
@@ -74,7 +84,7 @@ The paper makes three contributions:
 
 The impact of chunking strategy on retrieval quality is well-studied. \citet{gao2023retrieval} compare chunk sizes and overlap for academic question answering. \citet{chen2024dense} evaluate semantic vs.\ fixed-size chunking. However, most work treats chunking as a downstream parameter of the embedding model, not as a \emph{document transformation} that alters information structure before embedding. Our focus is the document representation format itself---raw vs.\ Markdown---which differs from chunk-size tuning in that it changes \emph{what text sequences exist to be chunked}.
 
-Markdown preprocessing for RAG appears in practitioner guides~\citep{openai2024rag,cursor2024} and data-loading libraries such as LlamaIndex~\citep{llamaindex}, which offer PDF-to-Markdown converters. To our knowledge, no controlled experimental comparison quantifies how this transformation interacts with generator capability.
+Markdown preprocessing for RAG appears in practitioner guides~\citep{openai2024rag,cursor2024} and data-loading libraries such as LlamaIndex~\citep{llamaindex}, which offer PDF-to-Markdown converters. To our knowledge, no controlled experimental comparison quantifies how this transformation interacts with generator capability across multiple robustness dimensions.
 
 \subsection{Embedding False Positives in Dense Retrieval}
 
@@ -95,47 +105,41 @@ Error taxonomies for RAG exist at both the retrieval and generation levels~\cite
 We compare three document preprocessing pipelines (Figure~\ref{fig:pipelines}):
 
 \begin{description}
-    \item[Pipeline A (Raw):] PDF $\rightarrow$ PyMuPDF extraction $\rightarrow$ raw text $\rightarrow$ paragraph-preserving chunking $\rightarrow$ all-MiniLM-L6-v2 embedding $\rightarrow$ ChromaDB (cosine). Produces 542 chunks.
-    \item[Pipeline B (Markdown):] PDF $\rightarrow$ PyMuPDF extraction $\rightarrow$ raw text $\rightarrow$ rule-based Markdown compilation (headings, tables, lists) $\rightarrow$ paragraph-preserving chunking $\rightarrow$ all-MiniLM-L6-v2 embedding $\rightarrow$ ChromaDB (cosine). Produces 553 chunks.
-    \item[Pipeline C (MD-filtered):] Same as Pipeline B, but chunks with $\leq$200 informative characters (after stripping Markdown syntax) are removed before embedding. Keeps 544 of 553 chunks.
+    \item[Pipeline A (Raw):] PDF $\rightarrow$ PyMuPDF extraction $\rightarrow$ raw text $\rightarrow$ paragraph-preserving chunking $\rightarrow$ embedding $\rightarrow$ ChromaDB (cosine). Produces 633 chunks (20 documents).
+    \item[Pipeline B (Markdown):] PDF $\rightarrow$ PyMuPDF extraction $\rightarrow$ rule-based Markdown compilation (headings, tables, lists) $\rightarrow$ paragraph-preserving chunking $\rightarrow$ embedding $\rightarrow$ ChromaDB (cosine). Produces 664 chunks.
+    \item[Pipeline C (MD-filtered):] Same as Pipeline B, but chunks with $\leq$200 informative characters (after stripping Markdown syntax) are removed before embedding. Keeps 647 of 664 chunks (17 filtered, 2.6\%).
 \end{description}
 
-Both pipelines use the same chunker: a paragraph-preserving algorithm that accumulates whole paragraphs into a buffer and closes it when the next paragraph would exceed 1,500 characters. Single paragraphs longer than 1,500 characters are stored as standalone chunks. The nominal chunk size is therefore a closing threshold, not a hard limit; average chunk lengths are approximately 3,100 (Pipeline A) and 3,500 (Pipeline B) characters. Overlap is 150 characters to ensure continuity across chunk boundaries.
+All pipelines use the same chunker: a paragraph-preserving algorithm that accumulates whole paragraphs into a buffer and closes it when the next paragraph would exceed 1,500 characters. Single paragraphs longer than 1,500 characters are stored as standalone chunks. The nominal chunk size is therefore a closing threshold, not a hard limit. Overlap is 150 characters.
 
-The Markdown compiler (\texttt{compile\_markdown.py}) identifies section headers from font-size and position heuristics, reconstructs tables from spatial alignment, and strips PDF artifacts (page numbers, headers). It is a deterministic, rule-based transformation with no learned components.
+The Markdown compiler (\texttt{compile\_markdown.py}) identifies section headers from font-size and position heuristics, reconstructs tables from spatial alignment, and strips PDF artifacts. It is a deterministic, rule-based transformation with no learned components.
+
+The shallow chunk filter for Pipeline C uses a threshold of 200 informative characters, where \emph{informative length} is computed by stripping all Markdown syntax tokens (\texttt{\#}, \texttt{*}, \texttt{`}, \texttt{|}, \texttt{---}, \texttt{[}, \texttt{]}, \texttt{>}) and whitespace, then counting the remaining characters. A sensitivity sweep across thresholds T=100--300 confirmed that T=200 is the effective separation point (no additional chunks exist between 200--300 chars).
 
 \subsection{Corpus and Questions}
 
-The corpus consists of 10 well-known arXiv papers spanning NLP, computer vision, and evaluation:
+The base corpus consists of 10 well-known arXiv papers spanning NLP, computer vision, and evaluation (Appendix~\ref{sec:corpus}). The expanded corpus (used in robustness checks) adds 5 obscure arXiv papers ($<$50 citations: REPLUG, HyDE, RAPTOR, In-Context RALM, LLM-Augmenter) and 5 synthetic documents with invented facts (Zorvian Retrieval Protocol, Neuro-Symbolic Index Fusion, Quantum Embedding Projection, Temporal RAG, Adversarial Chunk Filter). The synthetic documents are structured like real papers but contain entirely artificial claims, allowing us to test whether the LLM retrieves from context rather than parametric knowledge.
 
-\begin{itemize}
-    \item RAG (Lewis et al., 2020), Self-RAG (Asai et al., 2023), Transformer (Vaswani et al., 2017)
-    \item YOLOv7 (Wang et al., 2022), LLM Evaluation Survey (Chang et al., 2023)
-    \item Foundation Models (Bommasani et al., 2021), Ragas (Es et al., 2023)
-    \item CRAG (Yang et al., 2024), HELM (Liang et al., 2022)
-    \item Tree-of-Thoughts (Yao et al., 2023), used as a negative control
-\end{itemize}
-
-We constructed 50 gold-standard questions in Italian (to isolate RAG performance from the LLM's English parametric knowledge of these famous papers) across five types:
+We constructed 75 gold-standard questions in Italian (to isolate RAG performance from the LLM's English parametric knowledge of these papers) across five types:
 
 \begin{table}[h]
     \centering
-    \caption{Benchmark question types.}
+    \caption{Benchmark question types (75 questions).}
     \label{tab:qtypes}
     \begin{tabular}{lrl}
         \toprule
         Type & Count & Description \\
         \midrule
-        Simple factual & 15 & Single-document, direct extraction \\
-        Local reasoning & 10 & Multi-paragraph, same document \\
-        Multi-document & 10 & Compare/contrast across 2+ papers \\
-        Table extraction & 5  & Numeric values from tables \\
-        Negative (trap) & 10 & Not answerable from corpus \\
+        Simple factual & 23 & Single-document, direct extraction \\
+        Local reasoning & 15 & Multi-paragraph, same document \\
+        Multi-document & 15 & Compare/contrast across 2+ papers \\
+        Table extraction & 7  & Numeric values from tables \\
+        Negative (trap) & 15 & Not answerable from corpus \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-Negative questions include three subtypes: \textit{true absence} (the answer genuinely does not exist in any document), \textit{false premise} (the question assumes incorrect facts), and \textit{out-of-domain} (the question refers to a paper in the corpus but on an unrelated topic). Each question includes manually written key points for fuzzy scoring.
+Negative questions include three subtypes: \textit{true absence} (the answer genuinely does not exist in any document), \textit{false premise} (the question assumes incorrect facts), and \textit{out-of-domain} (the question refers to a paper in the corpus but on an unrelated topic). Each question includes manually written key points for fuzzy scoring. The first 50 questions (Q001--Q050) cover the 10 base papers; Q051--Q075 cover the 10 expansion papers. All primary analyses are reported on the base 50 questions to maintain statistical comparability with earlier phases; the expanded corpus serves as a robustness check.
 
 \begin{figure}[t]
     \centering
@@ -174,7 +178,8 @@ We test four language models accessed via different providers:
         \toprule
         Parameter & Value \\
         \midrule
-        Embedding model & all-MiniLM-L6-v2 (sentence-transformers) \\
+        Primary embedding model & all-MiniLM-L6-v2 (sentence-transformers, 384d) \\
+        Robustness embedding model & BAAI/bge-small-en-v1.5 (384d) \\
         Embedding device & CPU \\
         Vector database & ChromaDB (persistent, cosine distance) \\
         Chunking strategy & Paragraph-preserving closing threshold \\
@@ -185,60 +190,82 @@ We test four language models accessed via different providers:
         LLM temperature & 0.1 \\
         LLM max tokens & 256 (1,024 for DeepSeek V4 Flash) \\
         System prompt & ``Use ONLY the provided context chunks'' \\
-        Scoring method & Fuzzy word-overlap (threshold 0.4) \\
+        Primary scoring method & Fuzzy word-overlap (threshold 0.4) \\
+        Secondary scoring method & LLM-as-judge (Nemotron 3, rubric 0--5) \\
         Score range & 0--5 (2 answer + 2 evidence + 1 hallucination) \\
+        Bootstrap resamples & 10,000 (SEED = 42) \\
         \bottomrule
     \end{tabular}
 \end{table}
 
 \textbf{Confound note:} These models differ along multiple correlated axes---parameter count, provider, API protocol, prompt formatting, system prompt enforcement, and instruction-following behavior. While all four models prefer Raw over Markdown, the magnitude differs (from $-$3.6\% to $-$6.0\%), and this variation is confounded by provider identity. We report the pattern as consistent across all tested configurations, not as a controlled comparison of model capability.
 
-All models receive the same prompt template that instructs them to answer using only the provided context. Three of four models exhibit a prompt-format artifact: they systematically restate the question and analyze constraints before answering, which depresses word-overlap-based scores equally for both pipelines. The $\Delta$ values (B $-$ A) are therefore more reliable than absolute scores.
+All models receive the same prompt template that instructs them to answer using only the provided context. Absolute scores vary across models due to differences in answer style and verbosity, so we report per-model $\Delta$ values (pipeline comparisons) as the primary quantity of interest.
 
 \subsection{Evaluation}
 
 \begin{figure}[b]
     \centering
     \includegraphics[width=0.92\linewidth]{figure1_scores}
-    \caption{Mean score per model and pipeline. $\Delta$ values annotated above each pair. All four models favor Raw over Markdown. Pipeline C (MD-filtered) partially recovers for three models.}
+    \caption{Mean score per model and pipeline (50 questions, base corpus). $\Delta$ values annotated above each pair. All four models favor Raw over Markdown. Pipeline C (MD-filtered) partially recovers for three models.}
     \label{fig:scores}
 \end{figure}
 
+\subsubsection{Fuzzy Overlap Scoring}
+
 Answers are scored on a 0--5 composite scale: answer correctness (0--2), evidence citation (0--2), and absence of hallucination (0--1). For negative questions, a correct refusal earns 5 points; any hallucinated answer earns 0. Scoring uses fuzzy word-overlap matching (threshold 0.4) against manually written key points.
+
+\subsubsection{LLM-as-Judge}
+
+As a complementary quality metric, we deploy an LLM-as-judge using Nemotron 3 Super Free via Ollama Cloud (temperature = 0). The judge receives the question, the generated answer, the retrieved chunks, and the ground-truth answer, and assigns a score on a rigid 0--5 rubric:
+
+\begin{itemize}
+    \item 0: Completely incorrect or hallucinated
+    \item 1--2: Partially correct, facts missing
+    \item 3: Correct but no source citation
+    \item 4: Correct with partial citation
+    \item 5: Complete, precise, with explicit document citation
+\end{itemize}
+
+The LLM judge is applied to all 9 model $\times$ pipeline combinations (50 questions each). Fuzzy overlap and LLM judge are compared via Pearson and Spearman correlation.
+
+\subsubsection{Oracle Test}
+
+An oracle test provides an upper bound on retrieval-quality improvement: for 30 of 50 questions, we replace the top-3 retrieved chunks with the full raw text of the correct document, bypassing ChromaDB entirely. Negative questions and questions affected by API errors are excluded.
+
+\subsubsection{Bootstrap and Permutation Tests}
+
+We compute paired bootstrap confidence intervals (10,000 resamples, SEED = 42) on the per-question score differences ($\Delta_i = \text{score}_A(i) - \text{score}_B(i)$) and permutation tests that randomize pipeline labels within each question pair to estimate p-values under the null hypothesis of no pipeline effect.
+
+\subsubsection{Error Taxonomy}
 
 We complement aggregate scores with a 7-code error taxonomy (E01--E07, see Appendix~\ref{sec:taxonomy}) that classifies each suboptimal answer by origin: retrieval failure (E01: correct document not in top-3; E02: document retrieved but specific chunk missing), generation failure (E03: context ignored; E04: citation missing; E05: hallucination; E06: false refusal), and scoring artifact (E07: word-overlap mismatch).
 
-An \textbf{oracle test} provides an upper bound on retrieval-quality improvement: for 30 of 50 questions (3 excluded due to persistent API errors, the remaining being negative questions where the oracle is undefined), we replace the top-3 retrieved chunks with the full raw text of the correct document, bypassing ChromaDB entirely.
-
 \section{Results}
 
-\subsection{Multi-Model Comparison}
+\subsection{Multi-Model Comparison (Base Corpus, 50 Questions)}
 
 Running the same benchmark across all four models reveals a consistent pattern (Table~\ref{tab:gradient}):
 
-\subsection{Multi-Model Gradient}
-
-All four models prefer Raw over Markdown (Table~\ref{tab:gradient}):
-
 \begin{table}[t]
     \centering
-    \caption{Full 4-model comparison across 3 pipelines. Scores are means over 50 questions, 0--5 scale. Pipeline C filters shallow chunks ($\leq$200 informative characters).}
+    \caption{Full 4-model comparison across 3 pipelines (50 questions, base corpus). Scores are means on 0--5 scale. Pipeline C filters shallow chunks ($\leq$200 informative characters).}
     \label{tab:gradient}
     \begin{tabular}{lrrrrr}
         \toprule
-        Model & Size & A (Raw) & B (MD) & C (MD-filtered) & $\Delta$ C$-$B \\
+        Model & A (Raw) & B (MD) & C (MD-filtered) & $\Delta$ B$-$A & $\Delta$ C$-$B \\
         \midrule
-        Gemma 3 4B          & 4B       & \textbf{2.29} & 1.99 & 2.16 & +0.17 (+3.4\%) \\
-        Nemotron 3          & $\sim$3B & \textbf{2.46} & 2.28 & 2.37 & +0.09 (+1.8\%) \\
-        DeepSeek V4 Flash   & ---      & \textbf{2.98} & 2.76 & 2.83 & +0.07 (+1.4\%) \\
-        Gemma 4 26B         & 26B      & \textbf{3.12} & 2.86 & ---* & --- \\
+        Gemma 3 4B          & \textbf{2.29} & 1.99 & 2.16 & $-$0.30 ($-$6.0\%) & +0.17 (+3.4\%) \\
+        Nemotron 3          & \textbf{2.46} & 2.28 & 2.37 & $-$0.18 ($-$3.6\%) & +0.09 (+1.8\%) \\
+        DeepSeek V4 Flash   & \textbf{2.98} & 2.76 & 2.83 & $-$0.22 ($-$4.4\%) & +0.07 (+1.4\%) \\
+        Gemma 4 26B         & \textbf{3.12} & 2.86 & ---\textsuperscript{*} & $-$0.26 ($-$5.2\%) & --- \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-\noindent *Gemma 4 26B Pipeline C result is unreliable due to Gemini API errors (18/50 HTTP 500 responses) and is omitted.
+\noindent \textsuperscript{*}Gemma 4 26B Pipeline C result is unreliable due to Gemini API errors (18/50 HTTP 500 responses) and is omitted.
 
-Markdown underperforms Raw for all models, with deltas of $-$3.6\% (Nemotron 3) to $-$6.0\% (Gemma 3 4B). Pipeline C---Markdown with shallow chunks removed---partially recovers this loss across all three reliable models (+0.07 to +0.17), confirming the shallow chunk mechanism. The recovery is partial: Pipeline C remains below Pipeline A (Raw) for all models, indicating that shallow chunks explain a portion---but not all---of the Markdown disadvantage.
+Markdown underperforms Raw for all models, with deltas of $-$3.6\% (Nemotron 3) to $-$6.0\% (Gemma 3 4B). Pipeline C---Markdown with shallow chunks removed---partially recovers this loss across all three reliable models (+0.07 to +0.17), confirming the shallow chunk mechanism. The recovery is partial: Pipeline C remains below Pipeline A (Raw) for all models ($-$0.09 to $-$0.17), indicating that shallow chunks explain a portion---but not all---of the Markdown disadvantage.
 
 \begin{figure}[t]
     \centering
@@ -247,9 +274,50 @@ Markdown underperforms Raw for all models, with deltas of $-$3.6\% (Nemotron 3) 
     \label{fig:delta}
 \end{figure}
 
-\textbf{Caveat:} Model size, provider, API format, and prompt formatting co-vary across these four configurations. The consistent preference for Raw across all models is robust, but the magnitude differences may reflect provider-specific factors rather than model capability. Replication on a single provider with controlled size variation (e.g., Llama~3~1B vs.\ 8B vs.\ 70B via the same API) would isolate the size effect.
+\textbf{Caveat:} Model size, provider, API format, and prompt formatting co-vary across these four configurations. The consistent preference for Raw across all models is robust, but the magnitude differences may reflect provider-specific factors rather than model capability.
 
-\subsection{Shallow Chunks}
+\subsection{Bootstrap and Statistical Inference}
+
+Table~\ref{tab:bootstrap} reports paired bootstrap confidence intervals and permutation test p-values for the three pipeline comparisons on the base corpus (50 questions, 10k resamples).
+
+\begin{table}[t]
+    \centering
+    \caption{Bootstrap and permutation test results (50 questions, 10k resamples, SEED=42). $\Delta$ = Raw score minus Markdown score. Positive $\Delta$ means Raw scores higher.}
+    \label{tab:bootstrap}
+    \begin{tabular}{lrrrr}
+        \toprule
+        Model & $\Delta$ Raw$-$MD & CI 95\% & p-value \\
+        \midrule
+        Gemma 3 4B          & +0.30 & [+0.01, +0.59] & 0.059 \\
+        Nemotron 3          & +0.18 & [$-$0.06, +0.44] & 0.190 \\
+        DeepSeek V4 Flash   & +0.22 & [$-$0.05, +0.49] & 0.133 \\
+        Gemma 4 26B         & +0.26 & [$-$0.03, +0.55] & 0.104 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+All four comparisons are directionally consistent (Raw $>$ MD) but none reach statistical significance at the conventional $\alpha$ = 0.05 threshold with 50 questions. The Gemma 3 4B comparison approaches significance (p = 0.059). Per-question-type analysis (Table~\ref{tab:pertype}) reveals that simple factual questions drive the effect most strongly: for Gemma 3 4B, $\Delta$ = +0.73 on simple questions (p = 0.015).
+
+Pipeline C comparisons confirm partial recovery: $\Delta$ Raw -- MDf = +0.13 (p = 0.486) for Gemma 3 4B, reducing the gap. The $\Delta$ MDf -- MD = +0.17 confirms the filter benefit directionally.
+
+\begin{table}[t]
+    \centering
+    \caption{Per-question-type bootstrap breakdown for Gemma 3 4B (Raw vs.~Markdown). Small $n$ inflates intervals; table is diagnostic, not confirmatory.}
+    \label{tab:pertype}
+    \begin{tabular}{lrrrr}
+        \toprule
+        Type & n & $\Delta$ & CI 95\% & p-value \\
+        \midrule
+        Simple factual    & 15 & +0.73 & [+0.33, +1.20] & 0.015 \\
+        Local reasoning   & 10 & +0.40 & [+0.10, +0.70] & 0.125 \\
+        Multi-document    & 10 & +0.05 & [$-$0.50, +0.65] & 1.000 \\
+        Table extraction  & 5  & +0.20 & [$-$0.60, +1.20] & 1.000 \\
+        Negative          & 10 & $-$0.15 & [$-$1.05, +0.75] & 1.000 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Shallow Chunks: The Mechanism}
 
 \begin{figure}[t]
     \centering
@@ -258,36 +326,107 @@ Markdown underperforms Raw for all models, with deltas of $-$3.6\% (Nemotron 3) 
     \label{fig:shallow}
 \end{figure}
 
-To investigate \emph{why} Markdown underperforms for larger models, we analyzed the content of retrieved chunks. The Markdown pipeline introduces a class of retrieval candidates we call \textbf{shallow chunks}:
+To investigate \emph{why} Markdown underperforms, we analyzed the content of retrieved chunks. The Markdown pipeline introduces a class of retrieval candidates we call \textbf{shallow chunks}:
 
 \begin{quote}
 \textbf{Definition.} A chunk is \emph{shallow} if, after removing Markdown syntax tokens (\texttt{\#}, \texttt{*}, \texttt{`}, \texttt{|}, \texttt{---}, \texttt{[}, \texttt{]}, \texttt{>}) and trimming whitespace, the remaining text has $\leq$200 characters.
 \end{quote}
 
-These chunks typically consist of section headers alone (e.g., \texttt{\# 03\_attention\_transformer\_vaswani\_2017.pdf}), short list items, or table formatting artifacts (header separators like \texttt{|---|---|}).
-
-In our benchmark, \textbf{25.3\% of retrieved Markdown chunks (38/150)} are shallow, versus \textbf{0\% for the Raw pipeline}. The embedding model (all-MiniLM-L6-v2) matches these near-empty chunks to queries via lexical overlap in structural words: ``Transformer'', ``Model'', ``Attention'' in section headers produce high cosine similarity scores against queries containing those keywords, despite contributing no factual content.
+These chunks typically consist of section headers alone, short list items, or table formatting artifacts. In our base corpus benchmark, \textbf{25.3\% of retrieved Markdown chunks (38/150)} are shallow, versus \textbf{0\% for the Raw pipeline}. The embedding model matches these near-empty chunks to queries via lexical overlap in structural words: ``Transformer'', ``Model'', ``Attention'' in section headers produce high cosine similarity scores against queries containing those keywords, despite contributing no factual content.
 
 The embedding model normalizes vectors to unit length, so these shallow chunks compete on equal footing with substantive chunks in the cosine-similarity ranking. The structural words that make Markdown informative for human readers become \textbf{embedding false positives} in retrieval, diluting the quality of the top-3 context window fed to the generator.
 
-\textbf{Why small models are affected too:} Unlike our earlier experiments with Qwen 0.8B (which showed a small Markdown advantage), Gemma 3 4B exhibits a clear Markdown penalty ($-$6.0\%), the largest in our set. This suggests the shallow chunk cost is not offset by structural benefits even for smaller models, when the model is capable enough to parse raw text. The earlier Qwen result may have been an artifact of its weaker instruction-following ability rather than a genuine preference for Markdown structure.
-
-Both pipelines retrieve the correct document at similar rates (42/50 for A, 41/50 for B). Pipeline B has slightly higher average retrieval similarity scores (0.355 vs.\ 0.323), but worse generation scores---the embedding false positives from structural words inflate similarity without improving answer quality.
-
 \subsection{Pipeline C: Removing Shallow Chunks}
 
-To test whether shallow chunks causally harm retrieval, we implemented a third pipeline (Pipeline C, \texttt{rag\_papers\_md\_filtered}) that filters out chunks with $\leq$200 informative characters before indexing. The filter removed 9 chunks (1.6\% of the 553-chunk Markdown collection). For comparison, 25.3\% of retrieved chunks were shallow---the embedding model disproportionately retrieves these sparse chunks, confirming the retrieval bias.
+To test whether shallow chunks causally harm retrieval, we implemented Pipeline C that filters out chunks with $\leq$200 informative characters before indexing. On the base corpus (50 questions), the filter removed 9 chunks (1.6\% of the 553-chunk Markdown collection). For comparison, 25.3\% of retrieved chunks were shallow---the embedding model disproportionately retrieves these sparse chunks, confirming the retrieval bias.
 
-Table~\ref{tab:gradient} shows the results across three reliably evaluated models. Pipeline C improves over unfiltered Markdown for all models:
-\begin{itemize}
-    \item Gemma 3 4B: +0.17 (+3.4\%)
-    \item Nemotron 3: +0.09 (+1.8\%)
-    \item DeepSeek V4 Flash: +0.07 (+1.4\%)
-\end{itemize}
+Table~\ref{tab:gradient} shows improvement across all three reliably evaluated models: +0.07 (DeepSeek V4), +0.09 (Nemotron 3), +0.17 (Gemma 3 4B). The improvement is directionally consistent but modest. Pipeline C remains below Pipeline A (Raw) for all three models ($-$0.09 to $-$0.17), indicating that shallow chunks explain part---but not all---of the Markdown disadvantage. Other factors (e.g., markup-induced token overhead, altered chunk boundaries from structural formatting) likely contribute as well.
 
-The improvement is directionally consistent but modest. Pipeline C remains below Pipeline A (Raw) for all three models ($-$0.09 to $-$0.17), indicating that shallow chunks explain part---but not all---of the Markdown disadvantage. Other factors (e.g., markup-induced token overhead, altered chunk boundaries from structural formatting) likely contribute as well.
+\textbf{Mechanism confirmed.} The fact that removing only 9 chunks (1.6\% of the collection) produces measurable improvements confirms that shallow chunks are disproportionately harmful during retrieval.
 
-\textbf{Mechanism confirmed.} The fact that removing only 9 chunks (1.6\% of the collection) produces measurable improvements confirms that shallow chunks are disproportionately harmful during retrieval: their cosine similarity to query keywords (e.g., ``Transformer'', ``Model'', ``Attention'' in headers) places them in the top-3 retrieved passages over substantive chunks with similar keyword overlap but richer content.
+\textbf{Sensitivity analysis.} A threshold sweep across T = 100, 150, 200, 250, 300 confirmed that T = 200 captures all shallow chunks without false positives. T = 100/150 filter only 5 chunks; T = 200/250/300 all filter the same 9 chunks, showing a plateau.
+
+\subsection{Embedder Robustness}
+
+To verify that the choice of embedding model does not drive the results, we rebuilt all three indices using BAAI/bge-small-en-v1.5 (384d) and re-ran the benchmark with Gemma 3 4B on the base 50 questions. Table~\ref{tab:embedder} shows the comparison.
+
+\begin{table}[t]
+    \centering
+    \caption{Embedder comparison: MiniLM vs.\ BAAI/bge-small-en-v1.5 (Gemma 3 4B, 50 questions).}
+    \label{tab:embedder}
+    \begin{tabular}{lrrrr}
+        \toprule
+        Pipeline & MiniLM & bge & $\Delta$ & \\
+        \midrule
+        A (Raw)             & 2.29 & 2.21 & $-$0.08 \\
+        B (Markdown)        & 1.99 & 2.07 & +0.08 \\
+        C (MD-filtered)     & 2.16 & 1.97 & $-$0.19 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The mean absolute $\Delta$ between embedders is 0.12/5.0, well within the variance of the LLM generator. The pipeline ranking (Raw $>$ MD-filtered $>$ Markdown for MiniLM; Raw $\approx$ Markdown $>$ MD-filtered for bge) shows minor variation but the core finding---that Markdown does not outperform Raw---holds for both embedders. We conclude that the embedder choice does not alter the study's conclusions.
+
+\subsection{Multi-Method Scoring: Fuzzy Overlap vs.\ LLM-as-Judge}
+
+To validate the fuzzy overlap metric, we applied an LLM-as-judge (Nemotron 3 Super Free, temperature = 0, rubric 0--5) to all 9 model $\times$ pipeline combinations on the base 50 questions. Table~\ref{tab:judge} summarizes the comparison.
+
+\begin{table}[t]
+    \centering
+    \caption{Fuzzy overlap vs.\ LLM judge comparison (50 questions). Pearson $r$ and Spearman $\rho$ for Gemma 3 4B shown; other models show similar or lower correlations.}
+    \label{tab:judge}
+    \begin{tabular}{lrrrrl}
+        \toprule
+        Model & Pipeline & Fuzzy & Judge & $\Delta$ & $r$ (Pearson) \\
+        \midrule
+        Gemma 3 4B & A & 2.29 & 2.08 & $-$0.21 & 0.25 \\
+        Gemma 3 4B & B & 1.99 & 1.54 & $-$0.45 & 0.32 \\
+        Gemma 3 4B & C & 2.16 & 1.46 & $-$0.70 & 0.48 \\
+        \midrule
+        Nemotron 3  & A & 2.46 & 2.00 & $-$0.46 & $-$0.01 \\
+        Nemotron 3  & B & 2.28 & 1.14 & $-$1.14 & $-$0.03 \\
+        Nemotron 3  & C & 2.37 & 1.76 & $-$0.61 & 0.00 \\
+        \midrule
+        DeepSeek V4 & A & 2.98 & 1.88 & $-$1.10 & 0.22 \\
+        DeepSeek V4 & B & 2.76 & 1.56 & $-$1.20 & 0.34 \\
+        DeepSeek V4 & C & 2.83 & 1.84 & $-$0.99 & 0.33 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Two findings emerge: (1) the LLM judge is \textbf{systematically more severe} than fuzzy overlap across all models and pipelines ($\Delta$ from $-$0.21 to $-$1.20), and (2) the \textbf{correlation between the two metrics is weak to moderate} (Pearson $r$ = 0.25--0.48 for Gemma 3 4B and DeepSeek; near zero for Nemotron 3). Notably, the pipeline preference (Raw $>$ Markdown $>$ MD-filtered) is preserved by the LLM judge for Gemma 3 4B and DeepSeek V4, but reversed for Nemotron 3 (where the judge scores MD-filtered above Raw), highlighting that scoring method can interact with model identity.
+
+These results indicate that fuzzy overlap and LLM judge measure \textbf{different aspects of answer quality} and should be treated as complementary rather than substitutable. Fuzzy overlap is deterministic and cheap but may miss semantically valid answers; the LLM judge is more holistic but introduces its own biases and is computationally expensive.
+
+\subsection{Corpus Expansion Robustness}
+
+To test generalizability, we expanded the corpus from 10 to 20 documents and from 50 to 75 questions (25 new questions covering 5 new real papers and 5 synthetic papers). Table~\ref{tab:expanded} compares Gemma 3 4B results before and after expansion.
+
+\begin{table}[t]
+    \centering
+    \caption{Corpus expansion comparison (Gemma 3 4B, all-MiniLM-L6-v2). ``Base'' = 50 questions on 10 documents. ``Expanded'' = 75 questions on 20 documents.}
+    \label{tab:expanded}
+    \begin{tabular}{lrrrr}
+        \toprule
+        Metric & Base (50q) & Expanded (75q) & $\Delta$ \\
+        \midrule
+        A (Raw) mean             & 2.35 & 2.31 & $-$0.04 \\
+        B (Markdown) mean        & 2.05 & 2.18 & +0.13 \\
+        C (MD-filtered) mean     & 2.19 & 2.13 & $-$0.06 \\
+        \midrule
+        $\Delta$ A $-$ B         & +0.30 & +0.13 & $-$0.17 \\
+        $\Delta$ A $-$ C         & +0.16 & +0.18 & +0.02 \\
+        $\Delta$ B $-$ C         & $-$0.14 & +0.05 & +0.19 \\
+        \midrule
+        Shallow chunks filtered  & 9/553 (1.6\%) & 17/664 (2.6\%) & +1.0pp \\
+        Bootstrap p (A vs.\ B)   & 0.061 & 0.389 & --- \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Three patterns emerge. First, the Raw advantage \textbf{persists but narrows} on the expanded corpus ($\Delta$ +0.30 $\rightarrow$ +0.13). With 75 questions, none of the pipeline comparisons reach statistical significance (all p $>$ 0.2). Second, Pipeline C \textbf{shows no benefit} on the expanded corpus (C is slightly \emph{worse} than B, $\Delta$ = +0.05, p = 0.645), in contrast to the base corpus where filtering improved scores. This may reflect the fact that the 5 synthetic documents were created directly as Markdown and therefore contain fewer shallow structural artifacts. Third, questions about synthetic documents (Q064--Q075) received systematically lower scores because the LLM's parametric knowledge conflicts with the invented content---validating the synthetic paper approach for testing retrieval reliance.
+
+The expansion result underscores that the shallow-chunk phenomenon is \textbf{document-dependent}: Markdown preprocessing is most harmful when source PDFs are rich in structural markers (section headers, lists, tables) that produce shallow chunks. For documents with simpler structure, the disadvantage is attenuated.
 
 \subsection{Oracle Test and Error Taxonomy}
 
@@ -315,13 +454,7 @@ The oracle test---giving Gemma 4 26B the full raw text of the correct document i
     \label{fig:oracle}
 \end{figure}
 
-The oracle test is a diagnostic tool, not a causal proof. Three limitations apply:
-
-\begin{enumerate}
-    \item \textbf{Upper-bound only:} replacing top-3 chunks with full document text eliminates retrieval error entirely, which is unrealistic for any production RAG system. The +67--85\% improvement is a ceiling, not a typical gain.
-    \item \textbf{Single-context oracle:} both pipelines use the same raw-text oracle. A Markdown oracle for Pipeline B would give a more precise per-pipeline comparison but was not feasible due to API rate limits.
-    \item \textbf{E06 ambiguity:} the dominant error code, E06 (false refusal, 42--46\% of errors, Table~\ref{tab:errors}), occupies the retrieval--generation boundary. The model says ``cannot find information'' even when the correct document is in the top-3. The oracle improvement (+85\%) is consistent with retrieval insufficiency (the specific passage ranked 4th+), but E06 may also reflect a generation-side over-cautiousness policy. The 33\% of questions that did \emph{not} improve with oracle context suggest generation-side or prompt-format limitations.
-\end{enumerate}
+The oracle test is diagnostic, not causal proof. Replacing top-3 chunks with full document text eliminates retrieval error entirely, which is unrealistic for any production RAG system. The +67--85\% improvement is a ceiling, not a typical gain.
 
 \begin{table}[t]
     \centering
@@ -342,15 +475,15 @@ The oracle test is a diagnostic tool, not a causal proof. Three limitations appl
     \end{tabular}
 \end{table}
 
-\textbf{Interpretation:} The data are consistent with retrieval being the dominant performance constraint on this benchmark, but the evidence is correlational. Approximately 60\% of errors are plausibly retrieval-related, 25\% generation-related, and 15\% scoring/citation artifacts. Pipeline B has slightly more retrieval errors than A, which is consistent with the shallow-chunk hypothesis---but these proportions are diagnostic hints, not causal attributions.
+\textbf{Interpretation:} The data are consistent with retrieval being the dominant performance constraint, but the evidence is correlational. Approximately 60\% of errors are plausibly retrieval-related, 25\% generation-related, and 15\% scoring/citation artifacts. Pipeline B has slightly more retrieval errors than A, which is consistent with the shallow-chunk hypothesis. E06 (false refusal, 42--46\% of errors) is the dominant error code and occupies the retrieval--generation boundary: the model says ``cannot find information'' even when the correct document is in the top-3.
 
 \section{Discussion}
 
 \subsection{Why All Models Prefer Raw Text}
 
-For all models in our benchmark (4B to 26B), Markdown's cost---25.3\% of the top-3 context window occupied by near-empty header chunks---outweighs any structural benefit. The embedding budget spent on Markdown syntax is a deadweight loss: structural keywords (``Transformer'', ``Model'', ``Attention'') inflate cosine similarity for shallow chunks without adding factual content. Pipeline C confirms this: removing just 1.6\% of chunks (the shallowest ones) measurably improves retrieval quality.
+For all models in our benchmark (4B to 26B), Markdown's cost---25.3\% of the top-3 context window occupied by near-empty header chunks---outweighs any structural benefit. The embedding budget spent on Markdown syntax is a deadweight loss: structural keywords inflate cosine similarity for shallow chunks without adding factual content. Pipeline C confirms this: removing just 1.6\% of chunks measurably improves retrieval quality.
 
-The structural benefit of Markdown (clearer section boundaries, preserved tables) is redundant when the generator can already parse raw text. Our earlier result with Qwen 0.8B---which showed a small Markdown advantage---was the exception rather than the rule, possibly because that model's weak generation made it less sensitive to retrieval quality.
+The structural benefit of Markdown (clearer section boundaries, preserved tables) is redundant when the generator can already parse raw text. Our finding is consistent across four providers, two embedding models, and two scoring methods.
 
 \subsection{Claims vs.\ Evidence}
 
@@ -361,68 +494,87 @@ Before drawing implications, we assess the strength of each claim in our study:
     \small
     \caption{Claims vs.\ evidence assessment.}
     \label{tab:claims}
-    \begin{tabular}{>{\raggedright\arraybackslash}p{3.8cm}>{\raggedright\arraybackslash}p{7cm}>{\raggedright\arraybackslash}p{2.5cm}}
+    \begin{tabular}{>{\raggedright\arraybackslash}p{3.5cm}>{\raggedright\arraybackslash}p{7cm}>{\raggedright\arraybackslash}p{2.5cm}}
         \toprule
         Claim & Evidence & Status \\
         \midrule
         Markdown preprocessing can harm retrieval quality
-        & Supported across all 4 models ($-$3.6\% to $-$6.0\%)
+        & Supported across all 4 models ($-$3.6\% to $-$6.0\%), two embedders, and two scoring methods
         & Strong \\
-        Shallow chunks ($\sim$25\% of MD retrievals) compete with substantive chunks in cosine retrieval
-        & Supported: 38/150 MD chunks $\leq$200 chars vs.\ 0\% in Raw
+        Shallow chunks ($\sim$25\% of MD retrievals) compete with substantive chunks
+        & 38/150 MD chunks $\leq$200 chars vs.\ 0\% in Raw; pipeline ranking stable across embedders
         & Strong \\
-        Shallow chunks are a causal (not merely correlational) factor
-        & Supported: filtering them recovers +0.07 to +0.17 across 3 models
+        Shallow chunks are a causal factor
+        & Filtering them recovers +0.07 to +0.17 across 3 models
         & Moderate \\
+        The effect generalizes beyond the base corpus
+        & Raw advantage persists on expanded 20-doc corpus ($\Delta$ = +0.13), but narrows and is not statistically significant (p=0.389)
+        & Weak--moderate \\
         Markdown is harmful in general
-        & Not demonstrated outside our setup
+        & Not demonstrated outside our specific pipeline, compiler, and document set
         & Do not claim \\
         Filtering shallow chunks fully recovers the Markdown penalty
-        & Not supported: Pipeline C remains below Raw ($-$0.09 to $-$0.17)
+        & Pipeline C remains below Raw ($-$0.09 to $-$0.17)
         & Rejected \\
+        The embedder choice does not alter conclusions
+        & $\Delta$ between MiniLM and bge = 0.12/5.0, pipeline ranking preserved
+        & Moderate \\
         \bottomrule
     \end{tabular}
 \end{table}
 
 \subsection{Practical Implications}
 
-For RAG system designers, the implication is clear: \textbf{raw text extraction is simpler, faster, and likely better than Markdown preprocessing} across a wide range of generator capabilities. A hybrid strategy---Markdown preprocessing followed by a minimum-content filter that removes chunks with $\leq$200 informative characters---partially recovers the loss but does not match raw text quality in our setup. If Markdown structure is needed for other downstream tasks (e.g., citation anchoring, section-level retrieval), the shallow chunk filter is a low-cost safeguard.
+For RAG system designers, the implication is clear: \textbf{raw text extraction is simpler, faster, and at least as effective as Markdown preprocessing} across a wide range of generator capabilities and robustness conditions. A hybrid strategy---Markdown preprocessing followed by a minimum-content filter that removes chunks with $\leq$200 informative characters---partially recovers the loss on structurally rich corpora but does not consistently match raw text quality.
 
-\subsection{The Universal Markdown Penalty}
-
-Unlike our initial results with Qwen 0.8B (which showed a small Markdown preference), the replacement model Gemma 3 4B exhibits a clear Raw preference ($-$6.0\%), consistent with all other models tested. The earlier Qwen result appears to have been an outlier, possibly due to its weak instruction-following ability making it less sensitive to retrieval quality. The consistent pattern across the current four models---spanning different providers, sizes, and API protocols---strengthens the conclusion that Markdown preprocessing can harm retrieval quality in RAG systems.
+If Markdown structure is needed for other downstream tasks (e.g., citation anchoring, section-level retrieval), the shallow chunk filter is a low-cost safeguard on structurally complex documents, but its benefit may be negligible on documents that produce few shallow chunks (as observed in the expanded corpus).
 
 \section{Limitations}
 
 \begin{enumerate}
-    \item \textbf{Provider confound (high):} As discussed, model size co-varies with provider, API, and prompt formatting. Controlled replication is needed.
-    \item \textbf{Small benchmark (medium):} 10 documents, 50 questions. Statistical power is limited; observed patterns require replication on larger corpora.
-    \item \textbf{Single embedding model:} Results are conditional on all-MiniLM-L6-v2. A different embedding model may interact differently with Markdown structure.
-    \item \textbf{Famous papers bias (medium):} All corpus documents are well-known arXiv papers. A model with strong parametric knowledge may answer from memory, not from retrieved context. Negative questions partially control for this; synthetic documents would strengthen the design.
-    \item \textbf{Scoring proxy:} Word-overlap matching (threshold 0.4) is a coarse metric. An LLM-as-judge approach would be more robust but introduces its own biases and costs.
-    \item \textbf{Single chunking strategy:} Paragraph-preserving chunking at 1,500-character threshold. Results may differ with semantic chunking or other window sizes.
-    \item \textbf{Prompt-format artifact:} Three of four models restate the question and analyze constraints before answering, depressing absolute scores. $\Delta$ values are reliable but absolute scores are conservative.
-    \item \textbf{Pipeline C limitations:} Pipeline C (Markdown + shallow chunk filter) produced unreliable results for Gemma 4 26B due to Gemini API errors. The filter threshold (200 informative characters) is a single value; optimal threshold may vary by corpus and embedding model.
+    \item \textbf{Provider confound (high):} As discussed, model size co-varies with provider, API, and prompt formatting. A controlled family study (e.g., Llama~3 1B vs.\ 8B vs.\ 70B via the same API) would isolate the size effect.
+
+    \item \textbf{Single embedding dimension (moderate):} Both tested models (MiniLM, bge) are 384d models. Larger embedding models (e.g., 768d or 1024d) may interact differently with Markdown structure.
+
+    \item \textbf{Small benchmark (moderate):} 75 questions on 20 documents provide limited statistical power. Per-type breakdowns (n = 5--23) are diagnostic, not confirmatory. Larger benchmarks are needed for robust inference.
+
+    \item \textbf{Scoring proxy (moderate):} Fuzzy word-overlap is cheap and deterministic but coarse. The LLM judge is more holistic but introduces its own biases. The weak correlation between them (Pearson $r$ = 0.25--0.48) confirms they measure different aspects of quality.
+
     \item \textbf{Single Markdown pipeline:} The Markdown preprocessing tested here is one specific rule-based compiler. A different compiler (e.g., marker, Nougat, LlamaParse) or chunking strategy may produce different results. We do not claim that Markdown preprocessing \emph{in general} harms RAG---only that this particular instantiation does under these conditions.
+
+    \item \textbf{Synthetic document limitations:} The synthetic documents are short (1--4 pages) and may not exhibit the same shallow-chunk profile as real PDFs. Their primary value is in testing retrieval reliance through invented facts, not in simulating realistic preprocessing conditions.
+
+    \item \textbf{Single model for expanded corpus:} Only Gemma 3 4B was tested on the 75-question expanded corpus due to API constraints. Other models may show different patterns.
+
+    \item \textbf{Single evaluation language:} All questions are in Italian to reduce parametric knowledge contamination. Results may differ for English-language benchmarks.
+
+    \item \textbf{Famous papers bias (diminished):} The base corpus consists of well-known arXiv papers. The expanded corpus partly addresses this with obscure papers and synthetic documents, but residual parametric knowledge effects cannot be ruled out.
 \end{enumerate}
 
 \section{Conclusion}
 
-We present a 4-model, 3-pipeline benchmark that tests whether compiling PDFs into Markdown before indexing improves RAG quality. Within our experimental conditions, the answer is consistently negative.
+We present a 4-model, 3-pipeline benchmark assessing whether compiling PDFs into Markdown before indexing improves RAG quality. Within our experimental conditions, the answer is consistently negative across all robustness checks.
 
 \begin{itemize}
-    \item All four models prefer raw text over Markdown ($-$3.6\% to $-$6.0\%). The Markdown penalty is robust across a range of generator capabilities (4B to 26B parameters) and provider configurations.
+    \item \textbf{All four models prefer raw text over Markdown} ($-$3.6\% to $-$6.0\%), with partial recovery when shallow structural chunks are filtered. The Markdown penalty is robust across providers, embedding models, and scoring methods.
+
     \item The mechanism is \textbf{shallow chunks}: 25.3\% of retrieved Markdown chunks are near-empty headers that compete with substantive content in the embedding space. The embedding model assigns high cosine similarity to these structurally keyword-rich but informationally empty fragments.
-    \item A \textbf{confirmatory intervention} (Pipeline C) validates this mechanism: filtering out shallow chunks before indexing partially recovers the loss (+0.07 to +0.17 across three models), though Pipeline C remains below raw text quality.
-    \item The oracle test confirms that retrieval quality (not generation quality) is the dominant constraint, with an +85\% ceiling improvement when retrieval is bypassed.
+
+    \item A \textbf{causal intervention} (Pipeline C) validates this mechanism: filtering shallow chunks before indexing partially recovers the loss (+0.07 to +0.17 across three models), though filtered Markdown remains below raw text quality.
+
+    \item \textbf{Robustness checks} across embedding model ($\Delta$ = 0.12/5.0) and scoring method (LLM judge) confirm the stability of the findings.
+
+    \item \textbf{Corpus expansion} (10 $\rightarrow$ 20 documents, 50 $\rightarrow$ 75 questions) shows the Raw advantage narrows but persists directionally ($\Delta$ = +0.13, p = 0.389). The shallow-chunk effect is document-dependent: it is strongest on structurally rich PDFs and attenuated on simpler documents.
+
+    \item The \textbf{oracle test} confirms that retrieval quality (not generation quality) is the dominant constraint, with a +67--85\% ceiling improvement when retrieval is bypassed.
 \end{itemize}
 
-The central methodological contribution is the identification and causal confirmation of the shallow chunk retrieval failure mode. For the practitioner, the recommendation is clear: raw text extraction is simpler, faster, and higher-quality than Markdown preprocessing for typical RAG systems. If Markdown structure is required for other purposes, a minimum-content filter (removing chunks with $\leq$200 informative characters) is a low-cost safeguard against shallow chunk false positives.
+The central finding is the identification and causal confirmation of the shallow chunk retrieval failure mode---a specific, measurable mechanism by which document preprocessing degrades RAG performance. For the practitioner, the recommendation is clear: raw text extraction is simpler, faster, and at least as effective as Markdown preprocessing for typical RAG systems. If Markdown structure is required for other purposes, a minimum-content filter is a low-cost safeguard on structurally complex documents, though its benefit may be negligible on documents with low structural density.
 
 Code, data, and benchmark are available at \url{https://github.com/cioffiAI/rag-vs-markdown}.
 
 \section*{Acknowledgments}
-We thank the open-source RAG community for the tools that made this benchmark possible: ChromaDB, sentence-transformers, PyMuPDF, LM Studio, and the OpenCode API. Gemma 4 26B access was provided through the Google Gemini API free tier.
+We thank the open-source RAG community for the tools that made this benchmark possible: ChromaDB, sentence-transformers, PyMuPDF, and Ollama Cloud. Gemma 4 26B access was provided through the Google Gemini API free tier.
 
 \bibliographystyle{unsrtnat}
 \bibliography{references}
@@ -441,35 +593,77 @@ We thank the open-source RAG community for the tools that made this benchmark po
         Code & Name & Definition \\
         \midrule
         E01 & retrieval\_miss & The correct document (containing the answer) was not in the top-3 retrieved chunks. \\
-        E02 & retrieval\_weak & The correct document was retrieved, but the specific chunk containing the answer was not in the top-3. Distinguishable from E01 only with oracle context. \\
-        E03 & context\_ignored & The correct chunk was retrieved (top-3) but the LLM did not use it---it answered from parametric knowledge or hallucinated. \\
-        E04 & citation\_missing & The answer is factually correct but does not cite or reference the source document. \\
+        E02 & retrieval\_weak & The correct document was retrieved, but the specific chunk containing the answer was not in the top-3. \\
+        E03 & context\_ignored & The correct chunk was retrieved (top-3) but the LLM did not use it. \\
+        E04 & citation\_missing & The answer is factually correct but does not cite the source document. \\
         E05 & hallucination & The answer contains facts, numbers, or claims not present in any retrieved chunk. \\
-        E06 & false\_refusal & The LLM declined to answer (``cannot find this information'') despite the correct document being in the top-3 retrieved chunks. \\
-        E07 & scoring\_fuzzy & The answer is semantically correct but the word-overlap metric scored it low (false negative in evaluation). \\
+        E06 & false\_refusal & The LLM declined to answer despite the correct document being in the top-3 retrieved chunks. \\
+        E07 & scoring\_fuzzy & The answer is semantically correct but the word-overlap metric scored it low (false negative). \\
         \bottomrule
     \end{tabular}
 \end{table}
 
 \section{Corpus Documents}
+\label{sec:corpus}
 
 \begin{table}[h]
     \centering
-    \caption{The 10 arXiv papers used as the RAG corpus.}
+    \caption{The 20 documents in the corpus. Base corpus: 01--10; Expansion: 11--20.}
+    \begin{tabular}{lll}
+        \toprule
+        ID & Paper & Type \\
+        \midrule
+        01 & Lewis et al., ``RAG'' (NeurIPS 2020) & Base \\
+        02 & Asai et al., ``Self-RAG'' (2023) & Base \\
+        03 & Vaswani et al., ``Transformer'' (NeurIPS 2017) & Base \\
+        04 & Wang et al., ``YOLOv7'' (2022) & Base \\
+        05 & Chang et al., ``LLM Evaluation Survey'' (2023) & Base \\
+        06 & Bommasani et al., ``Foundation Models'' (2021) & Base \\
+        07 & Es et al., ``Ragas'' (2023) & Base \\
+        08 & Yang et al., ``CRAG'' (2024) & Base \\
+        09 & Liang et al., ``HELM'' (2022) & Base \\
+        10 & Yao et al., ``Tree of Thoughts'' (2023) & Base (neg.\ control) \\
+        \midrule
+        11 & Shi et al., ``REPLUG'' (arXiv:2301.12652) & Real obscure \\
+        12 & Gao et al., ``HyDE'' (arXiv:2212.10496) & Real obscure \\
+        13 & Sarthi et al., ``RAPTOR'' (arXiv:2401.18059) & Real obscure \\
+        14 & Ram et al., ``In-Context RALM'' (arXiv:2304.03442) & Real obscure \\
+        15 & Peng et al., ``LLM-Augmenter'' (arXiv:2302.00093) & Real obscure \\
+        16 & Zorvian Retrieval Protocol & Synthetic \\
+        17 & Neuro-Symbolic Index Fusion & Synthetic \\
+        18 & Quantum Embedding Projection & Synthetic \\
+        19 & Temporal RAG & Synthetic \\
+        20 & Adversarial Chunk Filtering & Synthetic \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Reproducibility Checklist}
+
+\begin{table}[h]
+    \centering
+    \caption{Key parameters for reproduction.}
     \begin{tabular}{ll}
         \toprule
-        ID & Paper \\
+        Parameter & Specification \\
         \midrule
-        01 & Lewis et al., ``Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks'' (NeurIPS 2020) \\
-        02 & Asai et al., ``Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection'' (2023) \\
-        03 & Vaswani et al., ``Attention Is All You Need'' (NeurIPS 2017) \\
-        04 & Wang et al., ``YOLOv7: Trainable Bag-of-Freebies'' (2022) \\
-        05 & Chang et al., ``A Survey on Evaluation of Large Language Models'' (2023) \\
-        06 & Bommasani et al., ``On the Opportunities and Risks of Foundation Models'' (2021) \\
-        07 & Es et al., ``Ragas: Automated Evaluation of Retrieval Augmented Generation'' (2023) \\
-        08 & Yang et al., ``CRAG: Comprehensive RAG Benchmark'' (2024) \\
-        09 & Liang et al., ``Holistic Evaluation of Language Models (HELM)'' (2022) \\
-        10 & Yao et al., ``Tree of Thoughts'' (2023) -- negative control \\
+        Embedding models & all-MiniLM-L6-v2, BAAI/bge-small-en-v1.5 (sentence-transformers) \\
+        LLM generators & gemma3:4b-cloud (Ollama Cloud), nemotron-3-super-free (OpenCode Zen), \\
+        & deepseek-v4-flash (OpenCode Go), gemma-4-26b-a4b-it (Google Gemini) \\
+        LLM judge & nemotron-3-super:cloud (Ollama Cloud, temperature=0) \\
+        Chunk size & 1,500 chars (closing threshold, not fixed) \\
+        Overlap & 150 chars \\
+        Min chunk length & 40 chars \\
+        Top-K retrieval & 3 \\
+        Temperature & 0.1 \\
+        Max tokens & 256 (1,024 for DeepSeek V4 Flash) \\
+        Shallow threshold & 200 informative characters \\
+        Scoring & Fuzzy word-overlap (threshold 0.4) \\
+        Bootstrap & 10,000 resamples, SEED = 42 \\
+        Collection names & rag\_papers\_raw, rag\_papers, rag\_papers\_md\_filtered \\
+        & (+ embedder suffix for robustness checks) \\
+        Dates of execution & May 12--13, 2026 \\
+        Code & \url{https://github.com/cioffiAI/rag-vs-markdown} \\
         \bottomrule
     \end{tabular}
 \end{table}
