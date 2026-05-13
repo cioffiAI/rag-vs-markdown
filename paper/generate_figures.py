@@ -38,9 +38,9 @@ COLORS = {
 # ============================================================
 
 def figure1_scores():
-    models = ["Qwen 0.8B\n(800M)", "Nemotron 3\n(~3B)", "DeepSeek V4\nFlash", "Gemma 4 26B\n(26B)"]
-    scores_a = [2.50, 2.46, 2.98, 3.12]
-    scores_b = [2.56, 2.28, 2.76, 2.86]
+    models = ["Gemma 3 4B\n(4B)", "Nemotron 3\n(~3B)", "DeepSeek V4\nFlash", "Gemma 4 26B\n(26B)"]
+    scores_a = [2.29, 2.46, 2.98, 3.12]
+    scores_b = [1.99, 2.28, 2.76, 2.86]
     
     x = np.arange(len(models))
     width = 0.35
@@ -80,9 +80,9 @@ def figure1_scores():
 
 def figure2_delta():
     # Use log scale for params, ordered by pipeline B-A delta
-    models = ["Qwen 0.8B", "Nemotron 3", "DeepSeek V4 Flash", "Gemma 4 26B"]
-    sizes = [0.8e9, 3e9, 10e9, 26e9]  # DeepSeek size unknown, placeholder at 10B
-    deltas = [0.06, -0.18, -0.22, -0.26]
+    models = ["Gemma 3 4B", "Nemotron 3", "DeepSeek V4 Flash", "Gemma 4 26B"]
+    sizes = [4e9, 3e9, 10e9, 26e9]  # DeepSeek size unknown, placeholder at 10B
+    deltas = [-0.30, -0.18, -0.22, -0.26]
     colors = [COLORS["delta_neg"] if d < 0 else COLORS["delta_pos"] for d in deltas]
     
     fig, ax = plt.subplots(figsize=(6.5, 4.5))
