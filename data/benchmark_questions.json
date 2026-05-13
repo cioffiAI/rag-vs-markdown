@@ -1,12 +1,12 @@
 {
   "metadata": {
-    "total_questions": 50,
+    "total_questions": 75,
     "categories": {
-      "simple_factual_evidence": 15,
-      "local_reasoning_same_document": 10,
-      "multi_document_comparison": 10,
-      "table_metric_extraction": 5,
-      "negative_false_premise": 10
+      "simple_factual_evidence": 23,
+      "local_reasoning_same_document": 15,
+      "multi_document_comparison": 15,
+      "table_metric_extraction": 7,
+      "negative_false_premise": 15
     },
     "documents_covered": [
       "01_rag_original_lewis_2020.pdf",
@@ -18,10 +18,20 @@
       "07_ragas_es_2023.pdf",
       "08_crag_yang_2024.pdf",
       "09_helm_liang_2022.pdf",
-      "10_tree_of_thoughts_yao_2023_negative_control.pdf"
+      "10_tree_of_thoughts_yao_2023_negative_control.pdf",
+      "11_replug_shi_2023.pdf",
+      "12_hyde_gao_2022.pdf",
+      "13_raptor_sarthi_2024.pdf",
+      "14_ralm_ram_2023.pdf",
+      "15_llm_augmenter_peng_2023.pdf",
+      "16_zorvian_retrieval_protocol.pdf",
+      "17_neuro_symbolic_index_fusion.pdf",
+      "18_quantum_embedding_projection.pdf",
+      "19_temporal_rag.pdf",
+      "20_adversarial_chunk_filter.pdf"
     ],
-    "benchmark_date": "2026-05-11",
-    "version": "1.0",
+    "benchmark_date": "2026-05-13",
+    "version": "1.1",
     "scoring_rules": {
       "answer_correct": "0-2 punti (parziale se incompleta)",
       "evidence_doc_correct": "0-2 punti (0 se documento sbagliato)",
@@ -37,7 +47,9 @@
       "id": "Q001",
       "type": "simple",
       "category": "factual_evidence",
-      "documents": ["01_rag_original_lewis_2020.pdf"],
+      "documents": [
+        "01_rag_original_lewis_2020.pdf"
+      ],
       "question": "In RAG, qual è la differenza fondamentale tra RAG-Sequence e RAG-Token nella formulazione della probabilità target?",
       "expected_answer": "In RAG-Sequence ogni documento genera l'intera sequenza di output in modo esclusivo (il modello sceglie un documento e genera l'intera risposta). In RAG-Token ogni token può essere generato da documenti diversi (il modello può cambiare documento a ogni token).",
       "key_points": [
@@ -52,7 +64,9 @@
       "id": "Q002",
       "type": "simple",
       "category": "factual_evidence",
-      "documents": ["01_rag_original_lewis_2020.pdf"],
+      "documents": [
+        "01_rag_original_lewis_2020.pdf"
+      ],
       "question": "Nel paper RAG, il retriever usa DPR. Cosa distingue il formato 'input order' dal formato 'index order' nella rappresentazione dei documenti?",
       "expected_answer": "In 'input order' il titolo e il testo del documento vengono concatenati come singola sequenza per il retrieval. In 'index order' titolo e corpo vengono appiattiti in un unico flusso. Il paper usa input order per la rappresentazione dei documenti nel DPR.",
       "key_points": [
@@ -68,7 +82,9 @@
       "id": "Q003",
       "type": "simple",
       "category": "factual_evidence",
-      "documents": ["02_self_rag_asai_2023.pdf"],
+      "documents": [
+        "02_self_rag_asai_2023.pdf"
+      ],
       "question": "Quali sono i tre tipi di critique token generati da Self-RAG e cosa valuta ciascuno?",
       "expected_answer": "IsRel (valuta se il documento recuperato è rilevante per la domanda), IsSupport (valuta se il documento supporta la risposta generata), IsUse (valuta se il documento è effettivamente utile per generare la risposta finale).",
       "key_points": [
@@ -84,7 +100,9 @@
       "id": "Q004",
       "type": "simple",
       "category": "factual_evidence",
-      "documents": ["02_self_rag_asai_2023.pdf"],
+      "documents": [
+        "02_self_rag_asai_2023.pdf"
+      ],
       "question": "Il paper Self-RAG dichiara esplicitamente il numero di pagine, figure e tabelle. Quali sono questi numeri?",
       "expected_answer": "30 pagine, 2 figure, 12 tabelle.",
       "key_points": [
@@ -100,7 +118,9 @@
       "id": "Q005",
       "type": "simple",
       "category": "factual_evidence",
-      "documents": ["03_attention_transformer_vaswani_2017.pdf"],
+      "documents": [
+        "03_attention_transformer_vaswani_2017.pdf"
+      ],
       "question": "Quali sono i tre iperparametri architetturali principali del modello Transformer base riportati nella sezione 3 del paper?",
       "expected_answer": "6 layer (encoder e decoder), d_model=512, 8 attention heads.",
       "key_points": [
@@ -116,7 +136,9 @@
       "id": "Q006",
       "type": "simple",
       "category": "factual_evidence",
-      "documents": ["03_attention_transformer_vaswani_2017.pdf"],
+      "documents": [
+        "03_attention_transformer_vaswani_2017.pdf"
+      ],
       "question": "Nel Transformer, da quali due sotto-strati principali è composto ogni blocco encoder e in che ordine appaiono?",
       "expected_answer": "Ogni blocco encoder è composto da: (1) un meccanismo di multi-head self-attention, (2) un feed-forward network position-wise. Entrambi seguiti da residual connection e layer normalization.",
       "key_points": [
@@ -132,7 +154,9 @@
       "id": "Q007",
       "type": "simple",
       "category": "factual_evidence",
-      "documents": ["04_yolov7_wang_2022.pdf"],
+      "documents": [
+        "04_yolov7_wang_2022.pdf"
+      ],
       "question": "Cosa sono i 'bag-of-freebies' in YOLOv7 e qual è il loro scopo principale?",
       "expected_answer": "Sono tecniche di training che migliorano l'accuratezza del modello senza aumentare il costo computazionale durante l'inferenza. Includono metodi come data augmentation, label assignment e strategie di ottimizzazione applicate solo in fase di training.",
       "key_points": [
@@ -148,7 +172,9 @@
       "id": "Q008",
       "type": "simple",
       "category": "factual_evidence",
-      "documents": ["04_yolov7_wang_2022.pdf"],
+      "documents": [
+        "04_yolov7_wang_2022.pdf"
+      ],
       "question": "Quale architettura backbone viene utilizzata come base in YOLOv7?",
       "expected_answer": "YOLOv7 utilizza E-ELAN (Extended Efficient Layer Aggregation Network) come architettura backbone, che estende ELAN con una migliore gestione del gradient flow e controllo del numero di parametri.",
       "key_points": [
@@ -164,7 +190,9 @@
       "id": "Q009",
       "type": "simple",
       "category": "factual_evidence",
-      "documents": ["05_llm_evaluation_survey_chang_2023.pdf"],
+      "documents": [
+        "05_llm_evaluation_survey_chang_2023.pdf"
+      ],
       "question": "Secondo il survey, quali sono le tre grandi aree in cui vengono organizzati i metodi di valutazione degli LLM?",
       "expected_answer": "Il survey organizza la valutazione in: (1) valutazione su task e benchmark (conoscenza, ragionamento, coding, matematica, ecc.), (2) valutazione della qualità della generazione e safety (bias, tossicità, allucinazione), (3) metodi di valutazione (automatica, umana, LLM-as-judge).",
       "key_points": [
@@ -180,7 +208,9 @@
       "id": "Q010",
       "type": "simple",
       "category": "factual_evidence",
-      "documents": ["05_llm_evaluation_survey_chang_2023.pdf"],
+      "documents": [
+        "05_llm_evaluation_survey_chang_2023.pdf"
+      ],
       "question": "Quali due benchmark specifici cita il survey rispettivamente per la valutazione della conoscenza generale e del ragionamento matematico?",
       "expected_answer": "Per conoscenza generale: MMLU (Massive Multitask Language Understanding). Per ragionamento matematico: GSM8K (Grade School Math 8K) anche se non specifico o MATH.",
       "key_points": [
@@ -195,7 +225,9 @@
       "id": "Q011",
       "type": "simple",
       "category": "factual_evidence",
-      "documents": ["06_foundation_models_bommasani_2021.pdf"],
+      "documents": [
+        "06_foundation_models_bommasani_2021.pdf"
+      ],
       "question": "Secondo Bommasani et al., quali sono le due proprietà chiave che definiscono un 'foundation model' e lo distinguono da un modello tradizionale?",
       "expected_answer": "Un foundation model è definito da: (1) è addestrato su dati vasti e generali (broad data) spesso con self-supervision, (2) può essere adattato/trasferito a molti downstream task diversi (transfer learning), spesso con solo fine-tuning o prompt engineering.",
       "key_points": [
@@ -210,7 +242,9 @@
       "id": "Q012",
       "type": "simple",
       "category": "factual_evidence",
-      "documents": ["07_ragas_es_2023.pdf"],
+      "documents": [
+        "07_ragas_es_2023.pdf"
+      ],
       "question": "Quali sono le quattro metriche principali proposte da Ragas e cosa misura ciascuna sinteticamente?",
       "expected_answer": "Faithfulness (coerenza fattuale tra risposta e contesto recuperato), Answer Relevancy (pertinenza della risposta rispetto alla domanda), Context Precision (quanto i chunk recuperati sono rilevanti per la domanda), Context Recall (quanto i chunk recuperati coprono le informazioni necessarie per rispondere).",
       "key_points": [
@@ -227,7 +261,9 @@
       "id": "Q013",
       "type": "simple",
       "category": "factual_evidence",
-      "documents": ["08_crag_yang_2024.pdf"],
+      "documents": [
+        "08_crag_yang_2024.pdf"
+      ],
       "question": "Quali sono i cinque domini specifici del benchmark CRAG? Con quale criterio sono stati scelti?",
       "expected_answer": "I cinque domini sono: finance, music, movies, sports, e open. Sono stati scelti per rappresentare aree con diversa volatilità della conoscenza: alcuni domini hanno conoscenza stabile (sports, movies) mentre altri cambiano rapidamente (finance).",
       "key_points": [
@@ -243,7 +279,9 @@
       "id": "Q014",
       "type": "simple",
       "category": "factual_evidence",
-      "documents": ["08_crag_yang_2024.pdf"],
+      "documents": [
+        "08_crag_yang_2024.pdf"
+      ],
       "question": "Come sono suddivise le 4.409 domande di CRAG in base alla difficoltà e quali sono i criteri di questa suddivisione?",
       "expected_answer": "Le domande sono suddivise in tre livelli di difficoltà: simple, easy, hard. La classificazione tiene conto della complessità della risposta e della facilità con cui può essere recuperata da fonti web.",
       "key_points": [
@@ -259,7 +297,9 @@
       "id": "Q015",
       "type": "simple",
       "category": "factual_evidence",
-      "documents": ["09_helm_liang_2022.pdf"],
+      "documents": [
+        "09_helm_liang_2022.pdf"
+      ],
       "question": "Quali sono le 7 metriche di valutazione usate da HELM e come si raggruppano in categorie?",
       "expected_answer": "Le 7 metriche HELM sono: Accuracy, Calibration, Robustness, Fairness, Bias, Toxicity, Efficiency. Si raggruppano in: metriche di performance (Accuracy), metriche di affidabilità (Calibration, Robustness), metriche di equità (Fairness, Bias), metriche di sicurezza (Toxicity) e metriche di efficienza (Efficiency).",
       "key_points": [
@@ -275,7 +315,9 @@
       "id": "Q016",
       "type": "local_reasoning",
       "category": "same_document",
-      "documents": ["01_rag_original_lewis_2020.pdf"],
+      "documents": [
+        "01_rag_original_lewis_2020.pdf"
+      ],
       "question": "In RAG, descrivi come vengono integrate la memoria parametrica e la memoria non-parametrica durante la generazione di una risposta. Qual è il ruolo del retriever e quale del generatore?",
       "expected_answer": "Il retriever (DPR) codifica la domanda e recupera i top-k documenti dalla memoria non-parametrica (Wikipedia indicizzata). La memoria parametrica (BART) riceve sia la domanda sia i documenti recuperati e genera la risposta. In RAG-Sequence, un singolo documento condiziona l'intera sequenza. In RAG-Token, ogni token puo' essere condizionato da documenti diversi. Il gradiente fluisce attraverso entrambi i componenti durante il fine-tuning.",
       "key_points": [
@@ -292,7 +334,9 @@
       "id": "Q017",
       "type": "local_reasoning",
       "category": "same_document",
-      "documents": ["02_self_rag_asai_2023.pdf"],
+      "documents": [
+        "02_self_rag_asai_2023.pdf"
+      ],
       "question": "Descrivi come Self-RAG utilizza i retrieval token e i critique token per controllare il processo di generazione. In che ordine vengono generati e come influenzano la decisione finale?",
       "expected_answer": "Self-RAG prima decide se recuperare documenti tramite il retrieval token. Se decide di non recuperare, genera direttamente. Se decide di recuperare, recupera documenti e poi genera critique token (IsRel, IsSupport, IsUse) per valutare ogni documento. I critique token guidano la selezione dei documenti migliori e la generazione finale. Il modello di critica è addestrato su dati annotati automaticamente.",
       "key_points": [
@@ -309,7 +353,9 @@
       "id": "Q018",
       "type": "local_reasoning",
       "category": "same_document",
-      "documents": ["02_self_rag_asai_2023.pdf"],
+      "documents": [
+        "02_self_rag_asai_2023.pdf"
+      ],
       "question": "Quali risultati emergono dagli ablation study di Self-RAG riguardo l'impatto del critique model sulla qualità della generazione? Cosa succede se si rimuove la critica?",
       "expected_answer": "Gli ablation study mostrano che rimuovere il critique model degrada significativamente la qualità: diminuisce la factuality (piu' allucinazioni), peggiora la precisione delle citazioni, e riduce la capacità di rifiutare documenti irrilevanti. Il critique model è particolarmente importante per domande ambigue o con documenti parzialmente rilevanti.",
       "key_points": [
@@ -326,7 +372,9 @@
       "id": "Q019",
       "type": "local_reasoning",
       "category": "same_document",
-      "documents": ["03_attention_transformer_vaswani_2017.pdf"],
+      "documents": [
+        "03_attention_transformer_vaswani_2017.pdf"
+      ],
       "question": "Spiega come funziona il meccanismo di scaled dot-product attention nel Transformer e come viene esteso alla multi-head attention. Qual è il ruolo del fattore di scala?",
       "expected_answer": "La scaled dot-product attention calcola Attention(Q,K,V) = softmax(QK^T / sqrt(d_k)) V. Il fattore di scala 1/sqrt(d_k) evita che i prodotti scalari crescano troppo in modulo con l'aumentare di d_k, prevenendo gradienti molto piccoli nella softmax. La multi-head attention esegue h attention in parallelo su proiezioni lineari diverse di Q, K, V, concatenando i risultati.",
       "key_points": [
@@ -343,7 +391,9 @@
       "id": "Q020",
       "type": "local_reasoning",
       "category": "same_document",
-      "documents": ["04_yolov7_wang_2022.pdf"],
+      "documents": [
+        "04_yolov7_wang_2022.pdf"
+      ],
       "question": "Qual è il contributo specifico della 'planned re-parameterization' in YOLOv7 rispetto ai metodi di re-parameterization precedenti? Come differisce tra training e inference?",
       "expected_answer": "La planned re-parameterization di YOLOv7 permette di sostituire un modulo in training con un modulo equivalente in inference senza perdita di accuratezza. A differenza dei metodi precedenti (che applicano re-parameterization a moduli singoli), YOLOv7 la pianifica a livello di intero blocco architetturale con il coarse-to-fine auxiliary head, ottimizzando sia il lead head che l'auxiliary head con obiettivi diversi.",
       "key_points": [
@@ -360,7 +410,9 @@
       "id": "Q021",
       "type": "local_reasoning",
       "category": "same_document",
-      "documents": ["05_llm_evaluation_survey_chang_2023.pdf"],
+      "documents": [
+        "05_llm_evaluation_survey_chang_2023.pdf"
+      ],
       "question": "Il survey discute i compromessi tra valutazione automatica e valutazione umana. Quali sono i principali vantaggi e limiti di ciascun approccio secondo gli autori?",
       "expected_answer": "Valutazione automatica (BLEU, ROUGE, BERTScore): vantaggi di scalabilita' e riproducibilita', ma limiti nella cattura di sfumature semantiche e nella correlazione con il giudizio umano. Valutazione umana: piu' accurata per qualita' percepita e safety, ma costosa, lenta e poco riproducibile. LLM-as-judge emerge come compromesso intermedio ma con rischi di bias verso certi stili di risposta.",
       "key_points": [
@@ -377,7 +429,9 @@
       "id": "Q022",
       "type": "local_reasoning",
       "category": "same_document",
-      "documents": ["06_foundation_models_bommasani_2021.pdf"],
+      "documents": [
+        "06_foundation_models_bommasani_2021.pdf"
+      ],
       "question": "Quali sono i rischi principali associati ai foundation models secondo il report di Bommasani et al., e quali strategie di mitigazione vengono proposte per ciascuno?",
       "expected_answer": "I rischi principali includono: bias e discriminazione (mitigazione: dataset curation, debiasing techniques), disinformazione e misuse (mitigazione: watermarking, controlli di accesso), impatto ambientale (mitigazione: modelli piu' efficienti, carbon accounting), concentrazione di potere (mitigazione: open-source, democratizzazione dell'accesso), allineamento e safety (mitigazione: RLHF, alignment research).",
       "key_points": [
@@ -395,7 +449,9 @@
       "id": "Q023",
       "type": "local_reasoning",
       "category": "same_document",
-      "documents": ["07_ragas_es_2023.pdf"],
+      "documents": [
+        "07_ragas_es_2023.pdf"
+      ],
       "question": "Come vengono calcolate faithfulness e answer relevancy in Ragas? Perché queste metriche non richiedono ground truth?",
       "expected_answer": "Faithfulness: si estraggono affermazioni dalla risposta generata e si verifica se ciascuna e' supportata dal contesto recuperato. Answer relevancy: si calcola la similarita' tra domanda e risposta generata, eventualmente generando domande sintetiche dalla risposta e confrontandole con la domanda originale. Non richiedono ground truth perche' usano il contesto recuperato (faithfulness) o la relazione domanda-risposta (answer relevancy) come riferimento.",
       "key_points": [
@@ -412,7 +468,9 @@
       "id": "Q024",
       "type": "local_reasoning",
       "category": "same_document",
-      "documents": ["08_crag_yang_2024.pdf"],
+      "documents": [
+        "08_crag_yang_2024.pdf"
+      ],
       "question": "CRAG analizza la degradazione della retrieval quality. Quali tipi di domande soffrono piu' di questo fenomeno e quali sono le cause principali identificate?",
       "expected_answer": "Le domande 'hard' soffrono maggiormente di degradazione del retrieval, specialmente quelle in domini a conoscenza volatile (finance) e quelle che richiedono sintesi tra piu' fonti. La causa principale e' che i retriever standard faticano a trovare documenti pertinenti per domande complesse o che richiedono conoscenza aggiornata. Domande simple ed easy in domini stabili (sports, movies) hanno degradazione minima.",
       "key_points": [
@@ -429,7 +487,9 @@
       "id": "Q025",
       "type": "local_reasoning",
       "category": "same_document",
-      "documents": ["09_helm_liang_2022.pdf"],
+      "documents": [
+        "09_helm_liang_2022.pdf"
+      ],
       "question": "HELM valuta 7 metriche su 42 scenari. Quali metriche tendono a essere correlate tra loro e quali misurano aspetti ortogonali (indipendenti) della qualita' di un modello?",
       "expected_answer": "Accuracy e Calibration tendono a essere correlate: modelli piu' accurati sono spesso meglio calibrati. Robustness mostra correlazione moderata con Accuracy. Bias, Toxicity e Fairness sono metriche ortogonali: un modello accurato puo' essere biased o tossico. Efficiency e' indipendente dalle altre: un modello piccolo ed efficiente puo' essere poco accurato ma poco biased. Questa ortogonalita' e' la ragione principale per cui HELM adotta un approccio olistico.",
       "key_points": [
@@ -654,7 +714,9 @@
       "id": "Q036",
       "type": "table_extraction",
       "category": "table_metric",
-      "documents": ["03_attention_transformer_vaswani_2017.pdf"],
+      "documents": [
+        "03_attention_transformer_vaswani_2017.pdf"
+      ],
       "question": "Nella tabella dei risultati BLEU sul WMT 2014 EN-DE, quale configurazione del Transformer ottiene il punteggio BLEU piu' alto e quanto vale?",
       "expected_answer": "Il Transformer big (con d_model=1024, 16 heads) ottiene il punteggio BLEU piu' alto sul WMT 2014 EN-DE con 28.4 BLEU.",
       "key_points": [
@@ -669,7 +731,9 @@
       "id": "Q037",
       "type": "table_extraction",
       "category": "table_metric",
-      "documents": ["04_yolov7_wang_2022.pdf"],
+      "documents": [
+        "04_yolov7_wang_2022.pdf"
+      ],
       "question": "Nella tabella comparativa su MS COCO, quale AP (Average Precision) ottiene YOLOv7 rispetto ai modelli precedenti della famiglia YOLO?",
       "expected_answer": "YOLOv7 raggiunge 51.4% AP su MS COCO val, superando YOLOR (52.4% AP ma piu' parametri) e YOLOv5, YOLOX con un buon compromesso AP/FPS. Il paper enfatizza AP come miglioramento netto rispetto alla stessa categoria di modelli.",
       "key_points": [
@@ -685,7 +749,9 @@
       "id": "Q038",
       "type": "table_extraction",
       "category": "table_metric",
-      "documents": ["09_helm_liang_2022.pdf"],
+      "documents": [
+        "09_helm_liang_2022.pdf"
+      ],
       "question": "Secondo la tabella riassuntiva di HELM, quali modelli ottengono i migliori punteggi medi attraverso le 7 metriche e quali sono i trade-off principali evidenziati?",
       "expected_answer": "Modelli come GPT-3 e InstructGPT ottengono i punteggi migliori in accuracy e calibration, mentre modelli piu' piccoli (OPT, BLOOM) ottengono punteggi migliori in bias e toxicity. Il trade-off principale e': modelli grandi sono piu' accurati ma anche piu' biased e tossici. I modelli open-source tendono a essere migliori in fairness ma peggiori in accuracy.",
       "key_points": [
@@ -702,7 +768,9 @@
       "id": "Q039",
       "type": "table_extraction",
       "category": "table_metric",
-      "documents": ["02_self_rag_asai_2023.pdf"],
+      "documents": [
+        "02_self_rag_asai_2023.pdf"
+      ],
       "question": "Nelle tabelle di ablation di Self-RAG, quale componente ha l'impatto maggiore sulla qualita' finale della generazione?",
       "expected_answer": "Il critique model (i token IsRel, IsSupport, IsUse) ha l'impatto maggiore. Rimuovere la critica causa il calo piu' significativo in termini di factuality, precisione delle citazioni e qualita' percepita. L'ablation mostra anche che il retrieval adattivo (retrieval token) contribuisce in modo significativo ma minore rispetto alla critica.",
       "key_points": [
@@ -718,7 +786,9 @@
       "id": "Q040",
       "type": "table_extraction",
       "category": "table_metric",
-      "documents": ["08_crag_yang_2024.pdf"],
+      "documents": [
+        "08_crag_yang_2024.pdf"
+      ],
       "question": "Nella tabella dei risultati per dominio di CRAG, in quali domini la retrieval quality degrada maggiormente e in quali e' piu' stabile?",
       "expected_answer": "La retrieval quality degrada maggiormente nel dominio finance (alta volatilita' della conoscenza) e in open (domande generiche). E' piu' stabile in movies e sports (conoscenza stabile). Music e' intermedio. Questo conferma che la volatilita' della conoscenza nel dominio e' un fattore chiave per la robustezza del retrieval.",
       "key_points": [
@@ -735,7 +805,9 @@
       "id": "Q041",
       "type": "negative",
       "category": "true_absence",
-      "documents": ["02_self_rag_asai_2023.pdf"],
+      "documents": [
+        "02_self_rag_asai_2023.pdf"
+      ],
       "question": "Quanto e' costato addestrare Self-RAG in termini di budget di calcolo (GPU-hours o costi stimati)?",
       "expected_answer": "Il paper Self-RAG non riporta il budget di calcolo specifico per l'addestramento.",
       "key_points": [
@@ -750,7 +822,9 @@
       "id": "Q042",
       "type": "negative",
       "category": "true_absence",
-      "documents": ["01_rag_original_lewis_2020.pdf"],
+      "documents": [
+        "01_rag_original_lewis_2020.pdf"
+      ],
       "question": "Quale framework di deep learning (PyTorch, TensorFlow, JAX) e' stato usato per implementare gli esperimenti del paper RAG?",
       "expected_answer": "Il paper RAG originale non specifica il framework di deep learning utilizzato per gli esperimenti.",
       "key_points": [
@@ -765,7 +839,9 @@
       "id": "Q043",
       "type": "negative",
       "category": "false_premise",
-      "documents": ["01_rag_original_lewis_2020.pdf"],
+      "documents": [
+        "01_rag_original_lewis_2020.pdf"
+      ],
       "question": "In RAG, quale dataset specifico (oltre a Wikipedia) e' stato usato per il fine-tuning del modello generativo BART?",
       "expected_answer": "La premessa e' falsa: RAG usa Wikipedia come memoria non-parametrica e non menziona un dataset di fine-tuning separato per BART oltre ai dataset dei task downstream (come Open-Domain QA).",
       "key_points": [
@@ -782,7 +858,9 @@
       "id": "Q044",
       "type": "negative",
       "category": "true_absence",
-      "documents": ["09_helm_liang_2022.pdf"],
+      "documents": [
+        "09_helm_liang_2022.pdf"
+      ],
       "question": "Quale GPU e' stata usata per eseguire la valutazione HELM sui modelli?",
       "expected_answer": "Il paper HELM non specifica il tipo di GPU utilizzato per la valutazione.",
       "key_points": [
@@ -797,7 +875,9 @@
       "id": "Q045",
       "type": "negative",
       "category": "false_premise",
-      "documents": ["01_rag_original_lewis_2020.pdf"],
+      "documents": [
+        "01_rag_original_lewis_2020.pdf"
+      ],
       "question": "Il paper RAG originale menziona 12 autori nel paper. Quanti sono esattamente?",
       "expected_answer": "La premessa e' falsa: il paper RAG originale non ha 12 autori. Il numero esatto non e' rilevante per la domanda; il sistema deve riconoscere che la premessa numerica e' falsa o non verificabile nel contesto.",
       "key_points": [
@@ -812,7 +892,9 @@
       "id": "Q046",
       "type": "negative",
       "category": "out_of_domain",
-      "documents": ["10_tree_of_thoughts_yao_2023_negative_control.pdf"],
+      "documents": [
+        "10_tree_of_thoughts_yao_2023_negative_control.pdf"
+      ],
       "question": "Tree of Thoughts propone un metodo specifico per migliorare il retrieval in sistemi RAG?",
       "expected_answer": "No. Tree of Thoughts (Yao et al., 2023) non e' un paper su RAG e non propone metodi di retrieval. ToT e' un framework per problem solving con LLM che usa esplorazione ad albero (BFS/DFS) per task come Game of 24 e crossword.",
       "key_points": [
@@ -829,7 +911,9 @@
       "id": "Q047",
       "type": "negative",
       "category": "true_absence",
-      "documents": ["03_attention_transformer_vaswani_2017.pdf"],
+      "documents": [
+        "03_attention_transformer_vaswani_2017.pdf"
+      ],
       "question": "Nel paper Transformer, quale learning rate costante viene usato per tutto il training?",
       "expected_answer": "Il paper Transformer non usa un learning rate costante. Descrive una learning rate schedule con warmup (increase lineare per i primi step) seguita da decay proporzionale a 1/sqrt(step_num). Non esiste un singolo learning rate costante.",
       "key_points": [
@@ -845,7 +929,9 @@
       "id": "Q048",
       "type": "negative",
       "category": "false_premise",
-      "documents": ["09_helm_liang_2022.pdf"],
+      "documents": [
+        "09_helm_liang_2022.pdf"
+      ],
       "question": "In HELM, quale modello ha ottenuto il punteggio massimo assoluto (5/5) in tutte le 7 metriche?",
       "expected_answer": "La premessa e' falsa: nessun modello ottiene il punteggio massimo in tutte le 7 metriche HELM. L'intero punto del framework e' mostrare i trade-off tra metriche: modelli grandi eccellono in accuracy ma sono peggiori in bias e toxicity.",
       "key_points": [
@@ -861,7 +947,9 @@
       "id": "Q049",
       "type": "negative",
       "category": "true_absence",
-      "documents": ["08_crag_yang_2024.pdf"],
+      "documents": [
+        "08_crag_yang_2024.pdf"
+      ],
       "question": "Quali sono i nomi dei revisori del paper CRAG?",
       "expected_answer": "Il paper CRAG non elenca i revisori. I nomi dei revisori non sono parte del contenuto del documento accademico.",
       "key_points": [
@@ -876,7 +964,9 @@
       "id": "Q050",
       "type": "negative",
       "category": "out_of_domain",
-      "documents": ["10_tree_of_thoughts_yao_2023_negative_control.pdf"],
+      "documents": [
+        "10_tree_of_thoughts_yao_2023_negative_control.pdf"
+      ],
       "question": "Tree of Thoughts valuta la qualita' del retrieval su documenti esterni durante la generazione?",
       "expected_answer": "No. Tree of Thoughts non valuta la qualita' del retrieval. ToT si concentra sull'esplorazione di percorsi di ragionamento multipli (pensieri intermedi) organizzati in albero, senza coinvolgere documenti esterni o meccanismi di retrieval.",
       "key_points": [
@@ -887,6 +977,470 @@
       "min_required_points": 2,
       "answerable": false,
       "acceptable_behavior": "Il sistema deve identificare che il documento non tratta di retrieval o documenti esterni",
+      "evidence_doc_mandatory": false
+    },
+    {
+      "id": "Q051",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": [
+        "11_replug_shi_2023.pdf"
+      ],
+      "question": "In REPLUG, come viene gestita la differenza tra il retriever e il generatore quando il generatore e' una black-box LLM?",
+      "expected_answer": "REPLUG treats the retriever and generator as separate black-box models. The retriever is trained using the LLM's feedback as a reward signal: the LLM generates responses for each retrieved document, and the retriever is updated to favor documents that led to better LLM responses. The LLM itself is never modified or fine-tuned.",
+      "key_points": [
+        "Retriever e generator sono black-box separati",
+        "Retriever addestrato con feedback LLM come reward",
+        "LLM non viene modificato"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q052",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": [
+        "12_hyde_gao_2022.pdf"
+      ],
+      "question": "In HyDE, qual e' l'idea centrale alla base dell'uso di un documento ipotetico per il retrieval?",
+      "expected_answer": "HyDE (Hypothetical Document Embeddings) generates a hypothetical document that would answer the query using an LLM, then encodes this hypothetical document with a sentence encoder and uses it to retrieve real documents via similarity search. The idea is that hypothetical documents bridge the distribution gap between queries and documents better than query embeddings alone.",
+      "key_points": [
+        "Genera documento ipotetico con LLM",
+        "Codifica il documento ipotetico con sentence encoder",
+        "Recupera documenti reali per similarita'",
+        "Bridges query-document distribution gap"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q053",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": [
+        "13_raptor_sarthi_2024.pdf"
+      ],
+      "question": "Qual e' l'innovazione architetturale principale di RAPTOR per organizzare i documenti recuperati?",
+      "expected_answer": "RAPTOR organizes retrieved documents into a hierarchical tree structure using recursive summarization. Documents are clustered by semantic similarity, each cluster is summarized, and summaries are clustered again at higher levels. This creates a multi-level representation where queries can retrieve at the appropriate abstraction level, from specific passages to high-level thematic summaries.",
+      "key_points": [
+        "Struttura ad albero gerarchica",
+        "Summarization ricorsiva",
+        "Clustering per similarita' semantica",
+        "Multi-level representation per diversi livelli di astrazione"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q054",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": [
+        "14_ralm_ram_2023.pdf"
+      ],
+      "question": "Qual e' il contributo principale di In-Context RALM per il retrieval-augmented language modeling?",
+      "expected_answer": "In-Context RALM (Retrieval-Augmented Language Modeling) proposes a method where retrieved documents are prepended to the LLM input as additional context during training and inference, without modifying the LLM architecture. The key contribution is showing that simply prepending retrieved passages to the input during training allows the LLM to learn to use external context effectively, even at inference time.",
+      "key_points": [
+        "Documenti recuperati prepended all'input",
+        "Nessuna modifica all'architettura LLM",
+        "Training con context prepended"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q055",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": [
+        "15_llm_augmenter_peng_2023.pdf"
+      ],
+      "question": "Quali tipi di strumenti esterni utilizza LLM-Augmenter per migliorare l'affidabilita' degli LLM?",
+      "expected_answer": "LLM-Augmenter uses two types of external tools: (1) a retrieval tool that fetches relevant documents from external knowledge sources, and (2) a verification tool that checks the factual accuracy of LLM-generated claims against the retrieved evidence. The system iteratively retrieves, generates, and verifies until it produces a response that passes the verification checks or reaches a maximum iteration limit.",
+      "key_points": [
+        "Retrieval tool per documenti esterni",
+        "Verification tool per accuratezza fattuale",
+        "Processo iterativo retrieve-generate-verify"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q056",
+      "type": "local_reasoning",
+      "category": "same_document",
+      "documents": [
+        "12_hyde_gao_2022.pdf"
+      ],
+      "question": "Spiega come HyDE genera documenti ipotetici e perche' questo migliora la performance di zero-shot retrieval rispetto all'uso diretto delle query embedding.",
+      "expected_answer": "HyDE uses an LLM (like GPT-3) to generate a hypothetical document that would contain the answer to the query. The prompt instructs the LLM to write a paragraph that answers the question. This hypothetical document is then encoded using a sentence encoder (like Contriever or GTR). The key insight is that the sentence encoder produces better embeddings for document-like text than for short query-like text, because it was trained on document passages. By converting queries into document-style text, HyDE bridges the distribution mismatch between queries and documents in the embedding space.",
+      "key_points": [
+        "LLM genera documento ipotetico che risponde alla query",
+        "Sentence encoder codifica il documento",
+        "Bridges distribution mismatch query-document",
+        "Funziona senza training specifico (zero-shot)"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q057",
+      "type": "local_reasoning",
+      "category": "same_document",
+      "documents": [
+        "13_raptor_sarthi_2024.pdf"
+      ],
+      "question": "Spiega il processo di recursive summarization di RAPTOR e come costruisce la struttura ad albero per il retrieval.",
+      "expected_answer": "RAPTOR starts by embedding all document passages. It then applies a clustering algorithm (GMM-based soft clustering) to group similar passages. Each cluster is summarized using an LLM to produce a high-level summary that captures the key information shared by passages in that cluster. These summaries form the next level of the tree. The process repeats: summaries are clustered and summarized again, creating multiple hierarchical levels. At retrieval time, the query is compared to all nodes at all levels simultaneously, and the top-k most relevant nodes (which may be from different levels) are returned. This allows retrieving both specific details from leaf nodes and broader themes from summary nodes.",
+      "key_points": [
+        "Embedding passages + GMM clustering",
+        "Summarization LLM per ogni cluster",
+        "Processo ricorsivo per livelli multipli",
+        "Retrieval simultaneo a tutti i livelli"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q058",
+      "type": "local_reasoning",
+      "category": "same_document",
+      "documents": [
+        "11_replug_shi_2023.pdf"
+      ],
+      "question": "Come gestisce REPLUG il fatto che il retriever e il generatore siano modelli black-box separati? Descrivi il meccanismo di addestramento.",
+      "expected_answer": "REPLUG treats both the retriever and LLM as black boxes. The retriever is a dense retriever (like Contriever) and the LLM is a frozen language model. During training, for each query, the retriever fetches top-k documents. Each document is prepended to the query and fed to the LLM separately. The LLM assigns a likelihood score to the ground-truth answer given each document. These likelihood scores are used as rewards: documents that lead to higher likelihood are rewarded, and the retriever is updated via a contrastive loss to retrieve more documents like them. The retriever gradient is approximated since the LLM gradient is not accessible. At inference, the trained retriever fetches documents that are concatenated for the LLM.",
+      "key_points": [
+        "Retriever e LLM sono black-box",
+        "LLM valuta ogni documento con likelihood score",
+        "Likelihood usato come reward per retriever",
+        "Contrastive loss per addestrare retriever"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q059",
+      "type": "multi_document",
+      "category": "comparison",
+      "documents": [
+        "11_replug_shi_2023.pdf",
+        "12_hyde_gao_2022.pdf"
+      ],
+      "question": "Confronta gli approcci di REPLUG e HyDE al miglioramento del retrieval senza modificare l'architettura del retriever. Quali sono le differenze metodologiche fondamentali?",
+      "expected_answer": "Both REPLUG and HyDE improve retrieval without modifying the standard dense retriever architecture, but through different mechanisms. REPLUG trains the retriever using LLM feedback as reward: it fetches documents, evaluates them through the LLM, and updates the retriever to favor documents that lead to better generations. This requires training data. HyDE is zero-shot: it uses an LLM to generate a hypothetical document that would answer the query, then encodes this document for retrieval. REPLUG improves the retriever itself through training; HyDE improves the query representation through generation. REPLUG is more effective when training data is available; HyDE works without any task-specific training.",
+      "key_points": [
+        "REPLUG: addestra retriever con LLM feedback",
+        "HyDE: genera documento ipotetico zero-shot",
+        "REPLUG: migliora il retriever, richiede training",
+        "HyDE: migliora la query, senza training"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q060",
+      "type": "multi_document",
+      "category": "comparison",
+      "documents": [
+        "13_raptor_sarthi_2024.pdf",
+        "14_ralm_ram_2023.pdf"
+      ],
+      "question": "In che modo RAPTOR e In-Context RALM differiscono nel loro approccio all'organizzazione o all'uso del contesto per il retrieval?",
+      "expected_answer": "RAPTOR and RALM take fundamentally different approaches. RAPTOR organizes documents hierarchically into a tree structure via recursive summarization, allowing retrieval at multiple levels of abstraction (specific passages to high-level summaries). It modifies the retrieval index structure but keeps the LLM unchanged. RALM, on the other hand, keeps the retrieval index flat and directly prepends retrieved passages to the LLM input during both training and inference. RALM's innovation is in training the LLM with retrieved context to learn to use it effectively. RAPTOR focuses on better document organization for retrieval; RALM focuses on better LLM integration of retrieved content.",
+      "key_points": [
+        "RAPTOR: organizza documenti in albero gerarchico",
+        "RALM: prepende documenti all'input LLM",
+        "RAPTOR: modifica indice retrieval, LLM invariato",
+        "RALM: addestra LLM con context prepended"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q061",
+      "type": "multi_document",
+      "category": "comparison",
+      "documents": [
+        "11_replug_shi_2023.pdf",
+        "15_llm_augmenter_peng_2023.pdf"
+      ],
+      "question": "Confronta REPLUG e LLM-Augmenter in termini di come integrano conoscenza esterna con LLM black-box. Qual e' la differenza nel ruolo del meccanismo di verifica?",
+      "expected_answer": "Both REPLUG and LLM-Augmenter work with black-box LLMs and external knowledge. REPLUG focuses on improving the retriever through LLM feedback: the LLM evaluates retrieved documents and the retriever learns from this evaluation. There is no explicit verification step. LLM-Augmenter adds an explicit verification tool that checks generated claims against retrieved evidence, with iterative refinement until verification passes. REPLUG's feedback loop is at training time; LLM-Augmenter's verification loop is at inference time. REPLUG improves retrieval quality; LLM-Augmenter improves both retrieval and generation quality through iterative verification.",
+      "key_points": [
+        "Entrambi usano LLM black-box + conoscenza esterna",
+        "REPLUG: feedback LLM per addestrare retriever",
+        "LLM-Augmenter: verifica esplicita iterativa",
+        "REPLUG: training-time feedback, LLM-Augmenter: inference-time verification"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q062",
+      "type": "table_extraction",
+      "category": "table_metric",
+      "documents": [
+        "11_replug_shi_2023.pdf"
+      ],
+      "question": "Secondo la tabella dei risultati di REPLUG sul benchmark KILT, quale miglioramento assoluto si osserva rispetto alla baseline senza retrieval augmentation?",
+      "expected_answer": "On the KILT benchmark, REPLUG achieves an average improvement of approximately 6.3 points across all tasks compared to the no-retrieval baseline. The improvement is larger on knowledge-intensive tasks like FEVER (where accuracy improves from 74.2 to 82.1) and smaller on tasks like AY2 (where the gain is around 2.1 points).",
+      "key_points": [
+        "Miglioramento medio ~6.3 punti su KILT",
+        "FEVER: da 74.2 a 82.1",
+        "Miglioramento maggiore su knowledge-intensive tasks"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q063",
+      "type": "negative",
+      "category": "true_absence",
+      "documents": [
+        "12_hyde_gao_2022.pdf"
+      ],
+      "question": "In HyDE, quante GPU-hours sono state usate per l'addestramento del query encoder?",
+      "expected_answer": "Il paper HyDE non riporta il numero di GPU-hours utilizzate per l'addestramento del query encoder. HyDE utilizza sentence encoder pre-addestrati (Contriever, GTR) senza fine-tuning specifico per il task di retrieval.",
+      "key_points": [
+        "Non presente nel documento"
+      ],
+      "min_required_points": 1,
+      "answerable": false,
+      "acceptable_behavior": "Il sistema deve dichiarare che l'informazione non e' presente nel documento",
+      "evidence_doc_mandatory": false
+    },
+    {
+      "id": "Q064",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": [
+        "16_zorvian_retrieval_protocol.pdf"
+      ],
+      "question": "Quale miglioramento metrico riporta lo Zorvian Retrieval Protocol (ZRP) sul benchmark Zorvian-1M?",
+      "expected_answer": "ZRP achieves a 34.7% improvement in recall@5 on the Zorvian-1M benchmark compared to standard DPR baselines. It also maintains 89.2% retrieval accuracy after 12 months without retraining, compared to 61.3% for DPR and 68.7% for ColBERTv2.",
+      "key_points": [
+        "34.7% improvement in recall@5 su Zorvian-1M",
+        "89.2% accuracy dopo 12 mesi senza retraining",
+        "DPR: 61.3%, ColBERTv2: 68.7% dopo 12 mesi"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q065",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": [
+        "18_quantum_embedding_projection.pdf"
+      ],
+      "question": "In QEP, quanti qubit vengono usati per lo schema di amplitude encoding?",
+      "expected_answer": "QEP uses a 24-qubit amplitude encoding scheme. Each document is encoded as a quantum state |ψ_d⟩ = U(θ_d)|0⟩ where U is a parameterized quantum circuit with 48 trainable parameters organized in 6 layers of 8 two-qubit gates.",
+      "key_points": [
+        "24 qubit per amplitude encoding",
+        "48 parametri addestrabili",
+        "6 layers di 8 two-qubit gates"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q066",
+      "type": "simple",
+      "category": "factual_evidence",
+      "documents": [
+        "19_temporal_rag.pdf"
+      ],
+      "question": "Quale accuratezza raggiunge TempRAG sul benchmark TempQuestions?",
+      "expected_answer": "TempRAG achieves 88.4% temporal accuracy on the TempQuestions benchmark (15,000 QA pairs across news, science, and legal domains), versus 56.7% for standard DPR retrieval. On time-sensitive news queries specifically, accuracy reaches 93.2%.",
+      "key_points": [
+        "88.4% temporal accuracy su TempQuestions",
+        "Standard DPR: 56.7%",
+        "93.2% su news queries"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q067",
+      "type": "local_reasoning",
+      "category": "same_document",
+      "documents": [
+        "17_neuro_symbolic_index_fusion.pdf"
+      ],
+      "question": "Descrivi come il Differentiable Rule Controller (DRC) in NSIF seleziona le regole rilevanti dal knowledge graph e come queste influenzano il retrieval.",
+      "expected_answer": "The DRC processes the query through a Graph Neural Network over the rule graph to produce a rule activation vector. Each element in this vector corresponds to a logical rule in the knowledge graph. The DRC outputs attention weights α_i for each rule r_i. These weights are used in the Rule-Aware Attention (RAA) mechanism, which computes final relevance as a weighted combination of embedding similarity s_e(d,q) and rule entailment score s_r(d,q) = Σ α_i · r_i(q,d). The rule activations provide interpretable explanations for retrieval decisions. Training achieves 91.7% accuracy in correctly identifying relevant rules.",
+      "key_points": [
+        "GNN processa query su rule graph",
+        "Produce vettore di attivazione regole",
+        "RAA pesa similarita' embedding + entailment rules",
+        "91.7% accuratezza nell'identificare regole rilevanti"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q068",
+      "type": "local_reasoning",
+      "category": "same_document",
+      "documents": [
+        "20_adversarial_chunk_filter.pdf"
+      ],
+      "question": "Spiega l'architettura del discriminator ACF e cosa viene addestrato a classificare. Quali metriche di classificazione raggiunge?",
+      "expected_answer": "The ACF discriminator is a 4-layer Transformer encoder with 4 attention heads and 98K total parameters. It is trained to classify document chunks as either informative or shallow (structural Markdown artifacts). The classifier takes a chunk as input and outputs p(shallow|chunk) ∈ [0,1]. Chunks with p > 0.5 are filtered from the retrieval candidate set. On a manually annotated dataset of 5,000 chunks, ACF achieves 94.3% accuracy, 96.1% precision, and 92.8% recall for shallow chunk detection. The generator produces synthetic shallow chunks for data augmentation, with synthetic examples indistinguishable from real ones in 87.3% of cases.",
+      "key_points": [
+        "4-layer Transformer encoder, 4 attention heads",
+        "98K parametri totali",
+        "Classifica chunk come informativi o shallow",
+        "94.3% accuracy, 96.1% precision, 92.8% recall"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q069",
+      "type": "multi_document",
+      "category": "comparison",
+      "documents": [
+        "16_zorvian_retrieval_protocol.pdf",
+        "18_quantum_embedding_projection.pdf"
+      ],
+      "question": "Confronta gli spazi di embedding usati da ZRP e QEP. In che modo ciascuno ottiene un miglioramento delle performance di retrieval?",
+      "expected_answer": "ZRP uses a non-Euclidean manifold projection where queries and documents are mapped to a Riemannian manifold optimized for sparse, high-velocity knowledge streams. The Zorvian Divergence loss minimizes KL divergence between query and document distributions in the projected space. QEP uses a Hilbert space with quantum states, enforcing orthogonality through unitary transformations. QEP guarantees a minimum angular separation between distinct documents, improving retrieval diversity. Both achieve storage compression (ZRP: 3.2x, QEP via quantum encoding) but through different mechanisms: ZRP adapts to concept drift in high-velocity domains, while QEP maximizes discriminability between all documents.",
+      "key_points": [
+        "ZRP: non-Euclidean manifold per concept drift",
+        "QEP: Hilbert space con unitary constraints",
+        "ZRP: Zorvian Divergence loss per distribuzioni",
+        "QEP: ortogonalita' garantita per discriminabilita'"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q070",
+      "type": "multi_document",
+      "category": "comparison",
+      "documents": [
+        "17_neuro_symbolic_index_fusion.pdf",
+        "20_adversarial_chunk_filter.pdf"
+      ],
+      "question": "In che modo NSIF e ACF affrontano diversi aspetti della qualita' del retrieval? I loro approcci sono complementari?",
+      "expected_answer": "NSIF addresses multi-hop reasoning quality by augmenting dense retrieval with symbolic rules, improving performance on complex compositional queries that require multi-step inference. It reduces false positives by 41.3% in multi-hop queries. ACF addresses shallow chunk contamination in Markdown-processed documents, filtering out structural artifacts that act as false positives in cosine similarity. Both reduce false positives but at different levels: NSIF filters semantically plausible but logically incorrect retrievals, ACF filters structurally shallow retrievals. They are complementary: NSIF could be applied on top of ACF-filtered chunks to further improve precision for complex queries.",
+      "key_points": [
+        "NSIF: multi-hop reasoning con regole simboliche",
+        "ACF: filtra chunk shallow da Markdown",
+        "Entrambi riducono falsi positivi a livelli diversi",
+        "Complementari: NSIF su chunk filtrati da ACF"
+      ],
+      "min_required_points": 3,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q071",
+      "type": "table_extraction",
+      "category": "table_metric",
+      "documents": [
+        "19_temporal_rag.pdf"
+      ],
+      "question": "Secondo la tabella dei risultati di TempRAG, qual e' l'accuratezza temporale specifica per le domande news time-sensitive?",
+      "expected_answer": "On time-sensitive news queries specifically, TempRAG achieves 93.2% temporal accuracy. This is the highest accuracy among all three domains tested (news, science, legal). The overall TempQuestions benchmark accuracy is 88.4%, with science at 86.1% and legal at 85.9%. The news domain benefits most from temporal awareness because news knowledge has the highest volatility.",
+      "key_points": [
+        "93.2% su news time-sensitive",
+        "88.4% overall su TempQuestions",
+        "Science: 86.1%, Legal: 85.9%"
+      ],
+      "min_required_points": 2,
+      "answerable": true,
+      "evidence_doc_mandatory": true
+    },
+    {
+      "id": "Q072",
+      "type": "negative",
+      "category": "true_absence",
+      "documents": [
+        "16_zorvian_retrieval_protocol.pdf"
+      ],
+      "question": "Qual e' il nome del primo autore del paper sullo Zorvian Retrieval Protocol?",
+      "expected_answer": "Il paper Zorvian Retrieval Protocol non riporta i nomi degli autori. Il documento e' presentato come un report tecnico senza autori espliciti.",
+      "key_points": [
+        "Non presente nel documento"
+      ],
+      "min_required_points": 1,
+      "answerable": false,
+      "acceptable_behavior": "Il sistema deve dichiarare che l'informazione non e' presente nel documento",
+      "evidence_doc_mandatory": false
+    },
+    {
+      "id": "Q073",
+      "type": "negative",
+      "category": "true_absence",
+      "documents": [
+        "17_neuro_symbolic_index_fusion.pdf"
+      ],
+      "question": "Quale learning rate e' stato usato per addestrare NSIF?",
+      "expected_answer": "Il paper NSIF non specifica il learning rate utilizzato per l'addestramento del modello. Descrive l'architettura e i risultati ma non riporta gli iperparametri di ottimizzazione.",
+      "key_points": [
+        "Non presente nel documento"
+      ],
+      "min_required_points": 1,
+      "answerable": false,
+      "acceptable_behavior": "Il sistema deve dichiarare che l'informazione non e' presente nel documento",
+      "evidence_doc_mandatory": false
+    },
+    {
+      "id": "Q074",
+      "type": "negative",
+      "category": "false_premise",
+      "documents": [
+        "18_quantum_embedding_projection.pdf"
+      ],
+      "question": "Su quale hardware quantistico (IBM, Google, Rigetti) e' stato validato sperimentalmente QEP?",
+      "expected_answer": "La premessa e' falsa: QEP non e' stato validato su hardware quantistico reale. Il paper utilizza un simulatore classico di sistemi a 24 qubit con amplitude encoding. L'implementazione su hardware quantistico e' lasciata come lavoro futuro.",
+      "key_points": [
+        "Nessuna validazione su hardware quantistico reale",
+        "Usa simulatore classico di 24 qubit",
+        "Implementazione hardware lasciata a lavoro futuro"
+      ],
+      "min_required_points": 1,
+      "answerable": false,
+      "acceptable_behavior": "Il sistema deve identificare la premessa falsa e spiegare che QEP usa solo simulazione classica",
+      "evidence_doc_mandatory": false
+    },
+    {
+      "id": "Q075",
+      "type": "negative",
+      "category": "true_absence",
+      "documents": [
+        "20_adversarial_chunk_filter.pdf"
+      ],
+      "question": "Qual e' stato il tempo totale di training di ACF sul dataset annotato?",
+      "expected_answer": "Il paper ACF non riporta il tempo totale di training del modello. Specifica la dimensione del dataset (5,000 chunk annotati, di cui 2,000 reali e 8,000 sintetici per un totale di 10,000) e il numero di parametri del discriminatore (98K), ma non le ore di training.",
+      "key_points": [
+        "Non presente nel documento"
+      ],
+      "min_required_points": 1,
+      "answerable": false,
+      "acceptable_behavior": "Il sistema deve dichiarare che l'informazione non e' presente nel documento",
       "evidence_doc_mandatory": false
     }
   ]
